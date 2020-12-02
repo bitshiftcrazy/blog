@@ -1,0 +1,278 @@
+
+#+setupfile: ~/.emacs.d/org-templates/level1-slim.org
+#+title: Emacs Themes
+#+date: "<2019-12-21 Sun 20:00>"
+#+keywords: emacs, beginner-friendly, themes
+#+description: It's important to feel at home in your beloved editor, so this post is about creating custom themes in Emacs.
+* Creating Emacs custom themes
+
+
+#+attr_html: :class tldr
+#+BEGIN_DIV
+[TL;DR] It's important to feel at home in your beloved editor, so this post is
+about creating custom themes in Emacs.
+#+END_DIV
+ 
+** Why? 
+
+Apart from the fact that of course we want Emacs to look pretty the
+right theme can help to increase your productivity and optimise your
+coding workflow: in the best case a theme makes it easy to read your code and
+spot mistakes while being friendly for your eyes. 
+
+** How?
+
+*** Creating the theme 
+
+Creating themes in Emacs is really easy :) 
+Just type M-x customize-create-theme (for Emacs newbies: "M" means the alt key).
+You'll be asked if you want to have common faces inserted into your theme,
+that's pretty handy. Then you can choose a creative title and write a description
+for your new theme: 
+
+\\
+
+#+BEGIN_EXPORT html
+<figure>
+<img src="../../assets/customtheme.png" alt="create theme screenshot" title="The customize theme buffer" width="600px">
+
+<figcaption><span class="figure-number">Figure 1: </span>A screenshot of the customize theme buffer</figcaption>
+</figure>
+#+END_EXPORT
+\\
+Probably you also want to add additional faces for the modes you use, 
+you can do so with the "Insert Additional Face" option close to the 
+end of the buffer:
+
+\\
+
+#+BEGIN_EXPORT html
+<figure>
+<img src="../../assets/customtheme3.png" alt="create theme screenshot" title="The customize theme buffer" width="600px">
+
+<figcaption><span class="figure-number">Figure 1: </span>A screenshot of the customize theme buffer</figcaption>
+</figure>
+#+END_EXPORT
+
+
+Themes don't only contain faces but also variables, you can set them in 
+this bufffer, too.
+
+*** Selecting the theme 
+
+
+When your outburst of creativity is over and you're done with customizing your
+theme save it by either using the "Save Theme" button or typing C-x C-s (for Emacs
+newbies: "C" means the control key). 
+The theme is saved as "your-creative-theme-name"-theme.el in the directory 
+specified by the variable custom-theme-directory. So if you haven't changed 
+that variable you'll probably find your new theme in the ~/.emacs.d/ directory.
+
+To select the eyecandy you just created as your new theme type M-x customize-themes
+or (if your prefer to use the Menu Bar) click Options->Customize Emacs->Custom Themes.
+You'll find yourself in the Custom Themes buffer where you can select one or more
+themes. 
+
+Emacs looks for the themes displayed in this buffer in custom-theme-directory and
+etc/themes of your Emacs installation (that's where the themes that come with Emacs
+are located). If you want to add additional directories just add them to the 
+list "custom-theme-load-path" (for example sth. like (add-to-list 
+'custom-theme-load-path "~/.my-special-theme-dir"...).
+
+Save the theme(s) with the "Save Theme Settings" button or by typing C-x C-s.
+
+\\
+
+#+BEGIN_EXPORT html
+<figure>
+<img src="../../assets/customtheme4.png" alt="create theme screenshot" title="The customize theme buffer" width="600px">
+
+<figcaption><span class="figure-number">Figure 1: </span>A screenshot of the customize theme buffer</figcaption>
+</figure>
+#+END_EXPORT
+
+
+\\
+
+Alternatively you can load a theme in your current session by typing M-x load-theme.
+(or if it's been loaded before with M-x enable-theme, guess the command for disabling
+it ;)).
+
+Note that loading a theme executes Lisp code, so make sure you know what you're loading.
+
+** I'm lazy
+
+
+The method described above is not that much effort ;) But if it's
+still too much effort (and I totally understand that) for you you could 
+use the Emacs Theme Creator by Martin Haesler:
+
+\\
+
+#+BEGIN_EXPORT html
+<figure>
+<img src="../../assets/themecreator.png" alt="create theme screenshot" title="The customize theme buffer" width="600px">
+
+<figcaption><span class="figure-number">Figure 1: </span>A screenshot of the customize theme buffer</figcaption>
+</figure>
+#+END_EXPORT
+
+
+\\
+
+And a [[https://emacs-theme-creator.appspot.com/][link]] to it. 
+
+
+
+** What else? 
+
+
+Since themes in Emacs are simply lisp files you can also edit them directly.
+You should have a call to deftheme at the beginning of your file and provide-theme
+at the end. 
+The function custom-theme-set-faces contains your face settings, if you
+have custom variables you can set them in custom-theme-set-variables.
+
+As an example, here's my cactus-theme (feel free to use it and add the faces you
+need):
+
+#+BEGIN_SRC emacs-lisp
+(deftheme cactus
+  "Cactus Theme")
+
+(custom-theme-set-faces
+ 'cactus
+ '(cursor ((t (:background "cadet blue"))))
+ '(border ((t (:foreground "gray6"))))
+ '(default ((t (:background "gray20" :foreground "light sea green"))))
+ '(error ((t (:foreground "goldenrod" :weight bold))))
+ '(match ((t (:background "gray31"))))
+ '(mouse ((t (:foreground "goldenrod"))))
+ '(region ((t (:background "cadet blue"))))
+ '(scroll-bar ((t (:background "black" :foreground "cadet blue"))))
+ '(tool-bar ((t (:background "cadet blue" :foreground "black" :box (:line-width 1 :style released-button)))))
+ '(tooltip ((t (:inherit variable-pitch :background "pale goldenrod" :foreground "black"))))
+ '(warning ((t (:foreground "deep sky blue" :weight bold))))
+
+ 
+ '(beacon-fallback-background ((t (:background "goldenrod"))))
+ '(bold ((t (:foreground "light sea green" :weight bold))))
+
+ '(comint-highlight-input ((t (:foreground "dark gray" :weight bold))))
+ '(comint-highlight-prompt ((t (:foreground "dark goldenrod"))))
+
+ '(company-echo-common ((t (:foreground "white smoke"))))
+ '(company-preview ((t (:background "light sky blue" :foreground "dim gray"))))
+ '(company-preview-common ((t (:inherit company-preview :foreground "goldenrod"))))
+ '(company-preview-search ((t (:inherit company-preview :background "sky blue"))))
+ '(company-scrollbar-bg ((t (:background "light gray"))))
+ '(company-scrollbar-fg ((t (:background "dim gray"))))
+ '(company-template-field ((t (:background "royal blue" :foreground "white"))))
+ '(company-tooltip ((t (:background "royal blue" :foreground "white smoke"))))
+ '(company-tooltip-annotation ((t (:foreground "light blue"))))
+ '(company-tooltip-common ((t (:foreground "cyan2"))))
+ '(company-tooltip-selection ((t (:background "light blue"))))
+
+ '(compilation-mode-line-exit ((t (:inherit compilation-info :foreground "blue3" :weight bold))))
+ '(compilation-mode-line-fail ((t (:inherit compilation-error :foreground "dark cyan" :weight bold))))
+
+ '(custom-button ((t (:background "cadet blue" :foreground "black" :box (:line-width 2 :style released-button)))))
+ '(custom-button-pressed-unraised ((t (:inherit custom-button-unraised :foreground "dark gray"))))
+ '(custom-invalid ((t (:background "blue1" :foreground "white smoke"))))
+ '(custom-rogue ((t (:background "black" :foreground "white"))))
+ '(custom-state ((t (:foreground "cornflower blue"))))
+ '(custom-modified ((t (:background "steel blue" :foreground "white"))))
+ '(custom-themed ((t (:background "cornflower blue" :foreground "white"))))
+ 
+ '(diary ((t (:foreground "goldenrod"))))
+
+ '(escape-glyph ((t (:foreground "medium aquamarine"))))
+ '(font-lock-builtin-face ((t (:foreground "medium aquamarine"))))
+ '(font-lock-comment-face ((t (:foreground "gray40"))))
+ '(font-lock-constant-face ((t (:foreground "aquamarine"))))
+ '(font-lock-function-name-face ((t (:foreground "cyan3"))))
+ '(font-lock-keyword-face ((t (:foreground "dark goldenrod"))))
+ '(font-lock-negation-char-face ((t (:foreground "cyan"))))
+ '(font-lock-string-face ((t (:foreground "dark gray"))))
+ '(font-lock-type-face ((t (:foreground "dark goldenrod"))))
+ '(font-lock-variable-name-face ((t (:foreground "medium aquamarine"))))
+ '(font-lock-warning-face ((t (:foreground "deep sky blue"))))
+ '(fringe ((t (:background "gray12"))))
+ '(haskell-constructor-face ((t (:foreground "DarkGoldenrod3"))))
+ '(header-line ((t (:inherit mode-line :background "grey20" :foreground "light gray" :box nil))))
+ '(helm-action ((t (:foreground "cyan4" :underline t))))
+ '(helm-buffer-archive ((t (:foreground "goldenrod"))))
+ '(helm-buffer-directory ((t (:background "LightGray" :foreground "gray15"))))
+ '(helm-buffer-not-saved ((t (:foreground "goldenrod"))))
+ '(helm-buffer-process ((t (:foreground "dark goldenrod"))))
+ '(helm-buffer-saved-out ((t (:background "black" :foreground "dark gray"))))
+
+ '(helm-candidate-number ((t (:background "gray" :foreground "black"))))
+ '(helm-ff-denied ((t (:background "black" :foreground "gold"))))
+ '(helm-ff-directory ((t (:background "LightGray" :foreground "orange4"))))
+ '(helm-ff-executable ((t (:foreground "gainsboro"))))
+ '(helm-ff-invalid-symlink ((t (:background "steel blue" :foreground "black"))))
+ '(helm-ff-prefix ((t (:background "dark goldenrod" :foreground "black"))))
+ '(helm-ff-socket ((t (:foreground "gold"))))
+ '(helm-ff-suid ((t (:background "dark goldenrod" :foreground "white"))))
+ '(helm-grep-file ((t (:foreground "cyan" :underline t))))
+ '(helm-grep-finish ((t (:foreground "gainsboro"))))
+ '(helm-header-line-left-margin ((t (:background "dark goldenrod" :foreground "black"))))
+ '(helm-locate-finish ((t (:foreground "gainsboro"))))
+ '(helm-mode-prefix ((t (:background "gold" :foreground "black"))))
+ '(helm-prefarg ((t (:foreground "gainsboro"))))
+ '(helm-resume-need-update ((t (:background "gainsboro"))))
+ '(helm-selection ((t (:background "cadet blue" :distant-foreground "black"))))
+ '(helm-separator ((t (:foreground "dark goldenrod"))))
+ '(helm-visible-mark ((t (:background "cadet blue" :foreground "black"))))
+ '(highlight ((t (:background "dark cyan" :foreground "black"))))
+ '(info-node ((t (:foreground "light gray" :slant italic :weight bold))))
+ '(isearch ((t (:background "light sea green" :foreground "white"))))
+ '(lazy-highlight ((t (:background "dim gray"))))
+ '(link ((t (:foreground "deep sky blue" :underline t))))
+ '(link-visited ((t (:inherit link :foreground "steel blue"))))
+ '(minibuffer-prompt ((t (:foreground "dark cyan"))))
+ '(mode-line ((t (:background "cadet blue" :foreground "black" :box (:line-width -1 :style released-button)))))
+ '(mode-line-buffer-id ((t (:foreground "pale goldenrod" :weight bold))))
+ '(mode-line-highlight ((t (:box (:line-width 2 :color "medium aquamarine" :style released-button)))))
+ '(mode-line-inactive ((t (:inherit mode-line :background "PaleTurquoise4" :foreground "grey80" :box (:line-width -1 :color "grey40") :weight light))))
+ '(org-agenda-calendar-event ((t (:foreground "dark cyan"))))
+ '(org-agenda-calendar-sexp ((t (:foreground "dark cyan"))))
+ '(org-agenda-clocking ((t (:background "dim gray" :foreground "black"))))
+ '(org-agenda-column-dateline ((t (:background "dark cyan" :foreground "gray"))))
+ '(org-agenda-current-time ((t (:foreground "goldenrod"))))
+ '(org-agenda-date-weekend ((t (:foreground "deep sky blue" :weight bold))))
+ '(org-agenda-done ((t (:foreground "goldenrod"))))
+ '(org-checkbox ((t (:foreground "cyan" :weight bold))))
+ '(org-checkbox-statistics-done ((t (:foreground "gold" :weight bold))))
+ '(org-checkbox-statistics-todo ((t (:foreground "gainsboro" :weight bold))))
+ '(org-date-selected ((t (:foreground "dark gray" :inverse-video t))))
+ '(org-done ((t (:foreground "cyan" :weight bold))))
+ '(org-drawer ((t (:foreground "dark gray"))))
+ '(org-formula ((t (:foreground "gold3"))))
+ '(org-level-1 ((t (:foreground "light sea green"))))
+ '(org-level-2 ((t (:foreground "cyan"))))
+ '(org-level-3 ((t (:foreground "goldenrod"))))
+ '(org-level-4 ((t (:foreground "medium aquamarine"))))
+ '(org-mode-line-clock-overrun ((t (:inherit mode-line :background "gold"))))
+ '(org-scheduled ((t (:foreground "medium spring green"))))
+ '(org-scheduled-today ((t (:foreground "turquoise1"))))
+ '(org-todo ((t (:foreground "gold" :weight bold))))
+
+ '(scroll-bar ((t (:background "black" :foreground "cadet blue"))))
+ '(show-paren-mismatch ((t (:background "dark goldenrod" :foreground "white"))))
+ '(success ((t (:foreground "dark turquoise" :weight bold))))
+
+ '(trailing-whitespace ((t (:background "dark goldenrod"))))
+ '(tty-menu-disabled-face ((t (:background "dark cyan" :foreground "lightgray"))))
+ '(tty-menu-enabled-face ((t (:background "dark cyan" :foreground "yellow" :weight bold))))
+ '(tty-menu-selected-face ((t (:background "DarkSlateGray3" :foreground "black"))))
+ '(vimish-fold-overlay ((t (:background "dim gray" :foreground "cadet blue"))))
+ '(widget-button-pressed ((t (:foreground "gray"))))
+ '(widget-documentation ((t (:foreground "cyan"))))
+ '(window-divider ((t (:foreground "gray15")))))
+
+(provide-theme 'cactus)
+
+#+END_SRC
+\\

@@ -1,0 +1,292 @@
+
+#+setupfile: ~/.emacs.d/org-templates/level1-slim.org
+#+title: Changes in Blogging Setup
+#+date: "<2020-11-18 Sun 20:00>"
+#+keywords: emacs, org-mode, blogging, code
+#+description: A few things bothered me in my blogging setup, here's what I changed
+* Changes in Blogging Setup 
+#+attr_html: :class tldr 
+#+BEGIN_DIV
+[TL;DR] A few things bothered me in my blogging setup, here's a summary of what I changed.
+And: I still have no idea about web development =¯\_(ツ)_/¯=
+#+END_DIV
+
+Since I published my blog for the first time about a year ago, quite a few things
+changed in my setup:
+gradually I added things I was convinced I need (for example functions to generate
+RSS), and soon I had a ca. 800 lines  of code big elisp tumor to simply...
+generate a static website.
+ 
+So it was time for some cleaning and re-structuring:
+
+ 
+- I kicked out the RSS functions (sorry not sorry to the 3 people who asked
+  for RSS)
+
+- I kicked out the functions to create a page with links (why did I even think
+  that makes sense in the first place...?)
+  
+- I switched to ox-slimhtml
+  
+- I added a theme-switcher to switch between a light or a dark theme
+  
+- some other minor changes: I changed the folder structure, changed and
+  added some templates, changed the format of archive items
+
+And some things that won't change:
+
+
+- this website still doesn't use JavaScript
+  
+- it's still generated with Emacs and org-mode
+  
+- there's still no tracker or other stuff that would
+  disrespect your privacy
+  
+- I still have no idea about html and CSS...
+
+
+
+And here are some details about some of the changes:
+
+** Switch themes with CSS and html only (no JavaScript)
+
+/Spoiler: Because of my lack of CSS and html knowledge (and my stubborness not
+to use JavaScript) this was a huge PITA./
+
+But thanks to some great resources I found online I somehow collected the pieces
+I needed. And after some more research I also suceeded in putting those pieces together.
+
+
+So - to summarize the procedure in my own, CSS-nooby words - what I need to get
+what I want:
+
+- a checkbox
+  
+- a CSS /:checked selector/
+  
+- the /subsequent-sibling combinator/ ~ (wtf, I call it "tilde"...)
+  
+- CSS variables
+
+- lots of patience because...CSS
+
+
+I can really recommend Daniela's fantastic medium article: [[https://medium.com/better-programming/dark-mode-and-css-variables-ed6dc250232c][Dark Mode and CSS variables]],
+and [[https://alexandersandberg.com/theme-switcher/][this guide]] was also very useful!
+
+*** HTML
+
+First I needed a checkbox in the html code. I wanted the label to be part of my
+navbar so it looks somewhat like this now:
+
+#+BEGIN_SRC html
+  <body>
+    <input type="checkbox" class="theme-switch" id="theme-switch"/>
+    <div id="page">
+      <div>
+	<nav class="navbar"> ... <a href="#"> <label for="theme-switch" class="switch-label"></label></a></nav>
+	<div id="content">
+	  ...
+	</div>
+  </body>
+#+END_SRC
+
+That's basically what [[https://alexandersandberg.com/theme-switcher/][this guide]] described.
+
+(To get org-mode/ox-slimthml to export the html code like this I modified the export-
+function, more about this in the next section)
+
+*** CSS
+
+And here's what the combination of /:checked/, CSS variables and the /~ sibling
+thing/ looks like:
+
+#+BEGIN_SRC css
+  :root {
+      /* Light mode */
+      --light-switch-text: "dark mode";
+      --light-text: #273136;
+      --light-bg: #e3e5e6;
+
+      ...
+    
+      /* Dark mode */
+      --dark-switch-text: "light mode";
+      --dark-text: #95b1be;
+      --dark-bg: #14191a;
+
+      ...
+
+     /* Default mode */
+     --switch-text: var(--dark-switch-text);
+     --text-color: var(--dark-text);
+     --bg-color: var(--dark-bg);
+     --theme-color: var(--dark-theme);
+
+      ...
+
+      /* Switched mode */
+  .theme-switch:checked ~ #page {
+      --switch-text: var(--light-switch-text);
+      --text-color: var(--light-text);
+      --bg-color: var(--light-bg);
+      --theme-color: var(--light-theme);
+
+      ...
+
+#+END_SRC
+
+So the variables store the colors for the light, dark and default theme (which
+is the dark theme in my case).
+
+That's it. Mostly.
+
+And even though I still have no idea about CSS and html, I learned a valuable
+lesson: I'm really, really happy that I usually work with C/C++ because
+CSS gives me headaches.
+
+/Side note: I tried to use css-csslint in Emacs but it doesn't seem to like
+CSS variables so I'm using css-stylelint now.../
+
+** Minimize exported html with ox-slimhtml
+
+This isn't exactly a huge issue that needs fixing but it somehow bothered me (a lot):
+
+in org-mode's exported html you get a lot of these:
+
+#+BEGIN_SRC html
+
+<div id="outline-container-org09e108d" class="outline-2">
+<h2 id="org09e108d"> some text </h2>
+<div class="outline-text-2" id="text-org09e108d">
+
+#+END_SRC
+   
+That "outline-container-org09e108d" cryptic id-class-whatever stuff kinda hurts
+my eyes and I don't need it, so I wanted to get rid of it.
+
+That's how I discovered [[https://github.com/balddotcat/ox-slimhtml][ox-slimhtml]] which seems to do exactly what I want (most
+of the time).
+
+ox-slimhtml is an org-mode export backend that outputs minimal html and makes
+it easier to customize the html output.
+Another handy feature of ox-slimhtml is that it allows org-macro expansion in
+preamble, postamble, header and footer, quite cool for templating.
+Apart from that and slimming the html output it's pretty much the same
+as the default org html exporter.
+
+I guess the idea is to create templates for your projects. But because I don't
+have (and don't plan to have) other projects than this blog and there are things
+I always want in my html, I slightly changed the export function to include
+the theme-switch:
+
+#+BEGIN_SRC elisp
+(defun my-ox-slimhtml-publish-to-html (plist filename pub-dir)
+  (let ((file-path (ox-slimhtml-publish-to-html plist filename pub-dir)))
+    (with-current-buffer (find-file-noselect file-path)
+  (goto-char (point-min))
+      (search-forward "<body>")
+      (insert (mapconcat 'identity
+			 '("<input type=\"checkbox\" class=\"theme-switch\" id=\"theme-switch\"/>"
+			   "<div id=\"page\">")
+			   "\n"))
+      (goto-char (point-max))
+      (search-backward "</body>")
+      (insert "</div></div>")
+      (save-buffer)
+      (kill-buffer))
+    file-path))
+#+END_SRC
+
+For everything else that's specific to certain files I use templates (eg. to add
+the stylesheet to files in subfolders).
+
+Apart from generating slimmer html, ox-slimhtml is a lot faster in publishing than the usual org-mode
+publishing function.
+
+Something I haven't figured out yet: images don't get exported properly (i.e. not at all ;))
+with ox-slimhtml. Currently I'm using a template (YASnippet) for images as well as a workaround,
+but it would be nice to find out how to do this without extra steps.
+
+** Other changes
+
+*** Directory structure
+
+I slightly changed the directory structure into something like this:
+
+#+BEGIN_SRC
+blog/src/
+├── about.org
+├── archive.org
+├── disclaimer.org
+├── index.org
+├── assets/
+├── css/
+│   └── style.css
+├── entwuerfe/
+└── posts/
+    ├── post_1
+    │   └── index.org
+    ├── post_2
+    │   ├── index.org
+    └── post_3
+        └── index.org
+#+END_SRC
+/("entwuerfe" = "drafts")/
+*** Function to get the date from the date keyword
+
+Here's a little context: if you ask Emacs for information about /org-publish-find-date/
+you get the following:
+
+/Find the date of FILE in PROJECT.
+This function assumes FILE is either a directory or an Org file.
+*If FILE is an Org file and provides a DATE keyword use it.  In
+any other case use the file system’s modification time.*  Return
+time in ‘current-time’ format./
+
+So according to this definition I'd expect it to...well, do what it says it does.
+Return the modification time of a file or use the DATE keyword.
+
+Unfortunately in my case it always ignored the DATE keyword and returned not the
+modification time but the creation time.
+
+But I *really* want the date from the DATE keyword. I couldn't figure out
+why /org-publish-find-date/ ignores the keyword, so I wrote a function
+for that (and again, it would be nice if I didn't need extra steps but hey =¯\_(ツ)_/¯)=.
+
+#+BEGIN_SRC elisp
+(defun my-org-publish-get-date-from-keyword (file project)
+  "Get date keyword from FILE in PROJECT and parse it to internal format."
+	   (let ((date (org-publish-find-property file :date project)))
+	     (cond ((let ((ts (and (consp date) (assq 'timestamp date))))
+		      (and ts
+			   (let ((value (org-element-interpret-data ts)))
+			     (and (org-string-nw-p value)
+				  (org-time-string-to-time value))))))
+		   (t (error "No timestamp in file \"%s\"" file)))))
+#+END_SRC    
+
+And the actual reason why I want the date from the DATE keyword in the first place,
+for the sitemap format function:
+
+#+BEGIN_SRC elisp
+(defun my-org-blog-sitemap-format-entry (entry _style project)
+  "Return format string for each ENTRY in PROJECT."
+  (if (and (s-starts-with? "posts/" entry) (not (equal "disclaimer.org" (file-name-nondirectory entry))))
+   (format "@@html:<span class=\"archive-item\"><span class=\"archive-date\">@@ %s @@html:</span>@@ [[file:%s][%s]]@@html:<div class=\"description\">@@ %s @@html:</div>@@ @@html:<div class=\"keywords\">@@ %s @@html:</div>@@ @@html:</span>@@"
+            (format-time-string "[%d.%m.%Y, %R %Z]"
+                                (my-org-publish-get-date-from-keyword entry project))
+	    entry
+            (org-publish-find-title entry project)
+	    (org-publish-find-property entry :description project 'html)
+	    (org-publish-find-property entry :keywords project 'html))))
+
+#+END_SRC
+
+And that's it I guess. 
+
+Hopefully this will be the last "major" change, but probably I'll find new excuses to procrastinate from writing
+blog posts.
+
+

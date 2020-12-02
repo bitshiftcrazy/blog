@@ -1,0 +1,195 @@
+
+
+#+setupfile: ~/.emacs.d/org-templates/level1-slim.org
+#+title: Bitshiftcrazy
+#+date: "<2019-11-27 Sun 20:00>"
+#+keywords: blog, org-mode, programming, instagram 
+#+description: So this is my very first attempt to write a blog. Ever. Find out why and what and how in this post.
+* Hello World! :)
+
+#+attr_html: :class tldr
+#+BEGIN_DIV
+[TL;DR] So this is my very first attempt to write a blog. Ever. Find out why
+and what and how in this post. Scroll right to the bottom if you came for 
+code ;) 
+#+END_DIV
+** Why?
+
+#+begin_text
+I guess if anyone ever reads this then it's probably because they know my
+Instagram account. So the reason for this blogging experiment is one of
+my monthly Instagram crises.
+
+When I started using Instagram for coding content about two years ago 
+my intention was to explain Computer Science topics in a fun and simple way, to 
+make people without tech-background curious about tech and to find people
+who are as excited about nerd-stuff as I am. The idea was to provide enough
+information about a topic to make it possible for people to find out
+more about it by themselves (I mean...if they want to ;)). Because I 
+don't have that much time in general (and because I'm already spending
+way too much time on Instagram, but that's a different story) I didn't want
+to write comprehensive guides or tutorials.
+
+But I have the following situation more and more frequently: I spend about 
+30min taking a shitload of awful pictures of my laptop (in exactly two different
+angles, that's the maximum level of my creativity), another 10min for finding
+that one picture that isn't too blurry, another 30min to write a caption...And
+then comes my favourite part: about 1h (!!!) for desperately trying to squeeze the
+caption I wrote before into 2,200 characters.
+It's ridiculous. 
+
+So I thought "hey, that should be enough time to write a semi-good blog post
+instead" and here we are ;).
+
+(And then there are all those other social-media/Instagram issues like bots, 
+Instagram collecting a huge amount of personal data, fake accounts, 
+people chasing likes...but as I said, that deserves an own post) 
+#+end_text 
+** What?
+
+#+begin_text
+The purpose of this blog is to give me (and people who read it of course ;)) all
+the wonderful things Instagram just can't give to me. 
+Here are some of the things I have in mind:
+1. More in-depth content: more explanation, tutorials, details, background
+   information, resources...
+2. MORE CODE: sharing code(-snippets) with explanation
+3. Different topics: on Instagram I post about more or less the same stuff
+   all the time. Some of the topics I'm interested in aren't suitable for
+   Instagram (e.g. because even after 1h of trying I couldn't squeeze them
+   into a caption). So I hope to post about other (more or less) 
+   tech-related topics like 3D printing, electronics and tinkering, 
+   philosophical tech stuff, "nerd fashion", books, papers, games, computer
+   history, abandoned places...here as well.
+
+   Of course I'll still post about programming, Linux, CompSci and Maths (oh how
+   I missed maths on Instagram...;))
+4. A quiet place: Instagram is loud and chaotic and distractive (and also a bit
+   scary from time to time). On this page I want to keep things simple, minimalist
+   and yeah...quiet. That means less pictures, less fanciness, no bells and 
+   whistles. 
+5. Kati-esque: I often have the feeling that Instagram is just not like me or
+   not right for me. Usually I'm not a social-media person (no Facebook, no 
+   Twitter, no Snapchat, no TikTok, gym, catholic church...). But
+   for some reason I'm mutating into a every-detail-of-my-day-posting 
+   Instagram addict as soon as I open the app. So here I try to create
+   a place that feels more like myself :) (for example I'm using the same
+   colors as in my terminal and want to make it look like it a bit :D)
+
+So in short: this is my personal anti-Instagram :'D 
+#+end_text
+** How?
+
+#+begin_text
+At the moment I have a very simple setup for this website: I use Netlify for
+hosting and Emacs org-mode as a static website generator. 
+My first thought was to use Hugo but because I prefer when I don't have
+to leave Emacs and because I'm a complete webdev-noob I decided to use
+org-mode only. And Netlify is nice because I can easily use it with git.
+
+For now I'm able to:
+   - generate my project's html files from the corresponding org-files
+     (and include that css stylesheet that took me hours to create ;))
+   - have a sitemap/archive for my posts (and only my posts)
+   - have a simple navigation bar at the top of all files
+For the moment that's enough for me (or rather: that's all my nooby ass could 
+accomplish on a Sunday evening ;)). In the future I'd like to add a few things,
+ don't know what yet but I'm sure I'll notice what's missing as 
+soon as I need it :D
+
+Setting up the org-export options for it is really easy (give that you're able
+and willing to read...unlike me who tried to guess what the options do first).
+Basically you just have to customize org-publish-alist (either in your init.el
+or like me in a seperate file).
+
+Here are my settings:
+#+end_text
+#+begin_text
+First include all the org stuff you need:
+#+end_text
+
+#+BEGIN_SRC emacs-lisp
+  (require 'org)
+  (require 'ox-publish)
+  (require 'ox-html)
+  (require 'org-element)
+#+END_SRC
+
+#+begin_text
+Then change org-publish-alist according to your needs.
+For example support for a sitemap, exclude all the unnecessary
+stuff org exports into an html file by default and so on. 
+#+end_text
+
+#+BEGIN_SRC emacs-lisp
+(setq org-publish-project-alist
+      `(("project-name"
+         :base-directory "~/org-project/"
+         :recursive t
+         :publishing-directory "~/org-project/website"
+	 :publishing-function org-html-publish-to-html
+
+	 :with-toc nil
+	 :title nil
+	 :with-headline-numbers nil
+	 :with-date nil
+	 :with-title nil
+	 :time-stamp-file nil
+	 :section-numbers nil
+	 :table-of-contents nil
+	 
+	 :html-doctype "html5"
+	 :html-head-include-scripts nil
+	 :html-head-include-default-style nil
+	 :html-html5-fancy t
+	 :html-validation-link nil
+	 :html-head "<link rel=\"stylesheet\" type=\"text/css\" href=\"style.css\">"
+	 :html-preamble ,topnav
+	 :style "<link rel=\"stylesheet\" type=\"text/css\" href\"style.css\">"
+
+	 ;; Sitemap settings
+	 :auto-sitemap t
+	 :sitemap-filename "archive.org"
+	 :sitemap-title "stuff"
+	 :sitemap-style list
+	 :sitemap-sort-files anti-chronologically
+	 :sitemap-format-entry org-blog-sitemap-format-entry
+	 :sitemap-function org-blog-sitemap-function
+ )))
+#+END_SRC
+
+#+begin_text
+And here's my top navigation bar (top because it's on the top, not because
+it's "top" like "very good", you know ;)):
+#+end_text 
+
+#+BEGIN_SRC emacs-lisp
+(defvar topnav
+  (concat
+   "<nav>"
+     "<a href=\"index.html\"> home </a>"
+     "<a href=\"archive.html\"> stuff </a>"
+     "<a href=\"links.html\"> links </a>"
+     "<a href=\"about.html\"> about </a>"
+     "<a href=\"contact.html\"> contact </a>"
+     "</nav>"))
+#+END_SRC
+
+#+begin_text 
+So that's it for now. Here are some links about blogging with org-mode
+(because that's another thing Instagram won't let me do, share fucking links...):
+
+https://vicarie.in/posts/blogging-with-org.html
+
+https://www.john2x.com/blog/blogging-with-orgmode.html
+
+And the org-mode manual for html exporting: 
+
+https://orgmode.org/ma
+#+end_text 
+\\
+
+#+begin_rss
+[[https://bitshiftcrazy.com/rss.xml][RSS]]
+#+end_rss
+

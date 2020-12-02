@@ -1,0 +1,317 @@
+html {
+  font-family: Hack, Courier New, Courier, monospace;
+}
+
+:root {
+  /* Light mode */
+  --light-switch-text: "dark mode";
+  --light-text: #273136;
+  --light-bg: #e3e5e6;
+
+  /* navbar colors */
+  --light-navbar-bg: #8e989c;
+  --light-navbar-text-color: #f0f2f5;
+
+  /* heading colors */
+  --light-h1: #2f4761;
+  --light-h2: #334961;
+  --light-h3: #384c61;
+  --light-h4: #3e4f61;
+
+  /* tldr colors */
+  --light-tldr-bg: #c1c6c9;
+  --light-tldr-text-color: #384247;
+
+  /* keywords color */
+  --light-keyword-color: #a0a8ad;
+
+  /* syntax highlighting */
+  --light-comment-color: #80888c;
+
+  /* Dark mode */
+  --dark-switch-text: "light mode";
+  --dark-text: #95b1be;
+  --dark-bg: #14191a;
+
+  /* navbar colors */
+  --dark-navbar-bg: #555;
+  --dark-navbar-text-color: #a5c2c1;
+
+  /* heading colors */
+  --dark-h1: #42ada6;
+  --dark-h2: #07b8ae;
+  --dark-h3: #69ced4;
+  --dark-h4: #48aeb6;
+
+  /* tldr colors */
+  --dark-tldr-bg: #1d2426;
+  --dark-tldr-text-color: #95d1be;
+
+  /* keywords color */
+  --dark-keyword-color: #2d353a;
+
+  /* syntax highlighting */
+  --dark-comment-color: #3f4a52;
+
+  /* Default mode */
+  --switch-text: var(--dark-switch-text);
+  --text-color: var(--dark-text);
+  --bg-color: var(--dark-bg);
+  --theme-color: var(--dark-theme);
+
+  /* navbar colors */
+  --navbar-bg: var(--dark-navbar-bg);
+  --navbar-text-color: var(--dark-navbar-text-color);
+
+  /* heading colors */
+  --h1-color: var(--dark-h1);
+  --h2-color: var(--dark-h2);
+  --h3-color: var(--dark-h3);
+  --h4-color: var(--dark-h4);
+
+  /* tldr colors */
+  --tldr-bg: var(--dark-tldr-bg);
+  --tldr-text-color: var(--dark-tldr-text-color);
+
+  /* keywords color */
+  --keyword-color: var(--dark-keyword-color);
+
+  /* syntax highlighting */
+  --comment-color: var(--dark-comment-color);
+}
+
+#page {
+  margin: auto;
+  background: var(--bg-color);
+  color: var(--text-color);
+  min-height: 100%;
+  transition: color 0.2s, background-color 0.2s;
+}
+
+/* Switched mode */
+.theme-switch:checked ~ #page {
+  --switch-text: var(--light-switch-text);
+  --text-color: var(--light-text);
+  --bg-color: var(--light-bg);
+  --theme-color: var(--light-theme);
+
+  /* navbar colors */
+  --navbar-bg: var(--light-navbar-bg);
+  --navbar-text-color: var(--light-navbar-text-color);
+
+  /* heading colors */
+  --h1-color: var(--light-h1);
+  --h2-color: var(--light-h2);
+  --h3-color: var(--light-h3);
+  --h4-color: var(--light-h4);
+
+  /* tldr colors */
+  --tldr-bg: var(--light-tldr-bg);
+  --tldr-text-color: var(--light-tldr-text-color);
+
+  /* keywords color */
+  --keyword-color: var(--light-keyword-color);
+
+  /* syntax highlighting */
+  --comment-color: var(--light-comment-color);
+}
+
+/* Theme switcher */
+.theme-switch { /* Hides the checkbox */
+  clip: rect(1px, 1px, 1px, 1px);
+  height: 1px;
+  overflow: hidden;
+  position: absolute !important;
+  width: 1px;
+}
+
+.switch-label {
+  cursor: pointer;
+}
+
+.switch-label::before {
+  align-self: center;
+  transition: text-shadow 0.2s;
+}
+
+.switch-label::after {
+  align-self: center;
+  content: var(--switch-text);
+  opacity: 0;
+}
+
+.theme-switch:focus ~ #page .switch-label::before,
+.switch-label::before {
+  text-shadow: 0 0 15px var(--switch-shadow-color);
+}
+
+.theme-switch:focus ~ #page .switch-label::after,
+.switch-label::after {
+  opacity: 1;
+}
+
+/* Styling */
+html,
+body {
+  font-size: 14px;
+  height: 100%;
+  margin: 0;
+}
+
+a {
+  color: var(--theme-color);
+}
+
+.navbar a {
+  color: var(--navbar-text-color);
+  font-size: 16px;
+  padding: 2px 12px 2px 12px;
+  text-align: center;
+  text-decoration: none;
+}
+
+.navbar {
+  background: var(--navbar-bg);
+  overflow: hidden;
+  position: sticky;
+  text-align: center;
+  top: 0;
+  width: 100%;
+}
+
+#content {
+  margin: auto;
+  max-width: 80ch;
+  padding: 2ch;
+}
+
+h1,
+h2 {
+  margin-top: 2%;
+}
+
+h1 {
+  color: var(--h1-color);
+  font-size: 22px;
+}
+
+h2 {
+  color: var(--h2-color);
+  font-size: 18px;
+}
+
+h3,
+h4 {
+  font-size: 16px;
+}
+
+h3 {
+  margin-top: 1%;
+  color: var(--h3-color);
+}
+
+h4 {
+  color: var(--h4-color);
+}
+
+.tldr {
+  background: var(--tldr-bg);
+  color: var(--tldr-text-color);
+}
+
+.tldr,
+pre {
+  font-size: 13px;
+  margin: auto;
+  max-width: 700px;
+  padding: 3%;
+}
+
+pre {
+  background: var(--tldr-bg);
+  overflow: auto;
+  word-wrap: normal;
+}
+
+.figure-number {
+  display: none;
+}
+
+.archive {
+  margin-top: 2%;
+}
+
+.keywords {
+  color: var(--keyword-color);
+  font-size: x-small;
+  font-style: italic;
+}
+
+.description {
+  color: var(--text-color);
+}
+
+.archive-date {
+    color: var(--h1-color);
+    margin: 0;
+}
+
+#postamble {
+  color: var(--keyword-color);
+  text-align: center;
+  font-size: small;
+  padding: 3%;
+}
+
+hr {
+  border: 0;
+  border-top: 1px solid  var(--keyword-color);
+  display: block;
+  height: 1px;
+  margin: 1em 0;
+}
+
+/* code syntax highlighting */
+.org-keyword,
+.org-warning,
+.org-function-name,
+.org-css-selector {
+  color: var(--h1-color);
+}
+
+.org-string,
+.org-constant,
+.org-variable-name {
+  color: var(--text-color);
+}
+
+.org-builtin {
+  color: var(--h2-color);
+}
+
+.org-comment-delimiter,
+.org-comment,
+.org-doc {
+  color: var(--comment-color);
+}
+
+.about-indented {
+    margin-left: 7%;
+}
+
+.about-indented-deep {
+    margin-left: 10%;
+}
+
+
+.about-column {
+  float: left;
+  width: 33.3%;
+}
+
+/* Clear floats after the columns */
+.about:after {
+  content: "";
+  display: table;
+  clear: both;
+}

@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link rel="stylesheet" type="text/css" href="../../css/style.css" >
+<title>Changes in Blogging Setup</title>
+</head>
+<body><input type="checkbox" class="theme-switch" id="theme-switch"/>
+<div id="page"><div><nav class="navbar"> <a href="../../index.html"> home </a> <a href="../../archive.html"> stuff </a> <a href="../../about.html"> about </a><a href="#"> <label for="theme-switch" class="switch-label"></label></a></nav><div id="content"><h1>Changes in Blogging Setup</h1><div class="tldr">[TL;DR] A few things bothered me in my blogging setup, here's a summary of what I changed.
+And: I still have no idea about web development <kbd>¯\_(ツ)_/¯</kbd>
+</div>
+
+<p>Since I published my blog for the first time about a year ago, quite a few things
+changed in my setup:
+gradually I added things I was convinced I need (for example functions to generate
+RSS), and soon I had a ca. 800 lines  of code big elisp tumor to simply...
+generate a static website.
+</p>
+
+<p>So it was time for some cleaning and re-structuring:
+</p>
+
+
+<ul><li>I kicked out the RSS functions (sorry not sorry to the 3 people who asked
+for RSS)</li>
+
+<li>I kicked out the functions to create a page with links (why did I even think
+that makes sense in the first place...?)</li>
+
+<li>I switched to ox-slimhtml</li>
+
+<li>I added a theme-switcher to switch between a light or a dark theme</li>
+
+<li>some other minor changes: I changed the folder structure, changed and
+added some templates, changed the format of archive items</li>
+</ul>
+
+<p>And some things that won't change:
+</p>
+
+
+<ul><li>this website still doesn't use JavaScript</li>
+
+<li>it's still generated with Emacs and org-mode</li>
+
+<li>there's still no tracker or other stuff that would
+disrespect your privacy</li>
+
+<li>I still have no idea about html and CSS...</li>
+</ul>
+
+
+
+<p>And here are some details about some of the changes:
+</p>
+
+<h2>Switch themes with CSS and html only (no JavaScript)</h2><p><em>Spoiler: Because of my lack of CSS and html knowledge (and my stubborness not
+to use JavaScript) this was a huge PITA.</em>
+</p>
+
+<p>But thanks to some great resources I found online I somehow collected the pieces
+I needed. And after some more research I also suceeded in putting those pieces together.
+</p>
+
+
+<p>So - to summarize the procedure in my own, CSS-nooby words - what I need to get
+what I want:
+</p>
+
+<ul><li>a checkbox</li>
+
+<li>a CSS <em>:checked selector</em></li>
+
+<li>the <em>subsequent-sibling combinator</em> ~ (wtf, I call it "tilde"...)</li>
+
+<li>CSS variables</li>
+
+<li>lots of patience because...CSS</li>
+</ul>
+
+
+<p>I can really recommend Daniela's fantastic medium article: <a href="https://medium.com/better-programming/dark-mode-and-css-variables-ed6dc250232c">Dark Mode and CSS variables</a>,
+and <a href="https://alexandersandberg.com/theme-switcher/">this guide</a> was also very useful!
+</p>
+
+<h3>HTML</h3><p>First I needed a checkbox in the html code. I wanted the label to be part of my
+navbar so it looks somewhat like this now:
+</p>
+
+<pre><code class="html">&lt;<span class="org-function-name">body</span>&gt;
+  &lt;<span class="org-function-name">input</span> <span class="org-variable-name">type</span>=<span class="org-string">"checkbox"</span> <span class="org-variable-name">class</span>=<span class="org-string">"theme-switch"</span> <span class="org-variable-name">id</span>=<span class="org-string">"theme-switch"</span>/&gt;
+  &lt;<span class="org-function-name">div</span> <span class="org-variable-name">id</span>=<span class="org-string">"page"</span>&gt;
+    &lt;<span class="org-function-name">div</span>&gt;
+      &lt;<span class="org-function-name">nav</span> <span class="org-variable-name">class</span>=<span class="org-string">"navbar"</span>&gt; ... &lt;<span class="org-function-name">a</span> <span class="org-variable-name">href</span>=<span class="org-string">"#"</span>&gt; &lt;<span class="org-function-name">label</span> <span class="org-variable-name">for</span>=<span class="org-string">"theme-switch"</span> <span class="org-variable-name">class</span>=<span class="org-string">"switch-label"</span>&gt;&lt;/<span class="org-function-name">label</span>&gt;&lt;/<span class="org-function-name">a</span>&gt;&lt;/<span class="org-function-name">nav</span>&gt;
+      &lt;<span class="org-function-name">div</span> <span class="org-variable-name">id</span>=<span class="org-string">"content"</span>&gt;
+        ...
+      &lt;/<span class="org-function-name">div</span>&gt;
+&lt;/<span class="org-function-name">body</span>&gt;
+</code></pre>
+
+<p>That's basically what <a href="https://alexandersandberg.com/theme-switcher/">this guide</a> described.
+</p>
+
+<p>(To get org-mode/ox-slimthml to export the html code like this I modified the export-
+function, more about this in the next section)
+</p>
+
+<h3>CSS</h3><p>And here's what the combination of <em>:checked</em>, CSS variables and the <em>~ sibling
+thing</em> looks like:
+</p>
+
+<pre><code class="css"><span class="org-css-selector">:root</span> {
+    <span class="org-comment-delimiter">/* </span><span class="org-comment">Light mode </span><span class="org-comment-delimiter">*/</span>
+    <span class="org-variable-name">--light-switch-text</span>: <span class="org-string">"dark mode"</span>;
+    <span class="org-variable-name">--light-text</span>: <span class="custom-3">#273136</span>;
+    <span class="org-variable-name">--light-bg</span>: <span class="custom-2">#e3e5e6</span>;
+
+    ...
+
+    <span class="org-comment-delimiter">/* </span><span class="org-comment">Dark mode </span><span class="org-comment-delimiter">*/</span>
+    <span class="org-variable-name">--dark-switch-text</span>: <span class="org-string">"light mode"</span>;
+    <span class="org-variable-name">--dark-text</span>: <span class="custom-1">#95b1be</span>;
+    <span class="org-variable-name">--dark-bg</span>: <span class="custom">#14191a</span>;
+
+    ...
+
+   <span class="org-comment-delimiter">/* </span><span class="org-comment">Default mode </span><span class="org-comment-delimiter">*/</span>
+   <span class="org-variable-name">--switch-text</span>: var(<span class="org-variable-name">--dark-switch-text</span>);
+   <span class="org-variable-name">--text-color</span>: var(<span class="org-variable-name">--dark-text</span>);
+   <span class="org-variable-name">--bg-color</span>: var(<span class="org-variable-name">--dark-bg</span>);
+   <span class="org-variable-name">--theme-color</span>: var(<span class="org-variable-name">--dark-theme</span>);
+
+    <span class="org-css-selector">...</span>
+
+<span class="org-css-selector">    </span><span class="org-comment-delimiter">/* </span><span class="org-comment">Switched mode </span><span class="org-comment-delimiter">*/</span>
+<span class="org-css-selector">.theme-switch:checked ~ #page </span>{
+    <span class="org-variable-name">--switch-text</span>: var(<span class="org-variable-name">--light-switch-text</span>);
+    <span class="org-variable-name">--text-color</span>: var(<span class="org-variable-name">--light-text</span>);
+    <span class="org-variable-name">--bg-color</span>: var(<span class="org-variable-name">--light-bg</span>);
+    <span class="org-variable-name">--theme-color</span>: var(<span class="org-variable-name">--light-theme</span>);
+
+    ...
+
+</code></pre>
+
+<p>So the variables store the colors for the light, dark and default theme (which
+is the dark theme in my case).
+</p>
+
+<p>That's it. Mostly.
+</p>
+
+<p>And even though I still have no idea about CSS and html, I learned a valuable
+lesson: I'm really, really happy that I usually work with C/C++ because
+CSS gives me headaches.
+</p>
+
+<p><em>Side note: I tried to use css-csslint in Emacs but it doesn't seem to like
+CSS variables so I'm using css-stylelint now...</em>
+</p>
+
+<h2>Minimize exported html with ox-slimhtml</h2><p>This isn't exactly a huge issue that needs fixing but it somehow bothered me (a lot):
+</p>
+
+<p>in org-mode's exported html you get a lot of these:
+</p>
+
+<pre><code class="html">
+&lt;<span class="org-function-name">div</span> <span class="org-variable-name">id</span>=<span class="org-string">"outline-container-org09e108d"</span> <span class="org-variable-name">class</span>=<span class="org-string">"outline-2"</span>&gt;
+&lt;<span class="org-function-name">h2</span> <span class="org-variable-name">id</span>=<span class="org-string">"org09e108d"</span>&gt;<span class="org-underline"><span class="org-bold-italic"> some text </span></span>&lt;/<span class="org-function-name">h2</span>&gt;
+&lt;<span class="org-function-name">div</span> <span class="org-variable-name">class</span>=<span class="org-string">"outline-text-2"</span> <span class="org-variable-name">id</span>=<span class="org-string">"text-org09e108d"</span>&gt;
+
+</code></pre>
+
+<p>That "outline-container-org09e108d" cryptic id-class-whatever stuff kinda hurts
+my eyes and I don't need it, so I wanted to get rid of it.
+</p>
+
+<p>That's how I discovered <a href="https://github.com/balddotcat/ox-slimhtml">ox-slimhtml</a> which seems to do exactly what I want (most
+of the time).
+</p>
+
+<p>ox-slimhtml is an org-mode export backend that outputs minimal html and makes
+it easier to customize the html output.
+Another handy feature of ox-slimhtml is that it allows org-macro expansion in
+preamble, postamble, header and footer, quite cool for templating.
+Apart from that and slimming the html output it's pretty much the same
+as the default org html exporter.
+</p>
+
+<p>I guess the idea is to create templates for your projects. But because I don't
+have (and don't plan to have) other projects than this blog and there are things
+I always want in my html, I slightly changed the export function to include
+the theme-switch:
+</p>
+
+<pre><code class="elisp">(<span class="org-keyword">defun</span> <span class="org-function-name">my-ox-slimhtml-publish-to-html</span> (plist filename pub-dir)
+  (<span class="org-keyword">let</span> ((file-path (ox-slimhtml-publish-to-html plist filename pub-dir)))
+    (<span class="org-keyword">with-current-buffer</span> (find-file-noselect file-path)
+  (goto-char (point-min))
+      (search-forward <span class="org-string">"&lt;body&gt;"</span>)
+      (insert (mapconcat 'identity
+                         '(<span class="org-string">"&lt;input type=\"checkbox\" class=\"theme-switch\" id=\"theme-switch\"/&gt;"</span>
+                           <span class="org-string">"&lt;div id=\"page\"&gt;"</span>)
+                           <span class="org-string">"\n"</span>))
+      (goto-char (point-max))
+      (search-backward <span class="org-string">"&lt;/body&gt;"</span>)
+      (insert <span class="org-string">"&lt;/div&gt;&lt;/div&gt;"</span>)
+      (save-buffer)
+      (kill-buffer))
+    file-path))
+</code></pre>
+
+<p>For everything else that's specific to certain files I use templates (eg. to add
+the stylesheet to files in subfolders).
+</p>
+
+<p>Apart from generating slimmer html, ox-slimhtml is a lot faster in publishing than the usual org-mode
+publishing function.
+</p>
+
+<p>Something I haven't figured out yet: images don't get exported properly (i.e. not at all ;))
+with ox-slimhtml. Currently I'm using a template (YASnippet) for images as well as a workaround,
+but it would be nice to find out how to do this without extra steps.
+</p>
+
+<h2>Other changes</h2><h3>Directory structure</h3><p>I slightly changed the directory structure into something like this:
+</p>
+
+<pre><code class="nil">blog/src/
+├── about.org
+├── archive.org
+├── disclaimer.org
+├── index.org
+├── assets/
+├── css/
+│   └── style.css
+├── entwuerfe/
+└── posts/
+    ├── post_1
+    │   └── index.org
+    ├── post_2
+    │   ├── index.org
+    └── post_3
+	└── index.org
+</code></pre>
+<p><em>("entwuerfe" = "drafts")</em>
+</p>
+<h3>Function to get the date from the date keyword</h3><p>Here's a little context: if you ask Emacs for information about <em>org-publish-find-date</em>
+you get the following:
+</p>
+
+<p>/Find the date of FILE in PROJECT.
+This function assumes FILE is either a directory or an Org file.
+<strong>If FILE is an Org file and provides a DATE keyword use it.  In
+any other case use the file system’s modification time.</strong>  Return
+time in ‘current-time’ format./
+</p>
+
+<p>So according to this definition I'd expect it to...well, do what it says it does.
+Return the modification time of a file or use the DATE keyword.
+</p>
+
+<p>Unfortunately in my case it always ignored the DATE keyword and returned not the
+modification time but the creation time.
+</p>
+
+<p>But I <strong>really</strong> want the date from the DATE keyword. I couldn't figure out
+why <em>org-publish-find-date</em> ignores the keyword, so I wrote a function
+for that (and again, it would be nice if I didn't need extra steps but hey <kbd>¯\_(ツ)_/¯)</kbd>.
+</p>
+
+<pre><code class="elisp">(<span class="org-keyword">defun</span> <span class="org-function-name">my-org-publish-get-date-from-keyword</span> (file project)
+  <span class="org-doc">"Get date keyword from FILE in PROJECT and parse it to internal format."</span>
+           (<span class="org-keyword">let</span> ((date (org-publish-find-property file <span class="org-builtin">:date</span> project)))
+             (<span class="org-keyword">cond</span> ((<span class="org-keyword">let</span> ((ts (<span class="org-keyword">and</span> (consp date) (assq 'timestamp date))))
+                      (<span class="org-keyword">and</span> ts
+                           (<span class="org-keyword">let</span> ((value (org-element-interpret-data ts)))
+                             (<span class="org-keyword">and</span> (org-string-nw-p value)
+                                  (org-time-string-to-time value))))))
+                   (t (<span class="org-warning">error</span> <span class="org-string">"No timestamp in file \"%s\""</span> file)))))
+</code></pre>
+
+<p>And the actual reason why I want the date from the DATE keyword in the first place,
+for the sitemap format function:
+</p>
+
+<pre><code class="elisp">(<span class="org-keyword">defun</span> <span class="org-function-name">my-org-blog-sitemap-format-entry</span> (entry _style project)
+  <span class="org-doc">"Return format string for each ENTRY in PROJECT."</span>
+  (<span class="org-keyword">if</span> (<span class="org-keyword">and</span> (s-starts-with? <span class="org-string">"posts/"</span> entry) (not (equal <span class="org-string">"disclaimer.org"</span> (file-name-nondirectory entry))))
+   (format <span class="org-string">"@@html:&lt;span class=\"archive-item\"&gt;&lt;span class=\"archive-date\"&gt;@@ %s @@html:&lt;/span&gt;@@ [[file:%s][%s]]@@html:&lt;div class=\"description\"&gt;@@ %s @@html:&lt;/div&gt;@@ @@html:&lt;div class=\"keywords\"&gt;@@ %s @@html:&lt;/div&gt;@@ @@html:&lt;/span&gt;@@"</span>
+            (format-time-string <span class="org-string">"[%d.%m.%Y, %R %Z]"</span>
+                                (my-org-publish-get-date-from-keyword entry project))
+            entry
+            (org-publish-find-title entry project)
+            (org-publish-find-property entry <span class="org-builtin">:description</span> project 'html)
+            (org-publish-find-property entry <span class="org-builtin">:keywords</span> project 'html))))
+
+</code></pre>
+
+<p>And that's it I guess. 
+</p>
+
+<p>Hopefully this will be the last "major" change, but probably I'll find new excuses to procrastinate from writing
+blog posts.
+</p>
+<div id="postamble">Made with Emacs :)
+<p><a href="disclaimer.html"> Disclaimer </a>
+</p></div></div></div></div></body>
+</html>

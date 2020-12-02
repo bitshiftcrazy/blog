@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link rel="stylesheet" type="text/css" href="../../css/style.css" >
+<title>Emacs Themes</title>
+</head>
+<body><input type="checkbox" class="theme-switch" id="theme-switch"/>
+<div id="page"><div><nav class="navbar"> <a href="../../index.html"> home </a> <a href="../../archive.html"> stuff </a> <a href="../../about.html"> about </a><a href="#"> <label for="theme-switch" class="switch-label"></label></a></nav><div id="content"><h1>Creating Emacs custom themes</h1><div class="tldr">[TL;DR] It's important to feel at home in your beloved editor, so this post is
+about creating custom themes in Emacs.
+</div>
+
+<h2>Why?</h2><p>Apart from the fact that of course we want Emacs to look pretty the
+right theme can help to increase your productivity and optimise your
+coding workflow: in the best case a theme makes it easy to read your code and
+spot mistakes while being friendly for your eyes. 
+</p>
+
+<h2>How?</h2><h3>Creating the theme</h3><p>Creating themes in Emacs is really easy :) 
+Just type M-x customize-create-theme (for Emacs newbies: "M" means the alt key).
+You'll be asked if you want to have common faces inserted into your theme,
+that's pretty handy. Then you can choose a creative title and write a description
+for your new theme: 
+</p>
+
+<p></p>
+
+<figure>
+<img src="../../assets/customtheme.png" alt="create theme screenshot" title="The customize theme buffer" width="600px">
+
+<figcaption><span class="figure-number">Figure 1: </span>A screenshot of the customize theme buffer</figcaption>
+</figure>
+<p>Probably you also want to add additional faces for the modes you use, 
+you can do so with the "Insert Additional Face" option close to the 
+end of the buffer:
+</p>
+
+<p></p>
+
+<figure>
+<img src="../../assets/customtheme3.png" alt="create theme screenshot" title="The customize theme buffer" width="600px">
+
+<figcaption><span class="figure-number">Figure 1: </span>A screenshot of the customize theme buffer</figcaption>
+</figure>
+
+
+<p>Themes don't only contain faces but also variables, you can set them in 
+this bufffer, too.
+</p>
+
+<h3>Selecting the theme</h3><p>When your outburst of creativity is over and you're done with customizing your
+theme save it by either using the "Save Theme" button or typing C-x C-s (for Emacs
+newbies: "C" means the control key). 
+The theme is saved as "your-creative-theme-name"-theme.el in the directory 
+specified by the variable custom-theme-directory. So if you haven't changed 
+that variable you'll probably find your new theme in the ~/.emacs.d/ directory.
+</p>
+
+<p>To select the eyecandy you just created as your new theme type M-x customize-themes
+or (if your prefer to use the Menu Bar) click Options-&gt;Customize Emacs-&gt;Custom Themes.
+You'll find yourself in the Custom Themes buffer where you can select one or more
+themes. 
+</p>
+
+<p>Emacs looks for the themes displayed in this buffer in custom-theme-directory and
+etc/themes of your Emacs installation (that's where the themes that come with Emacs
+are located). If you want to add additional directories just add them to the 
+list "custom-theme-load-path" (for example sth. like (add-to-list 
+'custom-theme-load-path "~/.my-special-theme-dir"...).
+</p>
+
+<p>Save the theme(s) with the "Save Theme Settings" button or by typing C-x C-s.
+</p>
+
+<p></p>
+
+<figure>
+<img src="../../assets/customtheme4.png" alt="create theme screenshot" title="The customize theme buffer" width="600px">
+
+<figcaption><span class="figure-number">Figure 1: </span>A screenshot of the customize theme buffer</figcaption>
+</figure>
+
+
+<p></p>
+
+<p>Alternatively you can load a theme in your current session by typing M-x load-theme.
+(or if it's been loaded before with M-x enable-theme, guess the command for disabling
+it ;)).
+</p>
+
+<p>Note that loading a theme executes Lisp code, so make sure you know what you're loading.
+</p>
+
+<h2>I'm lazy</h2><p>The method described above is not that much effort ;) But if it's
+still too much effort (and I totally understand that) for you you could 
+use the Emacs Theme Creator by Martin Haesler:
+</p>
+
+<p></p>
+
+<figure>
+<img src="../../assets/themecreator.png" alt="create theme screenshot" title="The customize theme buffer" width="600px">
+
+<figcaption><span class="figure-number">Figure 1: </span>A screenshot of the customize theme buffer</figcaption>
+</figure>
+
+
+<p></p>
+
+<p>And a <a href="https://emacs-theme-creator.appspot.com/">link</a> to it. 
+</p>
+
+
+
+<h2>What else?</h2><p>Since themes in Emacs are simply lisp files you can also edit them directly.
+You should have a call to deftheme at the beginning of your file and provide-theme
+at the end. 
+The function custom-theme-set-faces contains your face settings, if you
+have custom variables you can set them in custom-theme-set-variables.
+</p>
+
+<p>As an example, here's my cactus-theme (feel free to use it and add the faces you
+need):
+</p>
+
+<pre><code class="emacs-lisp">(<span class="org-keyword">deftheme</span> <span class="org-type">cactus</span>
+  <span class="org-doc">"Cactus Theme"</span>)
+
+(custom-theme-set-faces
+ 'cactus
+ '(cursor ((t (<span class="org-builtin">:background</span> <span class="org-string">"cadet blue"</span>))))
+ '(border ((t (<span class="org-builtin">:foreground</span> <span class="org-string">"gray6"</span>))))
+ '(default ((t (<span class="org-builtin">:background</span> <span class="org-string">"gray20"</span> <span class="org-builtin">:foreground</span> <span class="org-string">"light sea green"</span>))))
+ '(<span class="org-warning">error</span> ((t (<span class="org-builtin">:foreground</span> <span class="org-string">"goldenrod"</span> <span class="org-builtin">:weight</span> bold))))
+ '(match ((t (<span class="org-builtin">:background</span> <span class="org-string">"gray31"</span>))))
+ '(mouse ((t (<span class="org-builtin">:foreground</span> <span class="org-string">"goldenrod"</span>))))
+ '(region ((t (<span class="org-builtin">:background</span> <span class="org-string">"cadet blue"</span>))))
+ '(scroll-bar ((t (<span class="org-builtin">:background</span> <span class="org-string">"black"</span> <span class="org-builtin">:foreground</span> <span class="org-string">"cadet blue"</span>))))
+ '(tool-bar ((t (<span class="org-builtin">:background</span> <span class="org-string">"cadet blue"</span> <span class="org-builtin">:foreground</span> <span class="org-string">"black"</span> <span class="org-builtin">:box</span> (<span class="org-builtin">:line-width</span> 1 <span class="org-builtin">:style</span> released-button)))))
+ '(tooltip ((t (<span class="org-builtin">:inherit</span> variable-pitch <span class="org-builtin">:background</span> <span class="org-string">"pale goldenrod"</span> <span class="org-builtin">:foreground</span> <span class="org-string">"black"</span>))))
+ '(warning ((t (<span class="org-builtin">:foreground</span> <span class="org-string">"deep sky blue"</span> <span class="org-builtin">:weight</span> bold))))
+
+
+ '(beacon-fallback-background ((t (<span class="org-builtin">:background</span> <span class="org-string">"goldenrod"</span>))))
+ '(bold ((t (<span class="org-builtin">:foreground</span> <span class="org-string">"light sea green"</span> <span class="org-builtin">:weight</span> bold))))
+
+ '(comint-highlight-input ((t (<span class="org-builtin">:foreground</span> <span class="org-string">"dark gray"</span> <span class="org-builtin">:weight</span> bold))))
+ '(comint-highlight-prompt ((t (<span class="org-builtin">:foreground</span> <span class="org-string">"dark goldenrod"</span>))))
+
+ '(company-echo-common ((t (<span class="org-builtin">:foreground</span> <span class="org-string">"white smoke"</span>))))
+ '(company-preview ((t (<span class="org-builtin">:background</span> <span class="org-string">"light sky blue"</span> <span class="org-builtin">:foreground</span> <span class="org-string">"dim gray"</span>))))
+ '(company-preview-common ((t (<span class="org-builtin">:inherit</span> company-preview <span class="org-builtin">:foreground</span> <span class="org-string">"goldenrod"</span>))))
+ '(company-preview-search ((t (<span class="org-builtin">:inherit</span> company-preview <span class="org-builtin">:background</span> <span class="org-string">"sky blue"</span>))))
+ '(company-scrollbar-bg ((t (<span class="org-builtin">:background</span> <span class="org-string">"light gray"</span>))))
+ '(company-scrollbar-fg ((t (<span class="org-builtin">:background</span> <span class="org-string">"dim gray"</span>))))
+ '(company-template-field ((t (<span class="org-builtin">:background</span> <span class="org-string">"royal blue"</span> <span class="org-builtin">:foreground</span> <span class="org-string">"white"</span>))))
+ '(company-tooltip ((t (<span class="org-builtin">:background</span> <span class="org-string">"royal blue"</span> <span class="org-builtin">:foreground</span> <span class="org-string">"white smoke"</span>))))
+ '(company-tooltip-annotation ((t (<span class="org-builtin">:foreground</span> <span class="org-string">"light blue"</span>))))
+ '(company-tooltip-common ((t (<span class="org-builtin">:foreground</span> <span class="org-string">"cyan2"</span>))))
+ '(company-tooltip-selection ((t (<span class="org-builtin">:background</span> <span class="org-string">"light blue"</span>))))
+
+ '(compilation-mode-line-exit ((t (<span class="org-builtin">:inherit</span> compilation-info <span class="org-builtin">:foreground</span> <span class="org-string">"blue3"</span> <span class="org-builtin">:weight</span> bold))))
+ '(compilation-mode-line-fail ((t (<span class="org-builtin">:inherit</span> compilation-error <span class="org-builtin">:foreground</span> <span class="org-string">"dark cyan"</span> <span class="org-builtin">:weight</span> bold))))
+
+ '(custom-button ((t (<span class="org-builtin">:background</span> <span class="org-string">"cadet blue"</span> <span class="org-builtin">:foreground</span> <span class="org-string">"black"</span> <span class="org-builtin">:box</span> (<span class="org-builtin">:line-width</span> 2 <span class="org-builtin">:style</span> released-button)))))
+ '(custom-button-pressed-unraised ((t (<span class="org-builtin">:inherit</span> custom-button-unraised <span class="org-builtin">:foreground</span> <span class="org-string">"dark gray"</span>))))
+ '(custom-invalid ((t (<span class="org-builtin">:background</span> <span class="org-string">"blue1"</span> <span class="org-builtin">:foreground</span> <span class="org-string">"white smoke"</span>))))
+ '(custom-rogue ((t (<span class="org-builtin">:background</span> <span class="org-string">"black"</span> <span class="org-builtin">:foreground</span> <span class="org-string">"white"</span>))))
+ '(custom-state ((t (<span class="org-builtin">:foreground</span> <span class="org-string">"cornflower blue"</span>))))
+ '(custom-modified ((t (<span class="org-builtin">:background</span> <span class="org-string">"steel blue"</span> <span class="org-builtin">:foreground</span> <span class="org-string">"white"</span>))))
+ '(custom-themed ((t (<span class="org-builtin">:background</span> <span class="org-string">"cornflower blue"</span> <span class="org-builtin">:foreground</span> <span class="org-string">"white"</span>))))
+
+ '(diary ((t (<span class="org-builtin">:foreground</span> <span class="org-string">"goldenrod"</span>))))
+
+ '(escape-glyph ((t (<span class="org-builtin">:foreground</span> <span class="org-string">"medium aquamarine"</span>))))
+ '(font-lock-builtin-face ((t (<span class="org-builtin">:foreground</span> <span class="org-string">"medium aquamarine"</span>))))
+ '(font-lock-comment-face ((t (<span class="org-builtin">:foreground</span> <span class="org-string">"gray40"</span>))))
+ '(font-lock-constant-face ((t (<span class="org-builtin">:foreground</span> <span class="org-string">"aquamarine"</span>))))
+ '(font-lock-function-name-face ((t (<span class="org-builtin">:foreground</span> <span class="org-string">"cyan3"</span>))))
+ '(font-lock-keyword-face ((t (<span class="org-builtin">:foreground</span> <span class="org-string">"dark goldenrod"</span>))))
+ '(font-lock-negation-char-face ((t (<span class="org-builtin">:foreground</span> <span class="org-string">"cyan"</span>))))
+ '(font-lock-string-face ((t (<span class="org-builtin">:foreground</span> <span class="org-string">"dark gray"</span>))))
+ '(font-lock-type-face ((t (<span class="org-builtin">:foreground</span> <span class="org-string">"dark goldenrod"</span>))))
+ '(font-lock-variable-name-face ((t (<span class="org-builtin">:foreground</span> <span class="org-string">"medium aquamarine"</span>))))
+ '(font-lock-warning-face ((t (<span class="org-builtin">:foreground</span> <span class="org-string">"deep sky blue"</span>))))
+ '(fringe ((t (<span class="org-builtin">:background</span> <span class="org-string">"gray12"</span>))))
+ '(haskell-constructor-face ((t (<span class="org-builtin">:foreground</span> <span class="org-string">"DarkGoldenrod3"</span>))))
+ '(header-line ((t (<span class="org-builtin">:inherit</span> mode-line <span class="org-builtin">:background</span> <span class="org-string">"grey20"</span> <span class="org-builtin">:foreground</span> <span class="org-string">"light gray"</span> <span class="org-builtin">:box</span> nil))))
+ '(helm-action ((t (<span class="org-builtin">:foreground</span> <span class="org-string">"cyan4"</span> <span class="org-builtin">:underline</span> t))))
+ '(helm-buffer-archive ((t (<span class="org-builtin">:foreground</span> <span class="org-string">"goldenrod"</span>))))
+ '(helm-buffer-directory ((t (<span class="org-builtin">:background</span> <span class="org-string">"LightGray"</span> <span class="org-builtin">:foreground</span> <span class="org-string">"gray15"</span>))))
+ '(helm-buffer-not-saved ((t (<span class="org-builtin">:foreground</span> <span class="org-string">"goldenrod"</span>))))
+ '(helm-buffer-process ((t (<span class="org-builtin">:foreground</span> <span class="org-string">"dark goldenrod"</span>))))
+ '(helm-buffer-saved-out ((t (<span class="org-builtin">:background</span> <span class="org-string">"black"</span> <span class="org-builtin">:foreground</span> <span class="org-string">"dark gray"</span>))))
+
+ '(helm-candidate-number ((t (<span class="org-builtin">:background</span> <span class="org-string">"gray"</span> <span class="org-builtin">:foreground</span> <span class="org-string">"black"</span>))))
+ '(helm-ff-denied ((t (<span class="org-builtin">:background</span> <span class="org-string">"black"</span> <span class="org-builtin">:foreground</span> <span class="org-string">"gold"</span>))))
+ '(helm-ff-directory ((t (<span class="org-builtin">:background</span> <span class="org-string">"LightGray"</span> <span class="org-builtin">:foreground</span> <span class="org-string">"orange4"</span>))))
+ '(helm-ff-executable ((t (<span class="org-builtin">:foreground</span> <span class="org-string">"gainsboro"</span>))))
+ '(helm-ff-invalid-symlink ((t (<span class="org-builtin">:background</span> <span class="org-string">"steel blue"</span> <span class="org-builtin">:foreground</span> <span class="org-string">"black"</span>))))
+ '(helm-ff-prefix ((t (<span class="org-builtin">:background</span> <span class="org-string">"dark goldenrod"</span> <span class="org-builtin">:foreground</span> <span class="org-string">"black"</span>))))
+ '(helm-ff-socket ((t (<span class="org-builtin">:foreground</span> <span class="org-string">"gold"</span>))))
+ '(helm-ff-suid ((t (<span class="org-builtin">:background</span> <span class="org-string">"dark goldenrod"</span> <span class="org-builtin">:foreground</span> <span class="org-string">"white"</span>))))
+ '(helm-grep-file ((t (<span class="org-builtin">:foreground</span> <span class="org-string">"cyan"</span> <span class="org-builtin">:underline</span> t))))
+ '(helm-grep-finish ((t (<span class="org-builtin">:foreground</span> <span class="org-string">"gainsboro"</span>))))
+ '(helm-header-line-left-margin ((t (<span class="org-builtin">:background</span> <span class="org-string">"dark goldenrod"</span> <span class="org-builtin">:foreground</span> <span class="org-string">"black"</span>))))
+ '(helm-locate-finish ((t (<span class="org-builtin">:foreground</span> <span class="org-string">"gainsboro"</span>))))
+ '(helm-mode-prefix ((t (<span class="org-builtin">:background</span> <span class="org-string">"gold"</span> <span class="org-builtin">:foreground</span> <span class="org-string">"black"</span>))))
+ '(helm-prefarg ((t (<span class="org-builtin">:foreground</span> <span class="org-string">"gainsboro"</span>))))
+ '(helm-resume-need-update ((t (<span class="org-builtin">:background</span> <span class="org-string">"gainsboro"</span>))))
+ '(helm-selection ((t (<span class="org-builtin">:background</span> <span class="org-string">"cadet blue"</span> <span class="org-builtin">:distant-foreground</span> <span class="org-string">"black"</span>))))
+ '(helm-separator ((t (<span class="org-builtin">:foreground</span> <span class="org-string">"dark goldenrod"</span>))))
+ '(helm-visible-mark ((t (<span class="org-builtin">:background</span> <span class="org-string">"cadet blue"</span> <span class="org-builtin">:foreground</span> <span class="org-string">"black"</span>))))
+ '(highlight ((t (<span class="org-builtin">:background</span> <span class="org-string">"dark cyan"</span> <span class="org-builtin">:foreground</span> <span class="org-string">"black"</span>))))
+ '(info-node ((t (<span class="org-builtin">:foreground</span> <span class="org-string">"light gray"</span> <span class="org-builtin">:slant</span> italic <span class="org-builtin">:weight</span> bold))))
+ '(isearch ((t (<span class="org-builtin">:background</span> <span class="org-string">"light sea green"</span> <span class="org-builtin">:foreground</span> <span class="org-string">"white"</span>))))
+ '(lazy-highlight ((t (<span class="org-builtin">:background</span> <span class="org-string">"dim gray"</span>))))
+ '(link ((t (<span class="org-builtin">:foreground</span> <span class="org-string">"deep sky blue"</span> <span class="org-builtin">:underline</span> t))))
+ '(link-visited ((t (<span class="org-builtin">:inherit</span> link <span class="org-builtin">:foreground</span> <span class="org-string">"steel blue"</span>))))
+ '(minibuffer-prompt ((t (<span class="org-builtin">:foreground</span> <span class="org-string">"dark cyan"</span>))))
+ '(mode-line ((t (<span class="org-builtin">:background</span> <span class="org-string">"cadet blue"</span> <span class="org-builtin">:foreground</span> <span class="org-string">"black"</span> <span class="org-builtin">:box</span> (<span class="org-builtin">:line-width</span> -1 <span class="org-builtin">:style</span> released-button)))))
+ '(mode-line-buffer-id ((t (<span class="org-builtin">:foreground</span> <span class="org-string">"pale goldenrod"</span> <span class="org-builtin">:weight</span> bold))))
+ '(mode-line-highlight ((t (<span class="org-builtin">:box</span> (<span class="org-builtin">:line-width</span> 2 <span class="org-builtin">:color</span> <span class="org-string">"medium aquamarine"</span> <span class="org-builtin">:style</span> released-button)))))
+ '(mode-line-inactive ((t (<span class="org-builtin">:inherit</span> mode-line <span class="org-builtin">:background</span> <span class="org-string">"PaleTurquoise4"</span> <span class="org-builtin">:foreground</span> <span class="org-string">"grey80"</span> <span class="org-builtin">:box</span> (<span class="org-builtin">:line-width</span> -1 <span class="org-builtin">:color</span> <span class="org-string">"grey40"</span>) <span class="org-builtin">:weight</span> light))))
+ '(org-agenda-calendar-event ((t (<span class="org-builtin">:foreground</span> <span class="org-string">"dark cyan"</span>))))
+ '(org-agenda-calendar-sexp ((t (<span class="org-builtin">:foreground</span> <span class="org-string">"dark cyan"</span>))))
+ '(org-agenda-clocking ((t (<span class="org-builtin">:background</span> <span class="org-string">"dim gray"</span> <span class="org-builtin">:foreground</span> <span class="org-string">"black"</span>))))
+ '(org-agenda-column-dateline ((t (<span class="org-builtin">:background</span> <span class="org-string">"dark cyan"</span> <span class="org-builtin">:foreground</span> <span class="org-string">"gray"</span>))))
+ '(org-agenda-current-time ((t (<span class="org-builtin">:foreground</span> <span class="org-string">"goldenrod"</span>))))
+ '(org-agenda-date-weekend ((t (<span class="org-builtin">:foreground</span> <span class="org-string">"deep sky blue"</span> <span class="org-builtin">:weight</span> bold))))
+ '(org-agenda-done ((t (<span class="org-builtin">:foreground</span> <span class="org-string">"goldenrod"</span>))))
+ '(org-checkbox ((t (<span class="org-builtin">:foreground</span> <span class="org-string">"cyan"</span> <span class="org-builtin">:weight</span> bold))))
+ '(org-checkbox-statistics-done ((t (<span class="org-builtin">:foreground</span> <span class="org-string">"gold"</span> <span class="org-builtin">:weight</span> bold))))
+ '(org-checkbox-statistics-todo ((t (<span class="org-builtin">:foreground</span> <span class="org-string">"gainsboro"</span> <span class="org-builtin">:weight</span> bold))))
+ '(org-date-selected ((t (<span class="org-builtin">:foreground</span> <span class="org-string">"dark gray"</span> <span class="org-builtin">:inverse-video</span> t))))
+ '(org-done ((t (<span class="org-builtin">:foreground</span> <span class="org-string">"cyan"</span> <span class="org-builtin">:weight</span> bold))))
+ '(org-drawer ((t (<span class="org-builtin">:foreground</span> <span class="org-string">"dark gray"</span>))))
+ '(org-formula ((t (<span class="org-builtin">:foreground</span> <span class="org-string">"gold3"</span>))))
+ '(org-level-1 ((t (<span class="org-builtin">:foreground</span> <span class="org-string">"light sea green"</span>))))
+ '(org-level-2 ((t (<span class="org-builtin">:foreground</span> <span class="org-string">"cyan"</span>))))
+ '(org-level-3 ((t (<span class="org-builtin">:foreground</span> <span class="org-string">"goldenrod"</span>))))
+ '(org-level-4 ((t (<span class="org-builtin">:foreground</span> <span class="org-string">"medium aquamarine"</span>))))
+ '(org-mode-line-clock-overrun ((t (<span class="org-builtin">:inherit</span> mode-line <span class="org-builtin">:background</span> <span class="org-string">"gold"</span>))))
+ '(org-scheduled ((t (<span class="org-builtin">:foreground</span> <span class="org-string">"medium spring green"</span>))))
+ '(org-scheduled-today ((t (<span class="org-builtin">:foreground</span> <span class="org-string">"turquoise1"</span>))))
+ '(org-todo ((t (<span class="org-builtin">:foreground</span> <span class="org-string">"gold"</span> <span class="org-builtin">:weight</span> bold))))
+
+ '(scroll-bar ((t (<span class="org-builtin">:background</span> <span class="org-string">"black"</span> <span class="org-builtin">:foreground</span> <span class="org-string">"cadet blue"</span>))))
+ '(show-paren-mismatch ((t (<span class="org-builtin">:background</span> <span class="org-string">"dark goldenrod"</span> <span class="org-builtin">:foreground</span> <span class="org-string">"white"</span>))))
+ '(success ((t (<span class="org-builtin">:foreground</span> <span class="org-string">"dark turquoise"</span> <span class="org-builtin">:weight</span> bold))))
+
+ '(trailing-whitespace ((t (<span class="org-builtin">:background</span> <span class="org-string">"dark goldenrod"</span>))))
+ '(tty-menu-disabled-face ((t (<span class="org-builtin">:background</span> <span class="org-string">"dark cyan"</span> <span class="org-builtin">:foreground</span> <span class="org-string">"lightgray"</span>))))
+ '(tty-menu-enabled-face ((t (<span class="org-builtin">:background</span> <span class="org-string">"dark cyan"</span> <span class="org-builtin">:foreground</span> <span class="org-string">"yellow"</span> <span class="org-builtin">:weight</span> bold))))
+ '(tty-menu-selected-face ((t (<span class="org-builtin">:background</span> <span class="org-string">"DarkSlateGray3"</span> <span class="org-builtin">:foreground</span> <span class="org-string">"black"</span>))))
+ '(vimish-fold-overlay ((t (<span class="org-builtin">:background</span> <span class="org-string">"dim gray"</span> <span class="org-builtin">:foreground</span> <span class="org-string">"cadet blue"</span>))))
+ '(widget-button-pressed ((t (<span class="org-builtin">:foreground</span> <span class="org-string">"gray"</span>))))
+ '(widget-documentation ((t (<span class="org-builtin">:foreground</span> <span class="org-string">"cyan"</span>))))
+ '(window-divider ((t (<span class="org-builtin">:foreground</span> <span class="org-string">"gray15"</span>)))))
+
+(provide-theme 'cactus)
+
+</code></pre>
+<p></p>
+<div id="postamble">Made with Emacs :)
+<p><a href="disclaimer.html"> Disclaimer </a>
+</p></div></div></div></div></body>
+</html>

@@ -1,0 +1,62 @@
+#+title: BitShiftCrazy
+
+
+* Hi and welcome to my blog :)
+
+
+  I would tell you what kind of posts you can find here, but let's face it:
+  I take pleasure in playing with and modifying my blogging setup
+  (Emacs + org-mode ♥), but not so much in actually writing blog posts.
+
+  So instead I'll tell you what I *plan* to write about here:
+
+  - personal stuff: Linux on "unusual" devices, homemade mini laptops,
+    blinky LED wearable stuff, terminal apps no one needs...
+
+  - Emacs stuff
+
+  - Linux stuff: reviews of linux distros I tried, window managers, terminal emulators...
+
+  - random stuff I find on the internet and get excited about: basically the same list as "personal stuff" but
+    made by others
+
+  - cooking stuff: recipes, especially Club Mate recipes. Of course with Emacs and org-mode.
+    
+  - 3D printing stuff: it'll probably be something like "things you *really* shouldn't try"
+
+  - Dungeons and Dragons stuff: of course with Emacs and org-mode
+
+    
+
+  You'll find all that stuff when you click on [[./archive.html][stuff]] (that is, *if* I can ever bring myself to write).
+
+
+
+  @@html:<hr>@@
+
+
+  
+
+** Other places where you can find me
+
+  *Github for this blog:* [[https://github.com/bitshiftcrazy][bitshiftcrazy]]
+
+  I upload code I mention or post here there, the code for this website is also there.
+
+
+  *BitShiftCrazy Telegram channel:* [[https://t.me/bitshiftcrazy][BitShiftCrazy]]
+
+  Links I find interesting and announcement of new blog posts.
+  If you want to add a comment to one of the posts you can do so in the Telegram
+  group linked to the channel.
+  
+ 
+  *My Instagram page:* [[https://www.instagram.com/miss.molerat/][@miss.molerat]]
+
+  Lots of random posts about coding, linux, Emacs with aesthetically pleasing Thinkpad fetish pics.
+  More personal (less interesting) stuff on my stories.
+
+  
+
+
+  
