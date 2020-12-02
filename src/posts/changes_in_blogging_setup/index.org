@@ -19,7 +19,7 @@ generate a static website.
  
 So it was time for some cleaning and re-structuring:
 
- 
+
 - I kicked out the RSS functions (sorry not sorry to the 3 people who asked
   for RSS)
 
