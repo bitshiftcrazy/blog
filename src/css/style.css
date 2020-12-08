@@ -2,6 +2,14 @@ html {
   font-family: Hack, Courier New, Courier, monospace;
 }
 
+html,body {
+    width: 100%;
+    height: 100%;
+    margin: 0px;
+    padding: 0px;
+    overflow-x: hidden;
+}
+
 :root {
   /* Light mode */
   --light-switch-text: "dark mode";
