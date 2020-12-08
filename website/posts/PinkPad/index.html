@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="stylesheet" type="text/css" href="../../css/style.css" >
+<title>The PinkPad v1 2020 Lockdown Edition</title>
+</head>
+<body><input type="checkbox" class="theme-switch" id="theme-switch"/>
+<div id="page"><div><nav class="navbar"> <a href="../../index.html"> home </a> <a href="../../archive.html"> stuff </a> <a href="../../about.html"> about </a><a href="#"> <label for="theme-switch" class="switch-label"></label></a></nav><div id="content">
+<h1>The PinkPad v1 2020 Lockdown Edition</h1><div class="tldr">[TL;DR] I've always been jealous about those hot little mini-laptops.
+So I built my own one with a Raspberry Pi and a toy laptop. Here's why and how
+I did that. (It uses Arch btw.)
+</div>
+
+<h1>A very special Raspberry Pi case</h1><figure>
+<img src="../../assets/PinkPad_wide.jpg" alt="The PinkPad: a very special Raspberry Pi case" title="a very special raspberry pi case" width="700px">
+
+<figcaption><span class="figure-number">Figure 1: </span>A very special Raspberry Pi case</figcaption>
+</figure>
+
+<p>Every time I saw someone with one of those unnecessarily cute mini-laptops, I got
+extremely jealous. But most of them are a bit too expensive for something
+I'd only use to flex. Stealing is illegal, I'd probably even have to murder the
+(former) owners of the stolen mini-laptop and buying acid to dissolve the bodies, renting a car to bury the remains far away from my home,
+hiring a lawyer if something goes wrong (see, I had a plan...) is most likely even more expensive than buying one.
+And a lot more stressful.
+</p>
+
+<p><em>(That was a joke obviously, please don't call the cops ;))</em>
+</p>
+
+<p>So I decided to build my own one. Apart from being cheaper it comes with
+another great advantage: I can build it to be as <em>metal</em> as I am.
+Because let's be honest, something like the GPD Pocket might be cute.
+But I'm not ;)
+</p>
+
+<p>As a Black Metal fan I need something a little more...brutal.
+</p>
+
+<figure>
+<img src="../../assets/PinkPad_hail_satan.jpg" alt="satanic pinkpad" title="how to chmod 666" width="700px">
+
+<figcaption><span class="figure-number">Figure 1: </span>How to chmod 666</figcaption>
+</figure>
+
+<p>Luckily I found the perfect model on eBay. Something that looks just as evil and
+badass as I feel. The perfect match: the Schlaubärchen Laptop.
+<em>(German speakers start laughing now, for everyone else "Schlaubärchen"
+probably still sounds pretty metal)</em>
+</p>
+
+<p>The actual name of this hardcore device is <a href="https://www.vtech.de/vtechbaby/lern-und-musik-laptop-pink">VTech Lern und Musik Laptop</a>, it's
+a toy laptop for children from 2 - 4.
+</p>
+
+<p>As I said, I bought it on eBay to see if it was somehow possible to get Linux
+onto it (as previously on my Kindle and calculator and almost my microwave, but
+that's a different story). I didn't have high hopes, even if I would have been successful
+in jail-breaking the thing, those toy laptops often have some kind of ancient
+Z80 processor and to get <em>something</em> on <em>that</em>...well, let's say one lock-down wouldn't
+be enough time
+(not that it hasn't been done before tho: <a href="https://hackaday.com/2019/10/14/repurposing-a-toy-computer-from-the-1990s/">Repurposing A Toy Computer From The 1990s</a>, <a href="http://www.symbos.de/index.htm">SymbOS</a>)
+</p>
+
+<p><strong>So I changed my plans and turned the Schlaubärchen Laptop into the most hardcore,
+Black-Metal-iest, badass Raspberry Pi case ever.</strong>
+</p>
+
+
+
+
+<h1>How</h1><p>Finally the interesting part, <em>how</em>:
+</p>
+
+<p>It's not exactly difficult to slaughter a toy laptop, rip out its insides and
+put a Raspberry Pi back in.
+But it's more challenging than you'd expect to fit
+everything together: you have the perfect USB hub at home, but all your cables
+are too long, you have a matching display but not the right adapters, you find
+a small keyboard but it has the wrong colour...
+</p>
+
+<p>And just like that a "lock-down weekend project" turns into an ongoing work in progress.
+</p>
+
+<p>Before I started building I had a few things in mind I wanted to achieve:
+</p>
+
+<ul><li>it should <em>really</em> be usable: that means keyboard and display have to
+be big enough, it needs WiFi, it needs a reasonably long battery life</li>
+<li>it has to be sturdy: it should survive being carried (and most likely thrown)
+around by someone as clumsy as me without falling apart</li>
+<li>it shouldn't look like "butchered and glued back together" too much</li>
+</ul>
+
+<p>In case you want to have such an overly cool laptop as well, read on.
+</p>
+
+<p>(Or you just want amuse yourself with reading about the insane effort someone put
+into butchering a toy laptop)
+</p>
+
+<h2>Parts</h2><ul><li>the <a href="https://www.vtech.de/vtechbaby/lern-und-musik-laptop-pink">VTech Lern und Musik Laptop</a> obviously: as I said earlier,
+if you buy a new one, it's about 28€. On eBay it shouldn't cost more
+than <strong>15€</strong></li>
+
+<li>a Raspberry Pi: I used a <a href="https://www.berrybase.de/raspberry-pi-co/raspberry-pi/boards/raspberry-pi-zero-w">Raspberry Pi Zero W</a> (for about <strong>11€</strong>)
+because I already had one.
+If you don't use the 3D printed middle part only a Pi Zero will fit into the case.
+With this part you can use other Raspberry Pis as well (you
+may have to add a fan then tho)</li>
+
+<li>a microSD for said Raspberry Pi (size depends on which distro you
+want to install, a 32GB microSD by SanDisk costs about <strong>9€</strong>)</li>
+
+<li>a 5inch LCD Touch Screen: I had <a href="https://www.amazon.de/Waveshare-Resistive-Resolution-Interface-Raspberry/dp/B01HPV7OEG/ref=sr_1_3?__mk_de_DE=%C3%85M%C3%85%C5%BD%C3%95%C3%91&dchild=1&keywords=waveshare+5+inch+lcd+display&qid=1606991005&sr=8-3">this one</a> by Waveshare for about <strong>40€</strong>
+but you could basically use whatever you want or have (and fits into
+the 3D printed parts)</li>
+
+<li>the <a href="https://www.amazon.de/2-4GHz-Wireless-Tastatur-Touchpad-Maus-Android/dp/B00VWVXQB6/ref=sr_1_3?__mk_de_DE=%C3%85M%C3%85%C5%BD%C3%95%C3%91&crid=1N3O8KE0SQW8V&dchild=1&keywords=rii+x1+mini+tastatur+wireless&qid=1606991157&sprefix=Rii+X1%2Caps%2C238&sr=8-3">Rii X1 Mini keyboard</a>: it's pretty nice for typing, but again, you could
+use whatever you want or have. If you buy a new one it costs about <strong>18€</strong>, but
+you should easily find one on eBay for not more than <strong>10€</strong></li>
+
+<li>a "as small as possible" USB hub that's suitable for the current draw of
+your hardware components (you can get one from <strong>9€</strong>)</li>
+
+<li>a 3D printed cover for the top part and the part with the keyboard
+(and a middle part for bigger Raspberries)</li>
+
+<li>various cables and adapters</li>
+</ul>
+
+<h3>For the power supply:</h3><p>To power the PinkPad with a battery (<em>really</em> recommended since the 3D design
+kinda requires that), we need to take some things into account for the battery
+life expectation:
+</p>
+
+<p>Basically the runtime of the PinkPad depends on the battery's capacity and
+the power consumed by the hardware components.
+</p>
+
+<p>To get the average current consumption you can either use a multimeter to
+measure the current (given that there's a constant current draw), use something
+like a current sensor breakout to measure power consumption over time <em>or</em>
+very roughly estimate the result based on the used component's consumption and add a
+little extra <em>mAh</em> to be sure (trust me, I'm an engineer):
+</p>
+
+<p>Generally: <em>your battery capacity in mAh /</em> <em>your project's
+average power consumption = your expected runtime</em>.
+</p>
+
+<p>All Raspberry Pi models need a 5.1V power supply, the Raspberry Pi Zero W
+has a recommended PSU current capacity of 1.2A and 150mA bare-board
+active current consumption.
+Additionally to your board, your other hardware components have current
+consumption, too (e.g. the LCD touchscreen has 235mA with backlight on and 45mA
+without). 
+</p>
+
+<p>What you choose as power supply is up to you (I mean, within the possible
+power supplies ;)), here's what I used:
+</p>
+
+<ul><li>a 3.7V lipo battery with 6000mAh (because that was literally the only
+one I had)</li>
+
+<li>a Boost Converter: I used the <a href="https://learn.adafruit.com/adafruit-powerboost-1000c-load-share-usb-charge-boost">Adafruit Power Boost 1000 C</a>. It comes
+with quite a few handy features, my favourite being the integrated
+smart load-sharing lipoly charger. It's rather expensive with about
+<strong>29€</strong> tho.</li>
+
+<li>I also added a switch to the Power Boost to power it on and off,
+I have no idea what a single switch costs tho (I just assume <strong>5€</strong> for
+a pack of switches)</li>
+</ul>
+
+
+<p>I don't like it when guides praise how cheap it is to "quickly build something
+as a weekend project" and then assume you have a whole electronics department at
+home and live in a makerspace. 
+So to calculate the costs for a PinkPad I assume you don't have any of the
+parts - not even a microSD or USB hub - and buy everything new (aka worst case):
+</p>
+
+<p><strong>159€</strong>
+</p>
+
+<p>You should be able to get lots of the parts cheaper tho, as I mentioned, eBay is a great
+place to check.
+</p>
+
+
+<h2>Tools</h2><ul><li>a soldering iron</li>
+
+<li>a good, sturdy knife</li>
+
+<li>a 3D printer (does this count as tool? Kind of I guess)</li>
+
+<li>various screwdrivers</li>
+
+<li>lots of glue (not sure if that's a tool either...)</li>
+
+<li>pink nail polish (okay, that's really not a tool but you'll need it)</li>
+
+<li>a foot file (yep, that's what I use to smoothen 3D prints (and only to
+smoothen 3D prints), don't judge)</li>
+</ul>
+
+<p>And again: if you don't have this stuff at home this can get quite expensive.
+</p>
+
+<p>So, as with many other "cheap weekend projects", the PinkPad is only cheap
+if you already have most of the stuff. (It's still awesome tho)
+</p>
+
+<h2>3D printed parts</h2><figure>
+<img src="../../assets/vtech_lern_und_musik_laptop.jpg" alt="the VTech Lern- und Musiklaptop" title="VTech Lern- und Musiklaptop" width="400px">
+
+<figcaption><span class="figure-number">Figure 1: </span> VTech Lern- und Musiklaptop</figcaption>
+</figure>
+
+<p>As you can see from the picture of the VTech laptop, there's not really
+enough space for a display or a keyboard with a reasonable size.
+</p>
+
+<p>So I removed those parts of the case completely (that's where the sturdy knife
+comes into play) and replaced them with 3D printed parts.
+</p>
+
+<p>I'm not exactly good at 3D design, but the parts are so simple that it
+won't be noticed (okay, it <em>is</em> noticeable but good enough for now).
+</p>
+
+<h3>STLs</h3><p>The three STL files are <a href="https://github.com/bitshiftcrazy/pinkpad-3D">here</a>
+</p>
+
+<p>And to give you an idea of what they're supposed to do/where they're supposed to go,
+here's what they look like:
+</p>
+
+<ol><li>The part for the LCD:
+<figure>
+<img src="../../assets/pinkpad_display.png" alt="a screenshot of the STL for the display part" title="the part for the display" width="400px">
+
+<figcaption><span class="figure-number">Figure 1: </span> </figcaption>
+</figure></li>
+
+<li>The middle part:
+<figure>
+<img src="../../assets/pinkpad_middle.png" alt="a screenshot of the STL for the middle part" title="the middle part" width="400px">
+
+<figcaption><span class="figure-number">Figure 1: </span> </figcaption>
+</figure>
+
+<p>You need this part if you use hardware (eg. an other Raspberry Pi than the Zero)
+to have more space in the top part.
+It goes between the part for the display and the pink part with the little bears
+on it.
+</p></li>
+
+<li>The part for the keyboard:
+<figure>
+<img src="../../assets/pinkpad_keyboard.png" alt="a screenshot of the STL for the keyboard part" title="the part for the keyboard" width="400px">
+
+<figcaption><span class="figure-number">Figure 1: </span> </figcaption>
+</figure></li>
+</ol>
+
+<h3>Print Settings</h3><p>It's not exactly a challenging print, there's really not much that could go wrong.
+The printing speed can be high, there's no need for support.
+</p>
+
+<p>However, to get a pretty result that doesn't look too coarse compared to the rest
+of the Pinkpad, set a layer height smaller than 0.15mm.
+I printed it with white PLA.
+</p>
+
+<p>Afterwards the edges of the prints need some smoothing with sandpaper (or a foot file...seriously, that's
+so much more convenient).
+</p>
+
+<h2>Software</h2><p>After finding/collecting/buying/borrowing/stealing/whatever (I don't judge...) all the parts,
+it's time to take care of the software.
+</p>
+
+<h3>Install Arch Linux ARM</h3><p>Since the Raspberry Pi has an arm processor you need an arm image from
+<a href="https://archlinuxarm.org/">Arch Linux ARM</a>. I won't write a detailed guide on installing Arch Linux
+here (the <a href="https://archlinuxarm.org/platforms/armv6/raspberry-pi">instructions on the Arch Linux ARM website</a> are quite good), just a quick summary.
+I'll also just assume that you setup your SD card from Linux.
+</p>
+
+<p>As root:
+</p>
+
+<ol><li>Partition your SD card (eg. with <em>parted</em> or <em>fdisk</em>):
+<ul><li>create two partitions, the first with type W95 FAT32</li>
+</ul></li>
+<li>Create filesystems:
+<ul><li>FAT filesystem for the first partition</li>
+</ul>
+<pre><code class="shell">mkfs.vfat /dev/sdX1
+</code></pre>
+<ul><li>ext4 for the second</li>
+</ul>
+<pre><code class="bash">mkfs.ext4 /dev/sdX2
+</code></pre></li>
+<li>Mount the filesystems
+<pre><code class="bash">mkdir boot root
+mount /dev/sdX1 boot
+mount /dev/sdX2 root
+</code></pre></li>
+<li>Download and extract the image
+<pre><code class="bash">wget http://os.archlinuxarm.org/os/ArchLinuxARM-rpi-latest.tar.gz
+bsdtar -C root -xpf ArchLinuxARM-rpi-latest.tar.gz
+sync
+mv root/boot/* boot
+</code></pre></li>
+<li>Unmount the partitions
+<pre><code class="bash">umount boot root
+</code></pre></li>
+</ol>
+
+<p>Now put the SD card into your Pi, power up, log in (default user and password
+are <em>alarm</em> and <em>alarm</em> or <em>root</em> and <em>root</em> for roo, so better change that
+immediately ;))
+</p>
+
+<p>Then initialise the pacman keyring and populate the package signing keys
+</p>
+
+<pre><code class="bash">pacman-key --init
+pacman-key --populate archlinuxarm
+</code></pre>
+
+<p>Yeah well, I said I wouldn't write a detailed guide but...there's actually not
+much more detail needed, that's basically it <kbd>¯\_(ツ)_/¯</kbd>
+</p>
+
+<h3>Connect to WiFi</h3><p>And if you're planning to connect to WiFi (I guess you do):
+</p>
+
+<ol><li>Create/ <em>etc/systemd/network/wlan0.network/</em> with:
+<pre><code class="bash">[Match]
+<span class="org-variable-name">Name</span>=wlan0
+
+[Network]
+<span class="org-variable-name">DHCP</span>=yes
+</code></pre></li>
+
+<li>Generate a basic configuration file with <em>wpa</em>
+<pre><code class="bash">wpa_passphrase SSID PASSPHRASE &gt; /etc/wpa_supplicant/wpa_supplicant-wlan0.conf
+</code></pre></li>
+
+<li>Enable and start wpa, restart networkd
+<pre><code class="bash">systemctl enable wpa_supplicant@wlan0
+systemctl start wpa_supplicant@wlan0
+systemctl restart systemd-networkd.service
+</code></pre></li>
+</ol>
+
+<h3>Get the LCD touchscreen to work</h3><p>Add these lines to <em>/boot/config.txt</em>:
+</p>
+
+<pre><code class="nil">max_usb_current=1
+hdmi_group=2
+hdmi_mode=87
+hdmi_cvt 800 480 60 6 0 0 0
+hdmi_drive=1
+</code></pre>
+
+<p>This should be enough, but depending on your LCD touchscreen model it could be
+that you have to add some lines in <em>99-fbturbo.conf</em>, some also need drivers installed.
+</p>
+
+<h3>Add some nice and/or essential programs</h3><p>I don't know if you noticed but I'm slightly too excited about Emacs, so
+guess what I installed first ;)
+</p>
+
+<p>Apart from Emacs I installed
+</p>
+<ul><li><em>herbstluftwm</em> as window manager</li>
+<li><em>gnome-terminal</em></li>
+<li><em>LXDM</em> as display manager</li>
+<li>the web browser <em>Dillo</em></li>
+<li><em>neofetch</em> and <em>cmatrix</em> for showing off purposes</li>
+</ul>
+
+<p>And some other, less interesting stuff (you know, git and so on).
+But I guess if you really want a PinkPad
+you know what software you want to have on it.
+</p>
+
+<h2>Manicure for the keyboard</h2><figure>
+<img src="../../assets/pinkpad_manicure_evolution.jpg" alt="before and after pic of the keyboard" title="From crumbling rose to bright pink" width="700px">
+
+<figcaption><span class="figure-number">Figure 1: </span>The evolution of a keyboard</figcaption>
+</figure>
+
+<p>As you might have noticed the Rii keyboard is black. And unfortunately
+that ruins the hardcore, badass aesthetic of my soft pink PinkPad.
+</p>
+
+<p>So I had to find a way to change that.
+</p>
+
+<p>I tried various paints (even one specifically made for rubber) and varnishes,
+I even thought about 3D printing the cover for the keyboard.
+But in the end a quite simple and unexpected solution
+turned out to be the best: nail polish.
+</p>
+
+<p>Luckily I got some help from Daniela (yep, the same one who wrote that
+awesome  <a href="https://medium.com/better-programming/dark-mode-and-css-variables-ed6dc250232c">Dark Mode and CSS variables</a> Medium article I mentioned in the
+previous post).
+</p>
+
+<p>Daniela performed several scientific nail polish experiments on rubber or
+rubber-like surfaces to test which polish consistence works best.
+</p>
+
+<p>The corresponding research paper is not yet published but I can already tell
+you the results: the best option is a strong covering (not creamy or pearly) pink
+nail polish by Essie together with a clear top coat.
+</p>
+
+<figure>
+<img src="../../assets/pinkpad_manicure.jpg" alt="PinkPad keyboard and nail polish" title="manicure for the keyboard" width="400px">
+
+<figcaption><span class="figure-number">Figure 1: </span>Manicure for the keyboard</figcaption>
+</figure>
+
+<p>Different from the other things I tried, the nail polish still lasts without
+a scratch (and different from the other things I can use it for my nails as well)
+</p>
+
+<p><em>Fun fact: my nails never got as much attention, care or fancy stuff like a top
+coat but this will change</em>
+</p>
+
+<p>To cover the touch-part of the keyboard while still being able to use it I took
+a thin white foil, the rest of the keyboard (the frame part) is painted with white
+acrylic varnish.
+</p>
+
+<h2>Soldering the switch</h2><p>The Power Boost by Adafruit unfortunately doesn't come with a switch,
+but it's easy to add one.
+</p>
+
+<p>I used a "normal" (whatever that's supposed to mean here) slide switch with
+three pins.
+</p>
+
+<p>There won't be any power on the switch, it's only signalling to the Power Boost
+via the ENABLE pin.
+</p>
+
+<p>Just solder the pins of your switch to <strong>EN</strong>, <strong>VS</strong> and <strong>GND</strong>. (If you have a switch with
+only 2 pins, connect them to <strong>EN</strong> and <strong>GND</strong>)
+</p>
+
+<p>Unfortunately I don't have pics of this incredibly exciting process, but
+there are detailed instructions <a href="https://learn.adafruit.com/adafruit-powerboost-1000c-load-share-usb-charge-boost/assembly">on the Adafruit website</a>.
+</p>
+
+<h2>Assembly</h2><p>That's the easiest and yet most annoying part: putting the
+parts together.
+</p>
+
+<p>Basically this can be summarized in a few steps:
+</p>
+
+<ol><li>Brute force the parts of the case away where the display and the keyboard
+are supposed to go. Don't be gentle. It won't be gentle with you either.
+
+<figure>
+<img src="../../assets/ouch.jpg" alt="my injured finger" title="My battle wounds." width="400px">
+
+<figcaption><span class="figure-number">Figure 1: </span> My battle wounds.</figcaption>
+</figure></li>
+
+<li>Glue...everything: glue the middle part well...to the middle, the keyboard
+part to the bottom of the laptop and yourself to basically everything that
+gets in your way. The part for the display is screwed onto the back part
+of the cover later.
+
+<figure>
+<img src="../../assets/pinkpad_mutilated.jpg" alt="a mutilated pinkpad with slaughter tools" title="the battleground" width="400px">
+
+<figcaption><span class="figure-number">Figure 1: </span> The battleground. </figcaption>
+</figure></li>
+
+<li>Raspberry Pi, USB hub and display are supposed to go into the top part,
+keyboard and battery into the bottom.
+Squeeze that entanglement of Raspberry Pi, USB hub, various cables and
+display into the top part. Everything is allowed as long as in the end
+<ul><li>the switch is on the same side as the hole for the switch</li>
+<li>the connection for the charger is on the side of charger hole</li>
+<li>the cable for the battery finds its way through the little hole
+in the middle down to the bottom part</li>
+</ul>
+<figure>
+<img src="../../assets/pinkpad_intestines.jpg" alt="the top part of the pinkpad" title="Pinkad intestines." width="400px">
+
+<figcaption><span class="figure-number">Figure 1: </span> PinkPad intestines.</figcaption>
+</figure>
+
+<p>No squeezing should be necessary for the keyboard and battery, if you
+were brutal enough while brute forcing your way with the knife, there
+should be enough room in the bottom part.
+Otherwise repeat step 1.
+</p>
+
+<figure>
+<img src="../../assets/pinkpad_keyboard.jpg" alt="the bottom part of the pinkpad" title="more PinkPad guts." width="400px">
+
+<figcaption><span class="figure-number">Figure 1: </span> More PinkPad guts.</figcaption>
+</figure>
+
+<p>If everything is in place (or at least inside), close the laptop
+and screw in some screws (3 is the minimum, I tried)
+</p>
+
+<figure>
+<img src="../../assets/pinkpad_sloth.jpg" alt="a sloth and a PinkPad" title="black metal sloth and PinkPad." width="400px">
+
+<figcaption><span class="figure-number">Figure 1: </span> Black Metal Sloth and PinkPad.</figcaption>
+</figure></li>
+</ol>
+
+<p>And if you have no idea what I was talking about, just look at the pics, it should
+make some sense then.
+</p>
+
+<p>Last but not least: add some stickers because as everyone knows each sticker will
+add 1MB RAM. 
+</p>
+
+<p>AND: MAKE ABSOLUTELY SURE you tell everyone you use Arch Linux on that laptop.
+</p>
+
+<p>That's it.
+The birth story of the PinkPad (I didn't come up with that name btw, someone on
+Instagram suggested it ;)).
+</p>
+
+<p>I'm really looking forward to finally being one of the cool kids at conferences
+and other occasions ;)
+</p>
+
+<p>And as the "v1" in the title suggests: it's my first attempt and a work in progress, many parts are somewhat "hacky" and need improvement.
+</p>
+
+<p>There are some things I'd like to improve:
+</p>
+
+<ul><li>I plan to 3D print the key-caps for the keyboard with pink flex filament</li>
+<li>I'd like to improve the 3D printed parts, make them smoother (and I
+also tried to paint them which didn't go so well), try to get them to
+fit together better</li>
+<li>get audio somehow</li>
+<li>get the battery status</li>
+<li>repair the mouse (yes, that little paw used to be a mouse, but it broke :'()</li>
+</ul>
+
+<p>But for now I'm happy with my brutal-hardcore-black-metal-badass PinkPad. 
+</p>
+
+<figure>
+<img src="../../assets/PinkPad_front_close.jpg" alt="PinkPad in front of screens" title="The PinkPad in flex mode" width="700px">
+
+<figcaption><span class="figure-number">Figure 1: </span>PinkPad in flex mode</figcaption>
+</figure>
+<div id="postamble">Made with Emacs :)
+<p><a href="disclaimer.html"> Disclaimer </a>
+</p></div></div></div></div></body>
+</html>

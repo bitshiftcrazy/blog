@@ -13,7 +13,7 @@
 about creating custom themes in Emacs.
 #+END_DIV
  
-** Why? 
+** Why?
 
 Apart from the fact that of course we want Emacs to look pretty the
 right theme can help to increase your productivity and optimise your
