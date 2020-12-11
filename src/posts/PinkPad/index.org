@@ -14,7 +14,7 @@ So I built my own one with a Raspberry Pi and a toy laptop. Here's why and how
 I did that. (It uses Arch btw.)
 #+END_DIV  
 
-* A very special Raspberry Pi case
+** A very special Raspberry Pi case
 
         #+BEGIN_EXPORT html
 <figure>
@@ -70,7 +70,7 @@ Black-Metal-iest, badass Raspberry Pi case ever.*
 
 
 
-* How
+** How
   
 Finally the interesting part, /how/:
 
@@ -96,7 +96,7 @@ In case you want to have such an overly cool laptop as well, read on.
 (Or you just want amuse yourself with reading about the insane effort someone put
 into butchering a toy laptop)
 
-** Parts
+*** Parts
 
    - the [[https://www.vtech.de/vtechbaby/lern-und-musik-laptop-pink][VTech Lern und Musik Laptop]] obviously: as I said earlier,
      if you buy a new one, it's about 28€. On eBay it shouldn't cost more
@@ -127,7 +127,7 @@ into butchering a toy laptop)
 
    - various cables and adapters 
 
-*** For the power supply:
+**** For the power supply:
 
    To power the PinkPad with a battery (/really/ recommended since the 3D design
    kinda requires that), we need to take some things into account for the battery
@@ -180,7 +180,7 @@ You should be able to get lots of the parts cheaper tho, as I mentioned, eBay is
 place to check.
 
 
-** Tools
+*** Tools
 
    - a soldering iron
 
@@ -202,7 +202,7 @@ And again: if you don't have this stuff at home this can get quite expensive.
 So, as with many other "cheap weekend projects", the PinkPad is only cheap
 if you already have most of the stuff. (It's still awesome tho)
 
-** 3D printed parts
+*** 3D printed parts
 
         #+BEGIN_EXPORT html
 <figure>
@@ -221,7 +221,7 @@ comes into play) and replaced them with 3D printed parts.
 I'm not exactly good at 3D design, but the parts are so simple that it
 won't be noticed (okay, it /is/ noticeable but good enough for now).
 
-*** STLs
+**** STLs
 
 The three STL files are [[https://github.com/bitshiftcrazy/pinkpad-3D][here]]
 
@@ -260,7 +260,7 @@ here's what they look like:
 </figure>
      #+END_EXPORT             
      
-*** Print Settings
+**** Print Settings
 
 It's not exactly a challenging print, there's really not much that could go wrong.
 The printing speed can be high, there's no need for support.
@@ -272,7 +272,7 @@ I printed it with white PLA.
 Afterwards the edges of the prints need some smoothing with sandpaper (or a foot file...seriously, that's
 so much more convenient).
 
-** Software
+*** Software
 
 After finding/collecting/buying/borrowing/stealing/whatever (I don't judge...) all the parts,
 it's time to take care of the software.
@@ -329,7 +329,7 @@ Then initialise the pacman keyring and populate the package signing keys
 Yeah well, I said I wouldn't write a detailed guide but...there's actually not
 much more detail needed, that's basically it =¯\_(ツ)_/¯=
 
-*** Connect to WiFi
+**** Connect to WiFi
 
 And if you're planning to connect to WiFi (I guess you do):
 
@@ -354,7 +354,7 @@ And if you're planning to connect to WiFi (I guess you do):
   systemctl restart systemd-networkd.service
     #+END_SRC
 
-*** Get the LCD touchscreen to work
+**** Get the LCD touchscreen to work
 
 Add these lines to //boot/config.txt/:
 
@@ -369,7 +369,7 @@ hdmi_drive=1
 This should be enough, but depending on your LCD touchscreen model it could be
 that you have to add some lines in /99-fbturbo.conf/, some also need drivers installed.
 
-*** Add some nice and/or essential programs
+**** Add some nice and/or essential programs
 
 I don't know if you noticed but I'm slightly too excited about Emacs, so
 guess what I installed first ;)
@@ -385,7 +385,7 @@ And some other, less interesting stuff (you know, git and so on).
 But I guess if you really want a PinkPad
 you know what software you want to have on it.
 
-** Manicure for the keyboard
+*** Manicure for the keyboard
 
 #+BEGIN_EXPORT html
 <figure>
@@ -434,7 +434,7 @@ To cover the touch-part of the keyboard while still being able to use it I took
 a thin white foil, the rest of the keyboard (the frame part) is painted with white
 acrylic varnish.
 
-** Soldering the switch
+*** Soldering the switch
 
 The Power Boost by Adafruit unfortunately doesn't come with a switch,
 but it's easy to add one.
@@ -451,7 +451,7 @@ only 2 pins, connect them to *EN* and *GND*)
 Unfortunately I don't have pics of this incredibly exciting process, but
 there are detailed instructions [[https://learn.adafruit.com/adafruit-powerboost-1000c-load-share-usb-charge-boost/assembly][on the Adafruit website]].
 
-** Assembly
+*** Assembly
 
 That's the easiest and yet most annoying part: putting the
 parts together.
