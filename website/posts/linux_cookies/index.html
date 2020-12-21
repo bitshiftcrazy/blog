@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="stylesheet" type="text/css" href="../../css/style.css" >
+<title>Linux Cookies</title>
+</head>
+<body><input type="checkbox" class="theme-switch" id="theme-switch"/>
+<div id="page"><div><nav class="navbar"> <a href="../../index.html"> home </a> <a href="../../archive.html"> stuff </a> <a href="../../about.html"> about </a><a href="#"> <label for="theme-switch" class="switch-label"></label></a></nav><div id="content"><h1>Linux Cookies</h1><div class="tldr">[TL;DR] I made 3D-printable models for Linux Cookie Cutters of 5 popular distros.
+Here are the (not entirely serious) installation instructions for the various
+distros as well as the cookie source code.
+</div>
+
+<figure>
+<img src="../../assets/linux_cookie_cutters.jpg" alt="Linux Cookie Cutters" title="Linux Cookie Cutters" width="650px">
+
+<figcaption><span class="figure-number">Figure 1: </span>Linux Cookie Cutters</figcaption>
+</figure>
+
+
+<p>If you're in a hurry and just came for the STLs, here you are:
+</p>
+
+<p><a href="https://github.com/bitshiftcrazy/linux-cookies-stls">Linux Cookie Cutters on Github</a>
+</p>
+
+<p>/Please keep in mind that they're just prototypes and need improvement!
+You'll keep pretty and (depending on your baking skills) tasty cookies with
+them, but I still need to optimise them to need less filament, make
+them easier to clean etc.
+(Expect Linux Cookie Cutters v2 in about a week ;))/
+</p>
+
+<h2>Installation Instructions</h2><figure>
+<img src="../../assets/linux_cookies_color.jpg" alt="Colorful Linux Cookies" title="Colorful Linux Cookies" width="650px">
+
+<figcaption><span class="figure-number">Figure 1: </span>Colorful Linux Cookies</figcaption>
+</figure>
+
+<p><strong>Note: it's just meant as a joke, linux-cookies are not part of any official package
+repositories ;)</strong>
+</p>
+
+<h3>Arch Cookie Installation</h3><figure>
+<img src="../../assets/arch_icing.jpg" alt="An Arch Cookie during theme installation" title="An Arch Cookie during theme installation" width="650px">
+
+<figcaption><span class="figure-number">Figure 1: </span>An Arch Cookie during theme installation</figcaption>
+</figure>
+
+<p>First install the necessary dependencies:
+</p>
+
+<pre><code class="shell">pacman -S flour butter sugar eggs
+</code></pre>
+
+<p>Most systems have the kitchen server already installed, if not install
+the following utilities as well:
+</p>
+
+<pre><code class="shell">pacman -S kitchen-oven kitchen-bowl kitchen-scale
+</code></pre>
+
+<p>And if you want some niceties like an icing bag:
+</p>
+
+<pre><code class="shell">pacman -S kitchen-extra
+</code></pre>
+
+<p>Then configure oven, bowl and scale settings in the corresponding
+configuration files:
+</p>
+
+<pre><code class="shell"><span class="org-builtin">echo</span> <span class="org-string">"unit = celsius"</span> &gt;&gt; /etc/kitchen/oven
+<span class="org-builtin">echo</span> <span class="org-string">"size = big"</span> &gt;&gt; /etc/kitchen/bowl
+<span class="org-builtin">echo</span> <span class="org-string">"unit = gram"</span> &gt;&gt; /etc/kitchen/scale
+</code></pre>
+
+<p>Finally, install the arch-cookie package:
+</p>
+
+<pre><code class="shell">pacman -S arch-cookies
+</code></pre>
+
+<p>You'll get slim and fast cookies without unnecessary bloat
+that taste exactly as you want them to taste, your system (body) won't
+gain a single gram in weight from them.
+</p>
+
+<h3>Gentoo Installation</h3><figure>
+<img src="../../assets/linux_ready_for_baking.jpg" alt="Raw Linux Cookie package" title="Raw Linux Cookie package" width="650px">
+
+<figcaption><span class="figure-number">Figure 1: </span>Raw Linux Cookie package</figcaption>
+</figure>
+
+<p>In Gentoo packages are compiled from source. Go to the next field
+and harvest some wheat for your flour, find some chicken for eggs
+and get a cow for butter.
+</p>
+
+<p>As soon as you collected the ingredients,
+prepare your system:
+</p>
+
+<p>First enable ingredient support in the kernel, do <em>make menuconfig</em> and
+apply the following changes:
+</p>
+
+<pre><code class="nil">Kernel Hacking ---&gt;
+   Cookie Options ---&gt;
+     &lt;*&gt; Enable fuzzy flour
+     &lt;*&gt; Force extended sugar
+</code></pre>
+
+<p>Then setup the kernel for baking support:
+</p>
+
+<pre><code class="nil">Device Drivers ---&gt;
+   Baking support ---&gt;
+    Baking Devices ---&gt;
+      &lt;*&gt; Oven Support
+      &lt;*&gt; Bowl Support
+      &lt;*&gt; Scale Support
+</code></pre>
+
+<p>Save and exit from the configuration and rebuild the kernel:
+</p>
+
+<pre><code class="shell">make -j $(<span class="org-sh-quoted-exec">nproc</span>)
+make modules_install
+make install
+</code></pre>
+
+<p>This will take a while.
+After installation finishes reboot your system.
+</p>
+
+<p>Then set the right variables for oven and scale in <em>/etc/portage/make.conf</em>,
+which value you need depends on your oven and scale manufacturers.
+</p>
+
+<p>An example configuration for a Siemens oven and a Wmf scale:
+</p>
+
+<pre><code class="nil">OVEN_TYPE="siemens"
+
+SCALE_TYPE="wmf"
+</code></pre>
+
+<p>Afterwards set your <strong>USE flags</strong>. Available <strong>USE flags</strong> for gentoo-cookies:
+</p>
+
+<p>Local USE flags:
+</p>
+
+<ul><li><strong>vanilla</strong> for vanilla flavour</li>
+<li><strong>chocolate</strong> for chocolate flavour</li>
+<li><strong>cinnamon</strong> for cinnamon flavour</li>
+<li><strong>wheat</strong> for wheat flour</li>
+<li><strong>spelt</strong> for spelt flour</li>
+<li><strong>offensive</strong>, warning: changes your cookies to offensive shapes</li>
+</ul>
+
+<p>Global USE flags:
+</p>
+
+<ul><li>vegan for vegan cookies</li>
+</ul>
+
+<p>For example to enable <strong>vanilla</strong> flavour do:
+</p>
+
+<pre><code class="shell"><span class="org-builtin">echo</span> <span class="org-string">"linux-cookies/gentoo-cookies vanilla"</span> &gt;&gt; /etc/portage/package.use/gentoo-cookies
+</code></pre>
+
+<p>When you're done with the setup install <em>/linux-cookies/gentoo-cookies</em>:
+</p>
+
+<pre><code class="shell">emerge --ask linux-cookies/gentoo-cookies
+</code></pre>
+
+
+<p>Configure the <em>kitchen-utilities</em> as described in the Arch section and after
+only 6h you're done.
+</p>
+
+
+<p>You'll get fast and tiny cookies that are fine-tuned for your system (body),
+your digestion will run faster than ever before and you'll probably
+even lose package weight with them.
+</p>
+
+<h3>Ubuntu/Kali/Debian Installation</h3><figure>
+<img src="../../assets/naked_linux_cookies.jpg" alt="Linux Cookies without theme" title="Linux Cookies without theme" width="650px">
+
+<figcaption><span class="figure-number">Figure 1: </span>Linux Cookies without theme</figcaption>
+</figure>
+
+<p>Open a terminal and type
+</p>
+
+<pre><code class="shell">sudo apt-get install linux-cookies
+</code></pre>
+
+<p>The package comes bundled with all necessary (and unnecessary)
+dependencies as well as the kitchen utilities.
+</p>
+
+<p>The resulting cookies will be a full fat version: they'll contain lots
+of stuff you'll never need but they're done very fast. 
+Your system gains at least 1000g package weight.
+</p>
+
+<h2>Cookie Source Code</h2><figure>
+<img src="../../assets/linux_cookies_close.jpg" alt="Linux Cookies with theme" title="Linux Cookies with theme" width="650px">
+
+<figcaption><span class="figure-number">Figure 1: </span>Linux Cookies with theme</figcaption>
+</figure>
+
+<p>The source code is written in C to make the baking process as fast
+ass possible ;)
+</p>
+
+<p><em>Again, just a joke, the code is written to look like and be used as a cookie
+recipe, not so much to make sense.</em>
+</p>
+
+<p>If you run <em>linux-cookies</em>, it'll guide you through the baking process
+step by step. 
+</p>
+
+<pre><code class="c"><span class="org-preprocessor">#include</span> <span class="org-string">&lt;stdio.h&gt;</span>
+<span class="org-preprocessor">#include</span> <span class="org-string">&lt;string.h&gt;</span>
+<span class="org-preprocessor">#include</span> <span class="org-string">&lt;stdlib.h&gt;</span>
+<span class="org-preprocessor">#include</span> <span class="org-string">&lt;time.h&gt;</span>
+<span class="org-preprocessor">#include</span> <span class="org-string">&lt;unistd.h&gt;</span>
+
+<span class="org-keyword">typedef</span> <span class="org-keyword">struct</span> {
+  <span class="org-type">int</span> <span class="org-variable-name">temperature</span>;
+  <span class="org-type">char</span> <span class="org-variable-name">mode</span>[30];
+} <span class="org-type">Oven</span>;
+
+<span class="org-keyword">typedef</span> <span class="org-keyword">struct</span> {
+  <span class="org-type">char</span> <span class="org-variable-name">name</span>[20];
+  <span class="org-type">int</span> <span class="org-variable-name">amount</span>;
+  <span class="org-type">char</span> <span class="org-variable-name">unit</span>[5];
+} <span class="org-type">Ingredient</span>;
+
+<span class="org-keyword">typedef</span> <span class="org-keyword">struct</span> {
+  <span class="org-type">int</span> <span class="org-variable-name">cookie_number</span>;
+  <span class="org-type">char</span> <span class="org-variable-name">cookie_type</span>[20];
+} <span class="org-type">Cookie_Sheet</span>;
+
+<span class="org-type">void</span> <span class="org-function-name">set_oven_temperature</span>(<span class="org-type">Oven</span>, <span class="org-type">int</span>, <span class="org-type">char</span>*);
+<span class="org-type">void</span> <span class="org-function-name">mix_ingredients</span>(<span class="org-type">Ingredient</span>*, <span class="org-type">int</span>);
+<span class="org-type">void</span> <span class="org-function-name">divide_dough</span>();
+<span class="org-type">void</span> <span class="org-function-name">form_ball</span>(<span class="org-type">int</span>);
+<span class="org-type">void</span> <span class="org-function-name">cool</span>(<span class="org-type">char</span>*, <span class="org-type">int</span>);
+<span class="org-type">void</span> <span class="org-function-name">roll_out_dough</span>(<span class="org-type">double</span>);
+<span class="org-type">void</span> <span class="org-function-name">cut_into_shapes</span>(<span class="org-type">char</span> *);
+<span class="org-type">void</span> <span class="org-function-name">add_cookies</span>(<span class="org-type">Cookie_Sheet</span>, <span class="org-type">char</span>*, <span class="org-type">int</span>);
+<span class="org-type">void</span> <span class="org-function-name">bake</span>(<span class="org-type">int</span>);
+<span class="org-type">void</span> <span class="org-function-name">clear_sheet</span>(<span class="org-type">Cookie_Sheet</span>);
+<span class="org-type">void</span> <span class="org-function-name">eat</span>();
+<span class="org-type">void</span> <span class="org-function-name">wait_for_enter</span>();
+
+<span class="org-type">int</span> <span class="org-function-name">main</span>() {
+  <span class="org-comment-delimiter">// </span><span class="org-comment">initialise to zero because...we have no cookies when we start</span>
+  <span class="org-type">int</span> <span class="org-variable-name">num_cookies</span> = 0;
+  <span class="org-type">int</span> <span class="org-variable-name">dough</span> = 0;
+  <span class="org-type">int</span> <span class="org-variable-name">num_dough_ingredients</span> = 4;
+
+  <span class="org-comment-delimiter">// </span><span class="org-comment">prepare the following list of ingredients for the dough</span>
+  <span class="org-type">Ingredient</span> <span class="org-variable-name">dough_ingredients</span>[4] = {{<span class="org-string">"flour"</span>, 1000, <span class="org-string">"g"</span>},
+                                      {<span class="org-string">"butter"</span>, 500, <span class="org-string">"g"</span>},
+                                      {<span class="org-string">"sugar"</span>, 400, <span class="org-string">"g"</span>},
+                                      {<span class="org-string">"eggs"</span>, 2, <span class="org-string">"pc"</span>}};
+
+  <span class="org-comment-delimiter">// </span><span class="org-comment">prepare a bowl that's big enough to hold all the ingredients</span>
+  <span class="org-type">Ingredient</span>* <span class="org-variable-name">dough_bowl</span> = malloc(num_dough_ingredients * <span class="org-keyword">sizeof</span> *dough_bowl);
+
+  <span class="org-comment-delimiter">// </span><span class="org-comment">the initial heat of my oven is 20 degrees celcius, no mode is set</span>
+  <span class="org-type">Oven</span> <span class="org-variable-name">myOven</span> = {20, <span class="org-string">"none"</span>};
+
+  <span class="org-comment-delimiter">// </span><span class="org-comment">preheat the oven to 175 degree</span>
+  printf(<span class="org-string">"Step 1:\n"</span>);
+  set_oven_temperature(myOven, 175, <span class="org-string">"upper_lower_heat"</span>);
+
+  <span class="org-comment-delimiter">// </span><span class="org-comment">put the ingredients into the bowl</span>
+  printf(<span class="org-string">"Step 2:\n"</span>);
+  <span class="org-keyword">for</span> (<span class="org-type">int</span> <span class="org-variable-name">i</span> = 0; i &lt; num_dough_ingredients; i++) {
+    dough_bowl[i] = dough_ingredients[i];
+    printf(<span class="org-string">"Add %d %s of %s into the bowl.\n"</span>, dough_ingredients[i].amount,
+           dough_ingredients[i].unit,
+           dough_ingredients[i].name);
+    wait_for_enter();                   
+  }
+
+  printf(<span class="org-string">"\n"</span>);
+
+  <span class="org-comment-delimiter">// </span><span class="org-comment">mix them</span>
+  printf(<span class="org-string">"Step 3:\n"</span>);
+  mix_ingredients(dough_bowl, num_dough_ingredients);
+
+  <span class="org-comment-delimiter">// </span><span class="org-comment">set dough flag to 1, we have dough now</span>
+  dough = 1;
+
+  <span class="org-comment-delimiter">// </span><span class="org-comment">divide the dough into 4 pieces and form balls</span>
+  printf(<span class="org-string">"Step 4:\n"</span>);
+  <span class="org-keyword">for</span> (<span class="org-type">int</span> <span class="org-variable-name">i</span> = 0; i &lt; 4; i++) {
+    divide_dough();
+    form_ball(i + 1);
+  }
+  printf(<span class="org-string">"\n"</span>);
+
+  <span class="org-comment-delimiter">// </span><span class="org-comment">cool the dough for 60min</span>
+  printf(<span class="org-string">"Step 5:\n"</span>);
+  cool(<span class="org-string">"dough"</span>, 60);
+
+  <span class="org-comment-delimiter">// </span><span class="org-comment">Prepare a cookie sheet</span>
+  <span class="org-type">Cookie_Sheet</span> <span class="org-variable-name">cookie_sheet</span> = {0};
+
+  <span class="org-comment-delimiter">// </span><span class="org-comment">Roll out the dough 0.5cm thick</span>
+  printf(<span class="org-string">"Step 6:\n"</span>);
+  roll_out_dough(0.5);
+
+  <span class="org-comment-delimiter">// </span><span class="org-comment">set all cookie types to 0 because we have none yet</span>
+  <span class="org-type">int</span> <span class="org-variable-name">arch_cookie</span> = 0;
+  <span class="org-type">int</span> <span class="org-variable-name">gentoo_cookie</span> = 0;
+  <span class="org-type">int</span> <span class="org-variable-name">debian_cookie</span> = 0;
+  <span class="org-type">int</span> <span class="org-variable-name">ubuntu_cookie</span> = 0;
+  <span class="org-type">int</span> <span class="org-variable-name">kali_cookie</span> = 0;
+
+  <span class="org-comment-delimiter">// </span><span class="org-comment">loop as long as we have dough and energy to bake,</span>
+  <span class="org-comment-delimiter">// </span><span class="org-comment">this should be 100 cookies</span>
+  <span class="org-comment-delimiter">// </span><span class="org-comment">note: sometimes a bug occurs: there's dough left after 100 cookies</span>
+  <span class="org-comment-delimiter">// </span><span class="org-comment">in this case you can forcefully set the dough flag to 0 by eating the rest</span>
+  <span class="org-comment-delimiter">// </span><span class="org-comment">side effects of this hack: nausea and diarrhea on older systems</span>
+  printf(<span class="org-string">"Step 7:\n"</span>);
+  <span class="org-keyword">while</span> (dough) {
+
+    <span class="org-keyword">if</span> (num_cookies &lt; 20) {
+      cut_into_shapes(<span class="org-string">"arch"</span>);
+      add_cookies(cookie_sheet, <span class="org-string">"arch"</span>, num_cookies + 1);
+      wait_for_enter();                                         
+      arch_cookie++;
+
+      <span class="org-keyword">if</span> (arch_cookie == 20) {
+        bake(480);
+        clear_sheet(cookie_sheet);
+      }
+
+    }
+
+    <span class="org-keyword">else</span> <span class="org-keyword">if</span> (num_cookies &lt; 40) {
+      cut_into_shapes(<span class="org-string">"gentoo"</span>);
+      add_cookies(cookie_sheet, <span class="org-string">"gentoo"</span>, num_cookies - 20 + 1);
+      wait_for_enter();                 
+      gentoo_cookie++;
+
+      <span class="org-keyword">if</span> (gentoo_cookie == 20) {
+        bake(540);
+        clear_sheet(cookie_sheet);
+      }
+    }
+
+    <span class="org-keyword">else</span> <span class="org-keyword">if</span> (num_cookies &lt; 60) {
+      cut_into_shapes(<span class="org-string">"debian"</span>);
+      add_cookies(cookie_sheet, <span class="org-string">"debian"</span>, num_cookies - 40 + 1);
+      wait_for_enter();                 
+      debian_cookie++;
+
+      <span class="org-keyword">if</span> (debian_cookie == 20) {
+        bake(600);
+        clear_sheet(cookie_sheet);
+      }
+    }
+
+    <span class="org-keyword">else</span> <span class="org-keyword">if</span> (num_cookies &lt; 80) {
+      cut_into_shapes(<span class="org-string">"ubuntu"</span>);
+      add_cookies(cookie_sheet, <span class="org-string">"ubuntu"</span>, num_cookies - 60 + 1);
+      wait_for_enter();                 
+      ubuntu_cookie++;
+
+      <span class="org-keyword">if</span> (ubuntu_cookie == 20) {
+        bake(540);
+        clear_sheet(cookie_sheet);
+      }
+
+    }
+
+    <span class="org-keyword">else</span> {
+      cut_into_shapes(<span class="org-string">"kali"</span>);
+      add_cookies(cookie_sheet, <span class="org-string">"kali"</span>, num_cookies - 80 + 1);
+      wait_for_enter();                 
+      kali_cookie++;
+
+      <span class="org-keyword">if</span> (kali_cookie == 20) {
+        bake(480);
+        clear_sheet(cookie_sheet);
+      }
+    }
+
+    num_cookies++;
+
+    <span class="org-keyword">if</span> (num_cookies == 100) {
+      dough = 0;
+      printf(<span class="org-string">"\n"</span>);
+    }
+  }
+
+  <span class="org-comment-delimiter">// </span><span class="org-comment">Cool cookies for 60min</span>
+  printf(<span class="org-string">"Step 8:\n"</span>);
+  cool(<span class="org-string">"cookies"</span>, 60);
+
+  printf(<span class="org-string">"Step 9: Guten Appetit.\n"</span>);
+  eat();
+}
+
+
+<span class="org-type">void</span> <span class="org-function-name">set_oven_temperature</span>(<span class="org-type">Oven</span> <span class="org-variable-name">oven</span>, <span class="org-type">int</span> <span class="org-variable-name">temperature</span>, <span class="org-type">char</span> *<span class="org-variable-name">mode</span>)
+{
+  oven.temperature = temperature;
+  strcpy(oven.mode, mode);
+  printf(<span class="org-string">"Set oven temperature to %d %s.\n"</span>, temperature, mode);
+  wait_for_enter();                     
+  printf(<span class="org-string">"\n"</span>);
+}
+
+<span class="org-type">void</span> <span class="org-function-name">mix_ingredients</span>(<span class="org-type">Ingredient</span> <span class="org-variable-name">bowl</span>[], <span class="org-type">int</span> <span class="org-variable-name">num_ingredients</span>)
+{
+  <span class="org-type">int</span> <span class="org-variable-name">i</span>, <span class="org-variable-name">j</span> = 0;
+  <span class="org-type">Ingredient</span> <span class="org-variable-name">temp</span> = {<span class="org-string">""</span>, 0, <span class="org-string">""</span>};
+
+  srand(time(<span class="org-constant">NULL</span>));
+
+  <span class="org-keyword">for</span> (i = 0; i &lt; num_ingredients; i++) {
+    j = rand() % num_ingredients;
+    temp = bowl[i];
+    bowl[i] = bowl[j];
+    bowl[j] = temp;
+    printf(<span class="org-string">"Mix, mix, mix...\n"</span>);
+  }
+  wait_for_enter();                     
+  printf(<span class="org-string">"\n"</span>);
+}
+
+<span class="org-type">void</span> <span class="org-function-name">divide_dough</span>() {
+  printf(<span class="org-string">"Divide the dough.\n"</span>);
+}
+
+<span class="org-type">void</span> <span class="org-function-name">form_ball</span>(<span class="org-type">int</span> <span class="org-variable-name">number</span>) {
+  printf(<span class="org-string">"Form ball number %d from dough.\n"</span>, number);
+  wait_for_enter();                     
+}
+
+<span class="org-type">void</span> <span class="org-function-name">cool</span>(<span class="org-type">char</span> *<span class="org-variable-name">name</span>, <span class="org-type">int</span> <span class="org-variable-name">time</span>) {
+  printf(<span class="org-string">"Cool %s for at least %d minutes.\n"</span>, name, time);
+  wait_for_enter();                     
+  printf(<span class="org-string">"\n"</span>);
+}
+
+<span class="org-type">void</span> <span class="org-function-name">roll_out_dough</span>(<span class="org-type">double</span> <span class="org-variable-name">height</span>) {
+  printf(<span class="org-string">"Roll the dough out to %f cm thick\n"</span>, height);
+  wait_for_enter();                     
+  printf(<span class="org-string">"\n"</span>);
+}
+
+<span class="org-type">void</span> <span class="org-function-name">cut_into_shapes</span>(<span class="org-type">char</span> *<span class="org-variable-name">shape</span>) {
+  <span class="org-keyword">if</span> (<span class="org-negation-char">!</span>(strcmp(shape, <span class="org-string">"arch"</span>))) {
+        printf(<span class="org-string">"Cut an %s cookie!\n"</span>, shape);
+      }
+  <span class="org-keyword">else</span> {
+    printf(<span class="org-string">"Cut a %s cookie!\n"</span>, shape);
+  }
+}
+
+<span class="org-type">void</span> <span class="org-function-name">add_cookies</span>(<span class="org-type">Cookie_Sheet</span> <span class="org-variable-name">cookie_sheet</span>, <span class="org-type">char</span> *<span class="org-variable-name">cookie_type</span>, <span class="org-type">int</span> <span class="org-variable-name">number</span>)
+{
+  strcpy(cookie_sheet.cookie_type, cookie_type);
+  printf(<span class="org-string">"Add %s-cookie number %d to sheet...\n"</span>, cookie_type, number);
+  cookie_sheet.cookie_number++;
+}
+
+<span class="org-type">void</span> <span class="org-function-name">bake</span> (<span class="org-type">int</span> <span class="org-variable-name">seconds</span>) {
+  <span class="org-type">int</span> <span class="org-variable-name">minutes</span> = seconds / 60;
+  printf(<span class="org-string">"Put cookies in oven and wait for %d minutes.\n"</span>, minutes);
+  printf(<span class="org-string">"Baking...\n"</span>);
+  sleep(seconds);
+  printf(<span class="org-string">"\a"</span>);
+  printf(<span class="org-string">"Cookies are done! Get them out of the oven!\n"</span>);
+  printf(<span class="org-string">"Are you ready to continue?\n"</span>);
+  wait_for_enter();
+}
+
+<span class="org-type">void</span> <span class="org-function-name">clear_sheet</span>(<span class="org-type">Cookie_Sheet</span> <span class="org-variable-name">cookie_sheet</span>) {
+  cookie_sheet.cookie_number = 0;
+  strcpy(cookie_sheet.cookie_type, <span class="org-string">"no_cookies :("</span>);
+}
+
+<span class="org-type">void</span> <span class="org-function-name">eat</span>() {
+  printf(<span class="org-string">"nom nom nom...\n"</span>);
+  printf(<span class="org-string">"\n"</span>);
+}
+
+
+<span class="org-type">void</span> <span class="org-function-name">wait_for_enter</span>(){
+        <span class="org-keyword">while</span> (1){
+                printf(<span class="org-string">"Press ENTER to continue...\n"</span>);
+                <span class="org-type">char</span> <span class="org-variable-name">x</span> = getchar();
+                <span class="org-keyword">if</span> (x == <span class="org-string">'\n'</span> || x == EOF)
+                        <span class="org-keyword">break</span>;
+        }
+}
+
+
+
+</code></pre>
+<div id="postamble">Made with Emacs :)
+<p><a href="disclaimer.html"> Disclaimer </a>
+</p></div></div></div></div></body>
+</html>
