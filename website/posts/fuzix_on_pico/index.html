@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="stylesheet" type="text/css" href="../../css/style.css" >
+<title>FUZIX on the Raspberry Pi Pico: Installing from Arch Linux</title>
+</head>
+<body><input type="checkbox" class="theme-switch" id="theme-switch"/>
+<div id="page"><div><nav class="navbar"> <a href="../../index.html"> home </a> <a href="../../archive.html"> stuff </a> <a href="../../about.html"> about </a><a href="#"> <label for="theme-switch" class="switch-label"></label></a></nav><div id="content">
+<h1>FUZIX on the Raspberry Pi Pico: Installing from Arch Linux</h1><div class="tldr">[TL;DR]  The Raspberry Pi Foundation recently released their first microntroller, the Pico.
+And while the Pico can't run Linux unfortunately, it can give you the pleasure of playing with
+an old-school UNIX-like system: FUZIX. This post quickly summarizes how to get FUZIX onto the Pico from
+Arch Linux.
+</div>
+
+<figure>
+<img src="../../assets/fuzix_pico.jpg" alt="FUZIX on the Pico" title="FUZIX on the Pico" width="650px">
+
+<figcaption><span class="figure-number">Figure 1: </span>FUZIX on the Pico together with some of the most important system tools</figcaption>
+</figure>
+
+<h2>Why?</h2><p>If you're unsure why you would want to waste your precious time with installing an old-school UNIX-clone on
+a dual-core Cortex M0+ and 264KB RAM beast, let me convince you with my flawless reasoning:
+</p>
+
+<p><strong>1. Why not?</strong>
+</p>
+
+<p><strong>2. Because we can.</strong>
+</p>
+
+<p><strong>3. And as someone suffering from Obsessive Compulsive UNIX-itis: every device needs UNIX because it needs UNIX.</strong>
+</p>
+
+<h2>How?</h2><p>Shortly after the Pico's release, David Given ported FUZIX to it, you'll find details <a href="http://cowlark.com/2021-02-16-fuzix-pi-pico/">here</a>.
+And Alasdair Allan wrote an excellent guide on getting FUZIX onto the Pico <a href="https://www.raspberrypi.org/blog/how-to-get-started-with-fuzix-on-raspberry-pi-pico/">here</a>.
+</p>
+
+<p>So this blog post is just a quick summary of the necessary steps when installing from Arch Linux.
+</p>
+
+<p><em>(= basically the steps that differ a bit from the guide/datasheet)</em>
+</p>
+
+<p>You know, to save you the 15min you'd need to look for and read through the respective Arch Wiki entries yourself...
+</p>
+
+<h3>1. Set up the C/C++ SDK</h3><p>Assuming you build FUZIX from source, you'll need a working Pico toolchain.
+</p>
+
+<p>The first steps are identical to the description in the <a href="https://datasheets.raspberrypi.org/pico/getting-started-with-pico.pdf">Pico Datasheet</a> in section 2.:
+</p>
+
+<p>Create a folder for your Pico stuff, in that folder clone the <a href="https://github.com/raspberrypi/pico-sdk.git">Pico SDK repo</a> and the <a href="https://github.com/raspberrypi/pico-examples.git">examples</a>.
+</p>
+
+<p>Next install the toolchain: you'll need cmake as build system and the GNU
+Embedded Toolchain for arm.
+</p>
+
+<pre><code class="shell">sudo pacman -S cmake arm-none-eabi-gcc arm-none-eabi-newlib base-devel
+</code></pre>
+
+<p><em>(Pretty sure you already have base-devel, but just in case ;))</em>
+</p>
+
+<p>You can test whether or not everything is setup properly eg. by building the
+Blink example (see <a href="https://datasheets.raspberrypi.org/pico/getting-started-with-pico.pdf">Pico Datasheet</a> for detailed build instructions).
+</p>
+
+<p>To load it onto the Pico from the command line:
+</p>
+
+<p>Connect your Pico to your computer via USB cable (hold the BOOTSEL button while doing so),
+get its file path for example with
+</p>
+
+<pre><code class="shell">lsblk
+</code></pre>
+
+<p>(and then identifying the Pico either by its size or by unplugging and re-plugging
+and comparing the output)
+</p>
+
+<p>or with 
+</p>
+
+<pre><code class="shell">dmesg | tail
+</code></pre>
+
+<p>Create a mountpoint for the pico, mount it and copy blink.uf2 onto the Pico,
+unmount it when you're done:
+</p>
+
+<pre><code class="shell">sudo mkdir /mnt/pico
+sudo mount /dev/wherever_your_pico_is /mnt/pico
+sudo cp blink.uf2 /mnt/pico
+sudo sync
+sudo umount /mnt/pico
+</code></pre>
+
+<h3>2. Get FUZIX onto the Pico</h3><p>From now on you can happily follow the steps from <a href="https://www.raspberrypi.org/blog/how-to-get-started-with-fuzix-on-raspberry-pi-pico/">Alasdair Allan's blog post</a>, until
+you reach the <em>"connecting via UART"</em> part:
+</p>
+
+<p>You can choose from a number of options to make a connection, I used <em>minicom</em>:
+</p>
+
+<pre><code class="shell">sudo pacman -S minicom
+</code></pre>
+
+<p>To be able to make a connection without being <em>root</em> you'll have to add
+your user to the <em>uucp</em> group:
+</p>
+
+<pre><code class="shell">sudo gpasswd -a your_username uucp
+</code></pre>
+
+<p>Plug in your Pico and your USB UART connector and find your Pico again as previously
+described with <em>dmesg | tail</em>.
+</p>
+
+<p>In my case it's <em>dev/ttyUSB0</em>, so fire up <em>minicom</em> with baudrate 115200:
+</p>
+
+<pre><code class="shell">minicom -b 115200 -o -D /dev/ttyUSB0
+</code></pre>
+
+<p><em>(Have a look at the <a href="https://wiki.archlinux.org/index.php/working_with_the_serial_console">Arch Linux wiki</a> for more information)</em>
+</p>
+
+<p>Unplug and plug your Pico to see the FUZIX startup message.
+</p>
+
+<p>Then type CTRL-A O to open the minicom settings, navigate to <em>Serial port setup</em> and disable
+<em>Hardware Flow Control</em>.
+</p>
+
+<p>You're now able to type commands. Set the date and time, use <em>root</em> without password to login
+and enjoy ;)
+</p>
+
+<p><em>(The most important part of the system can be found under /usr/games)</em>
+</p>
+<div id="postamble">Made with Emacs :)
+<p><a href="disclaimer.html"> Disclaimer </a>
+</p></div></div></div></div></body>
+</html>
