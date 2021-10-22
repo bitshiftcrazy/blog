@@ -1,0 +1,45 @@
+#+setupfile: ~/.emacs.d/org-templates/level1-slim.org
+#+title:My Favorite Books - Pt 1
+#+date: "<2021-10-22 Fri 10:00>"
+#+keywords: books, programming, Software Development
+#+description: On popular demand (aka 5 people asked for it) here's a list of my favorite books. This is part one.
+
+* My Favorite Books - Pt 1
+#+attr_html: :class tldr 
+#+BEGIN_DIV
+[TL;DR]  On popular demand (aka 5 people asked for it) here's a list of my favorite books. The list isn't ordered, I write it just as the books come to my mind. This is part one. 
+#+END_DIV
+
+        #+BEGIN_EXPORT html
+<figure>
+<img src="../../assets/books.jpg" alt="My bookshelf" title="My very tidy bookshelf" width="650px">
+
+<figcaption><span class="figure-number">Figure 1: </span>My very tidy bookshelf</figcaption>
+</figure>
+     #+END_EXPORT       
+
+
+** Hacker's Delight by Henry S. Warren, Jr
+   I'm an avid collector of bit hacks and save every code snippet I can find. Hacker's delight is a whole book about fast bit-level and low-level algorithms. The chapters don't depend on each other so you don't have to read it from cover to cover but jump into it wherever you want. Since there are lots of formulas it helps when you're not totally allergic to maths.
+   
+** Land of Lisp by Conrad Barski
+   Full title: *Land of Lisp: Learn to Program in Lisp, One Game at a Time!*. If you ask around programmers Lisp is definitely ranked as one of scarier languages. This book does a great job in showing that Lisp isn't as scary as its reputation. I really love the gamified approach. It's worth reading even if you're not interested in Lisp, simply to see how awesome textbooks could be if every author had Conrad Barski's style of writing.
+   
+
+** Clean Code by Robert C. Martin
+   Full title: *Clean Code: A Handbook of Agile Software Craftmanship*. Guess this is the one you'll find on 90% of the lists on programming books. It is definitely a good book and worth reading: it teaches how to tell apart good and bad code, about good names, functions etc. But it is in parts very Java centered. Some people I've heard also complained that many of the things in the book are common sense. From my experience I can assure you they're not ;)
+
+** The New Turing Omnibus by Alexander K. Dewdney
+   A book about Computer Science theory and concepts. It's a very difficult book to recommend because: a) it is definitely not a beginners book as advertised and b) it's also not in depth enough for advanced readers. Why I still like it: for me it's a refresher of university knowledge. It's a good book if you already have some Computer Science knowledge, maybe already heard some lectures about it and just need a little reminder or a different way of approaching it. Since this narrows down the audience by a lot, be careful with buying this one.
+
+** Learn You a Haskell for Great Good! by Miran Lipovača
+   Another great example of how textbooks should be written. Haskell is one of the languages that are treaten unfairly during most lectures. Many professors seem to put great effort into presenting this wonderful functional programming language as cryptic and boring as possible. This illustrated guide does the opposite. It's a lot fun to read and presents Haskell the way it deserves.
+
+** How Linux Works by Brian Ward
+   Full title: *How Linux Works: What Every Superuser Should Know*. This is usually what I recommend when I'm asked about "a book about Linux". It's a great read if you're interested in underlying technologies. It goes beyond simply using Linux to explaining how your system boots, how the kernel works, networking and much more.
+
+** Expert C Programming: Deep C Secrets by Peter van der Linden
+   Most people's first C book is *The C Programming Language* by Kernighan and Ritchie. This book should be your second one. It's fun to read (I guess you'll get by now what style of writing I appreciate), comes with interesting puzzles, lots of stories and anecdotes. To be fair it is not the most modern book, some things are rather historically interesting.
+
+** Automate The Boring Stuff with Python by Al Sweigart
+   This is what I usually recommend to Python beginners. As the title suggests it explains how to automate boring every day tasks with Python. Since it has this hands-on approach for very relatable problems and shows how to solve them with code I'd say it's perfect for programming beginners in general.
