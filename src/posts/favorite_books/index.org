@@ -1,13 +1,13 @@
 #+setupfile: ~/.emacs.d/org-templates/level1-slim.org
-#+title:My Favorite Books - Pt 1
+#+title:My Favorite Programming Books - Pt 1
 #+date: "<2021-10-22 Fri 10:00>"
 #+keywords: books, programming, Software Development
-#+description: On popular demand (aka 5 people asked for it) here's a list of my favorite books. This is part one.
+#+description: On popular demand (aka 5 people asked for it) here's a list of my favorite programming books. This is part one.
 
-* My Favorite Books - Pt 1
+* My Favorite Programming Books - Pt 1
 #+attr_html: :class tldr 
 #+BEGIN_DIV
-[TL;DR]  On popular demand (aka 5 people asked for it) here's a list of my favorite books. The list isn't ordered, I write it just as the books come to my mind. This is part one. 
+[TL;DR]  On popular demand (aka 5 people asked for it) here's a list of my favorite programming books. The list isn't ordered, I write it just as the books come to my mind. This is part one. 
 #+END_DIV
 
         #+BEGIN_EXPORT html
