@@ -9,7 +9,7 @@
 *NAME*
        #+attr_html: :class about-indented
        #+BEGIN_DIV
-       kati - just kati...
+       kati - terminal gremlin, hardware tinkerer, occasional dungeon master.
             (I use Arch btw.)
        #+END_DIV    
 
@@ -21,36 +21,49 @@
 *DESCRIPTION*
        #+attr_html: :class about-indented
        #+BEGIN_DIV
-       *kati* is a teminal tool/game from the 90s available for Linux
-       or BSD platforms, preferably Arch, Gentoo or OpenBSD.
-       *kati* works best with Emacs, other editors cause unpredictable and
-       most likely undesired behaviour.
-       Although *kati* is device-independent best results are achieved on
-       Thinkpads.
-       *kati* can also be used outdoor, mainly to explore abandoned buildings
-      	      #+END_DIV
+       *kati* is a terminal tool/game from the early 90s that still appears to run
+       on modern Linux systems, although the maintainers deny responsibility.
+
+       Typical behaviour includes writing low-level code for a living, designing strange
+       little electronic devices, and occasionally turning a perfectly normal
+       idea into a PCB.
+
+       *kati* works best with Emacs. Other editors may appear functional at
+       first, but results cannot be guaranteed.
+
+       Although *kati* is device-independent, best results are achieved on
+       ThinkPads and other keyboards capable of surviving both debugging
+       sessions and midnight project ideas.
+
+       *kati* can also be used outdoors, mostly for exploring abandoned
+       buildings, collecting questionable artifacts, and bringing home
+       objects that later turn into props or electronics projects.
+	      #+END_DIV
        *-asm*
               #+attr_html: :class about-indented-deep
 	      #+BEGIN_DIV
-              read or write x86, 8051 or arm Assembly code.
+              read or write Assembly code (x86, 8051, ARM… and whatever else
+              the situation unexpectedly requires).
 	      #+END_DIV
        *-b*, *--bash*
               #+attr_html: :class about-indented-deep
 	      #+BEGIN_DIV	      
-              read or write Bash scripts
+              read or write Bash scripts, mostly to automate things that
+              absolutely should not be done manually more than once.
 	      #+END_DIV
        *-c*, *--club-mate*
               #+attr_html: :class about-indented-deep
 	      #+BEGIN_DIV	      
-              activates Club Mate mode: every task gets executed 3 times faster
-	      when *kati* gets at least 1 bottle of Club Mate as input
+              activates Club Mate mode: every task gets executed 3 times
+	      faster when *kati* gets at least 1 bottle of Club Mate as input
 	      (execution time can be further improved with the *pizza* or
               *chocolate* hack.
 	                #+END_DIV
        *-C/C++*
               #+attr_html: :class about-indented-deep
 	      #+BEGIN_DIV	      
-              read or write C/C++ code
+              read or write C/C++ code, usually in places where mistakes are
+              exciting and success is suspiciously quiet.
        #+END_DIV
        *-CSS/HTML-*
               #+attr_html: :class about-indented-deep
@@ -62,16 +75,17 @@
        *-DnD*
               #+attr_html: :class about-indented-deep
 	      #+BEGIN_DIV	      
-              activate Dungeons & Dragons mode: an advanced AI generates exciting
-	      and absurd (and unnecessarily brutal) campagnes for a Massive Multiplayer
-	      Tabletop Roleplay Game
+              activate Dungeons & Dragons mode: DM functionality enabled.
+	      Generates campaigns with excessive lore, suspiciously detailed
+	      handouts, and players who will ignore every hint until the
+	      dramatic reveal.
 	         #+END_DIV
        *-h*, *--haskell*       
               #+attr_html: :class about-indented-deep
 	      #+BEGIN_DIV	      
               read or write Haskell code
-	      side effects: can result in lectures about why everyone should use
-	      xmonad as WM
+	      side effects: can result in lectures about why everyone should
+	      use xmonad as WM
        #+END_DIV
        *-l*, *--lisp*
               #+attr_html: :class about-indented-deep
@@ -82,33 +96,36 @@
        *-p*, *--python*
               #+attr_html: :class about-indented-deep
 	      #+BEGIN_DIV	      
-              read or write Python code
+              read or write Python code, usually to glue together things that
+              were never meant to work together.
        #+END_DIV
        *-3d*
               #+attr_html: :class about-indented-deep
 	      #+BEGIN_DIV	      
-              activate 3D-printing capability
+              activate 3D-printing capability (frequently followed by
+              designing a PCB for the same project).
              #+END_DIV
        #+attr_html: :class about-indented
        #+BEGIN_DIV       
       (Note: execution of code with *kati* is still buggy.
 	     In some cases it doesn't work at all, in other cases *kati*
-             just takes forever to finish execution)
+             just takes forever to finish execution. Occasionally this is
+             caused by a cat sitting on the keyboard.)
        #+END_DIV
 *BUGS*
        #+attr_html: :class about-indented
        #+BEGIN_DIV       
-       plenty
+       plenty. some are even documented.
        #+END_DIV
 *AUTHORS*
        #+attr_html: :class about-indented
        #+BEGIN_DIV       
-       kati's parents
+       kati's parents.
        #+END_DIV
 *COPYRIGHT*
        #+attr_html: :class about-indented
        #+BEGIN_DIV       
-       changes and redistribution of *kati* are prohibited by law
+       changes and redistribution of *kati* are prohibited by law.
        #+END_DIV
 
 
