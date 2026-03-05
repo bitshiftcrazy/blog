@@ -1,8 +1,8 @@
 #+setupfile: ~/.emacs.d/org-templates/level1-slim.org
-#+title: <Building a Slightly Sentient d20 PCB>
+#+title: Building a Slightly Sentient d20 PCB
 #+date: "<2026-03-01 Sun 11:00>"
-#+keywords: <pcb, dnd, microcontroller, charlieplexing, attiny84>
-#+description: <1–2 sentences. Concrete and mildly spicy.>
+#+keywords: pcb, dnd, microcontroller, charlieplexing, attiny84
+#+description: I built a mildly sentient d20 PCB, for dice rolls and attitude
 
 * Building a Slightly Sentient d20 PCB
 
