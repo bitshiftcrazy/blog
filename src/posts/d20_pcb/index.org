@@ -123,22 +123,41 @@ small microcontroller, a handful of LEDs, and some very opinionated firmware.
 So let’s take a look under the hood.
 
 #+BEGIN_EXPORT html
-<figure style="text-align:center;">
-  <div style="display:flex; justify-content:center; gap:20px;">
-    
+<figure style="text-align:center; margin: 1.2em 0;">
+  <div style="
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    gap:16px;
+  ">
     <img src="../../assets/d20_pcb_notes.jpg"
          alt="<alt text 1>"
          title="<title text 1>"
-         width="300">
+         style="
+           width:min(300px, 100%);
+           max-width:100%;
+           aspect-ratio:1 / 1;
+           object-fit:cover;
+           height:auto;
+           border-radius:6px;
+           display:block;
+         ">
 
     <img src="../../assets/d20_pcb_notes1.jpg"
          alt="<alt text 2>"
          title="<title text 2>"
-         width="300">
-
+         style="
+           width:min(300px, 100%);
+           max-width:100%;
+           aspect-ratio:1 / 1;
+           object-fit:cover;
+           height:auto;
+           border-radius:6px;
+           display:block;
+         ">
   </div>
 
-  <figcaption>
+  <figcaption style="margin-top:0.6em;">
     <span class="figure-number">Figure 1: </span><caption text>
   </figcaption>
 </figure>
