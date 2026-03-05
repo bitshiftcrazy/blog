@@ -1,4 +1,4 @@
-#+title: BitShiftCrazy
+#+title: Miss Molerat
 
 
 * Hi and welcome to my blog :)
@@ -11,7 +11,7 @@
   So instead I'll tell you what I *plan* to write about here:
 
   - personal stuff: Linux on "unusual" devices, homemade mini laptops,
-    blinky LED wearable stuff, terminal apps no one needs...
+    blinky LED wearable stuff, terminal apps no one needs, custom PCBs...
 
   - Emacs stuff
 
@@ -39,17 +39,10 @@
 
 ** Other places where you can find me
 
-  *Github for this blog:* [[https://github.com/bitshiftcrazy][bitshiftcrazy]]
+  *Github for this blog:* [[https://github.com/bitshiftcrazy][miss.molerat]]
 
-  I upload code I mention or post here there, the code for this website is also there.
+  I upload code I mention or post here there, (most of) the code for this website is also there.
 
-
-  *BitShiftCrazy Telegram channel:* [[https://t.me/bitshiftcrazy][BitShiftCrazy]]
-
-  Links I find interesting and announcement of new blog posts.
-  If you want to add a comment to one of the posts you can do so in the Telegram
-  group linked to the channel.
-  
  
   *My Instagram page:* [[https://www.instagram.com/miss.molerat/][@miss.molerat]]
 
