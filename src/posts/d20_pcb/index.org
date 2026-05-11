@@ -14,6 +14,8 @@ It's an electronic dice with a tiny bit of personality:
 because if we're already putting microcontrollers into everything, we might as well add a little drama.
 #+END_DIV
 
+[[https://github.com/bitshiftcrazy/d20_pcb][View on GitHub]]
+
 #+BEGIN_EXPORT html
 <figure>
 <img src="../../assets/d20_pcb.jpg"
