@@ -1,0 +1,229 @@
+
+#+setupfile: ~/.emacs.d/org-templates/level1-slim.org
+#+title: My Uterus runs DOOM: Introducing Clotty v1.1
+#+date: "<2026-09-27 Sun 20:00>"
+#+keywords: raspberry pi, rp2040, sensors, doom, period
+#+description: My uterus runs DOOM. Figuratively, approximately every four weeks. So I built Clotty, a uterus-shaped RP2040 hybrid of sensor board and gaming device that's supposed to help me keep track of (and gamify) this recurrent, unpleasant experience. And of course it runs DOOM literally now as well. Because ever since I was a little girl, I dreamt of being the first woman to play DOOM on a uterus.
+
+* My Uterus runs DOOM: Introducing Clotty v1.1
+
+#+attr_html: :class tldr 
+#+BEGIN_DIV
+[TL;DR] My uterus runs DOOM. Figuratively, approximately every four weeks. So I built Clotty, a uterus-shaped RP2040 hybrid of sensor board and gaming device that's supposed to help me keep track of (and gamify) this recurrent, unpleasant experience (i.e. my period, if there's any confusion left). And of course it runs DOOM *literally* now as well. Because ever since I was a little girl, I dreamt of being the first woman to play DOOM on a uterus.
+
+I named this board Clotty (pun intended, even if it's not the best one). And even though she comes with quite a few sensors, she's not meant to be a medical device beyond tracking my period. Think of her more like a period Tamagotchi you have to keep alive and happy throughout the cycle (you know, because the real-life experience of staying alive and happy throughout a cycle isn't stressful enough already).
+#+END_DIV  
+
+[[https://github.com/bitshiftcrazy/clotty][View on GitHub]]
+
+#+BEGIN_EXPORT html
+<figure>
+<div style="display: flex; gap: 1em; justify-content: center; align-items: center; flex-wrap: wrap;">
+<img src="../../assets/clotty_close_doom.jpg"
+     alt="Clotty running DOOM"
+     title="Clotty running DOOM"
+     style="width: 48%; max-width: 650px;">
+
+<img src="../../assets/clotty_close_sprite1.jpg"
+     alt="Clotty showing her little sprite"
+     title="Clotty showing her little sprite"
+     style="width: 48%; max-width: 650px;">
+</div>
+
+<figcaption><span class="figure-number">Figure 1: </span> DOOMterus and Clotty </figcaption>
+</figure>
+#+END_EXPORT
+
+** My suffering belongs to me: the motivation behind Clotty
+
+As usual, this will be lengthy and rambly, so buckle up. (or skip to the exciting parts)
+
+I got the idea for Clotty back in May: girlypop cyberdecks were suddenly (and, to me, pleasantly surprisingly) going viral. And my good old PinkPad unexpectedly received a lot of attention. Which in turn caused an influx of amazing conversations with other people, tons of ideas and dreams and wishes. Not to be dramatic, but this felt truly inspiring.
+
+And one Instagram comment stuck with me in particular: a person who wished for a cyberdeck that could track their period and other medical things without ‘calling home’ or harvesting or abusing their data.
+
+Given how [[https://www.privacyinternational.org/long-read/3196/no-bodys-business-mine-how-menstruations-apps-are-sharing-your-data][period-tracking apps have been shown to share sensitive data with third parties]], and how [[https://www.edps.europa.eu/press-publications/press-news/videos/cpdp-dpd-2025-whos-watching-your-period_de][European data-protection authorities are explicitly raising concerns about the handling and misuse of reproductive-health data]], this is a very reasonable and justified wish.
+
+But it made me wonder a bit about my own period-tracking experiences. The idea resonated with me; after all, I'm all for taking control over your data, and I'm entering the age where biological processes certainly become more track-worthy, so to say. The thing is, I'm also at that age where adding a device for a simple task like tracking dates seems like overkill for me personally. Back in my day, we used a physical paper calendar, and never change a running system, right? And apart from knowing when my period hits me, there's really not much about my cycle that's interesting to me.
+
+However, I have one thing that has been bothering me for as long as I've been menstruating: despite my cycle being very regular, I somehow manage to get surprised by PMS each and every month anew. And I can say that I passionately hate my period. No idea if there's any person who menstruates out there who goes like "yay, blood and pain and despair <3", but I most definitely don't.
+
+So I came up with this: some sort of device that does the boring stuff, such as keeping track of your period. But that also helps me feel better about this completely normal biological process. After all, it's just my body doing its job and doing it well, I guess. And since I'm a rather playful person and tend to gamify a lot of things, why not gamify my period as well?
+
+A little creature that changes its mood depending on the cycle phase, goes on quests, plays minigames with you... Basically some sort of adorably shaped mirror version of my own moods that serves as a reminder that I, too, am just some sort of creature that tries to stay alive and happy.
+
+This is oddly specific, of course, and very individual. But the sheer joy of holding this uterine board in my hands and seeing Clotty wobble on the screen makes up for at least one PMS.
+
+** Period, Menstruation, Blood, or why this board looks like a uterus
+
+#+BEGIN_EXPORT html
+<figure>
+<div style="display: flex; gap: 1em; justify-content: center; align-items: center; flex-wrap: wrap;">
+<img src="../../assets/clotty_sketches.jpg"
+     alt="Early Clotty design sketches with the finished uterus-shaped PCB"
+     title="Early Clotty design sketches with the finished uterus-shaped PCB"
+     style="width: 48%; max-width: 650px;">
+
+<img src="../../assets/clotty_paintings_sketch.jpg"
+     alt="Clotty concept drawings showing different ideas for the shape of the device"
+     title="Clotty concept drawings showing different ideas for the shape of the device"
+     style="width: 48%; max-width: 650px;">
+</div>
+
+<figcaption><span class="figure-number">Figure 2: </span>Some concepts: from sketches to a somewhat working uterus.</figcaption>
+</figure>
+#+END_EXPORT
+
+This deserves its own little paragraph, simply because a lot of thought went into this.
+
+If you look at usual period-tracking devices, they're all so very sleek and elegant and offensively discreet. If you find one lying around and don't happen to use one yourself, you'd probably never guess its task.
+
+And I have somewhat conflicting feelings about this: on the one hand, I totally see why not every person tracking their period would want to announce it so publicly, for a lot of very good reasons. How you deal with your period and how you feel about it is yours and yours alone. Not to mention that I also understand that certain manufacturability and safety considerations go into the design of such a device.
+
+On the other hand tho, to me personally, it sometimes feels like a reminder of how much shame is still attached to something as normal as a period. Things have been improving over the last few years, sure. But many people still get very awkward around a completely ordinary reproductive process that is, inconveniently enough for everyone embarrassed by it, rather important for humans continuing to exist.
+
+So, based on my free will and my personal preferences for how to deal with my period, it was immediately clear to me that "discreet" is not an option for me (it never is, to be fair...).
+
+I wanted my device to scream "HELLO THIS IS A MENSTRUAL CYCLE DEVICE", because, well, it is, and there's no shame in this.
+
+Originally, I had a few concepts, and yes, they, too, were influenced by what could actually be manufactured while also being comfortable to hold and play with. A tampon and a period pad in different variations were all among the early sketches.
+
+Eventually, I decided on a uterus. Let's face it: for a reason nature most definitely did not intend, that thing is weirdly game-controller-shaped. The ovaries make excellent directional touchpads, it has enough space for a display in the middle, and it simply sits nicely in your hands. And yes, I'm also immature enough to desperately want to place a USB connector at the cervix.
+
+** Uterine Anatomy: an RP2040, an IPS TFT, and a sprinkle of sensors
+
+#+BEGIN_EXPORT html
+<figure>
+<div style="display: flex; gap: 1em; justify-content: center; align-items: center; flex-wrap: wrap;">
+<img src="../../assets/clotty_close_diagnostics.jpg"
+     alt="Clotty displaying live diagnostic data from its onboard sensors"
+     title="Clotty displaying live diagnostic data from its onboard sensors"
+     style="width: 48%; max-width: 650px;">
+
+<img src="../../assets/clotty_back.jpg"
+     alt="Back side of the Clotty PCB showing the display module, battery connector, RTC backup battery, and supporting circuitry"
+     title="Back side of the Clotty PCB showing the display module, battery connector, RTC backup battery, and supporting circuitry"
+     style="width: 48%; max-width: 650px;">
+</div>
+
+<figcaption><span class="figure-number">Figure 3: </span>Front and back of Clotty: live sensor diagnostics on one side, questionable hardware decisions on the other.</figcaption>
+</figure>
+#+END_EXPORT
+
+Many of the hardware choices I made were influenced by my usual approach: we have this at home! Or rather, I have a sufficiently working hardware design block for this, so I'm gonna reuse it.
+
+This is especially true for the most boring yet most important choice, the RP2040 as the brain of this uterus (which sounds either like a very weird way to announce a pregnancy or utterly concerning in different contexts): I feel like I once more or less copy-pasted the RP2040 reference design when that little gem came out a couple of years ago... and since then I've just used it as a hierarchical sheet in KiCad over and over again.
+
+But apart from my personal laziness reasons, the RP2040 is a genuinely good fit for this project: powerful enough to run all the shenanigans I have in mind for Clotty, and with more than enough pins to support said shenanigans. Last but not least, I love that I don't have to put much special thought into the software-side toolchain but can just use the Pico SDK and it works.
+
+For the display, my most important concerns were resolution and colours because... obviously Clotty will need recognisable little sprite accessories such as tiny wizard hats, smol quest items like Club Mate bottles or chocolate bars, maybe a d20 (the obvious choices, you know, in that order). And of course you'd want to be able to marvel at Clotty's wobble from common nerd-shrimp-posture angles. So crispness and viewing angles were important here, and a small 1.3'' 240×240 IPS TFT driven by an ST7789 seemed adequate.
+
+This also went into the consideration for the QSPI flash: I picture myself excitedly painting Clotty sprites on every commute for the next couple of months (and I can recommend LibreSprite for this!). And the shitload of said sprites needs to go somewhere, so 128 Mbit it is, and I decided on the W25Q128JVSIQ. That's 16 MiB of flash, which should leave me plenty of space to make questionable artistic decisions.
+
+Another very reasonable part is the RTC; after all, Clotty must be able to keep track of time to keep track of a period. Funnily enough, this also turned out to be the hardest part to source. Whenever I decided on one, it magically sold out at Mouser or DigiKey, and I eventually ended up with the RV-8263-C7 (which by the time I'm writing this, is out of stock at Mouser again).
+
+Then Clotty of course has an RGB LED. After all, every board needs at least one, that's just common sense. And Clotty's is meant to function as an indicator LED for the cycle phases: e.g. a deep crimson red for menstruation, magenta for follicular, a friendly soft pink for ovulation, and a menacing scarlet for luteal (I may be projecting with these colour choices).
+
+Three push buttons are meant for menu navigation and will later get red translucent resin button caps in the shape of blood drops.
+
+And of course the board has all the usual and necessary stuff like a USB-C connector (at the cervix, where it belongs!), a charging circuit, buck-boost converter, power switching and so on and so forth (see GitHub if you want the specifics of my questionable choices here).
+
+Now, that is approximately where the reasonable and deliberate decisions end. The whole sensor selection is basically only influenced by "that would be kinda neat" in more or less obvious manifestations. Here's the list, sorted from "makes sense" to "why not":
+
+- touchpad ovaries: questionable to call them sensors, but their use case for directional movement is obvious
+- temperature (MCP9808-E/MS): still very reasonable; think of a little quest along the lines of "Clotty wants a hot water bottle" and you have to warm up the sensor for this
+- ambience (TEMT6000X01): also not completely off the rails; maybe Clotty needs a nap and you have to "darken the room" for this quest
+- accelerometer (LIS3DHTR): yeah, that one is just a desperate attempt to trick me into movement
+- Hall sensor (DRV5032FADBZR): absolutely no reason beyond "hehe, magnet"
+  
+** Better get this checked: sites for uterine surgery
+
+Clotty is currently at the "working prototype" stage. And by "working" I mean that I have tested the basic (!) functionality of this board revision: it powers on, USB enumerates, I can flash it, all sensors are responsive and readable, the display displays things, the charger charges, the buttons do their job, and nothing exploded (yet).
+
+However, there are some very obvious sites that need fixing. Most of them come down to placement decisions, especially the JST connector for the LiPo. I can't reconstruct what I was thinking (or rather, not thinking), but unless I invent non-Euclidean placement, there is no way this can work reasonably. Technically, you can force the connector in (I did) but not in a sane way. It needs to be turned.
+
+Same for the backup battery for the RTC: due to the battery's height, the gap between the display and the board turned out to be larger than anticipated and... it looks kinda dumb. I am not sure if I'll fix this footprint-wise. I feel like attaching the battery holder with wires and stuffing it wherever there's space is just as legit, since Clotty will get a case on the back anyways.
+
+Which leads me to the next obvious, fix-worthy defect of this revision: I kinda forgot the holes for mounting screws for the case ¯\_(ツ)_/¯
+
+Then there's of course lots of the usual, prototype-y "fuck what is this routing" and "why the fuck is this placed here" (or even, "how the fuck is this placed here"), lots of it actually.
+
+Apart from this, I am quite sure more bugs will pop up as I continue testing. And there's a lot of "make it work first, make it pretty later".
+So, if you're considering using this revision for whatever reason, be aware.
+
+On GitHub, as usual the main branch is where releases happen; the above-mentioned issues should get fixes on hw-devel soon(ish).
+
+** The DOOMterus
+
+#+BEGIN_EXPORT html
+<figure>
+<video controls loop preload="metadata" style="width:700px; max-width:100%;">
+  <source src="../../assets/clotty_doom_gameplay.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
+
+<figcaption>
+<span class="figure-number">Figure 4: </span>
+DOOMterus - Revenge of the Crimson Tides (yeah, I still suck at DOOM).
+</figcaption>
+</figure>
+#+END_EXPORT
+
+As we all know, a device's legitimacy is determined by whether or not it can run DOOM. So of course Clotty needed to go through this sacred initiation rite, too.
+
+Now, in 2026, there's hardly anything with a processor in it that DOOM hasn't been ported to. And with the RP2040 having been around for several years now, of course DOOM has already been ported to it, with several forks and hardware-specific adaptations floating around as well. No surprises here.
+
+And in fact, I used one of these RP2040 ports as the base for the DOOMterus: [[https://github.com/kilograham/rp2040-doom][kilograham/rp2040-doom]]
+
+There's really not much sorcery happening. I simply crudely (!!) forced the output onto my TFT display and adjusted the inputs so that my buttons and ovaries are used for in-game and menu navigation (I love this sentence). No elegance, not even the slightest attempt to keep things clean.
+
+More specifically, Clotty uses a 240×240 ST7789 display connected over SPI. The original port's Pico scanvideo output therefore had to go, and I replaced it with a very simple blocking SPI backend.
+DOOM still renders at its usual 320×200 resolution, I horizontally scale that down to 240×200 and place it in the middle of the display, with 20 pixels of unused space at the top and bottom.
+
+The controls are equally "sophisticated". Three ordinary GPIO buttons handle turning left, firing and turning right during gameplay.
+Clotty's capacitive ovaries are connected to a CAP1203 touch controller over I2C: touching the left ovary moves forward, while touching the right ovary performs the “use” action.
+In the menus the three physical buttons instead become up, enter and down. Clearly the use case nature intended in the evolution of ovaries.
+
+The one actually interesting problem was threading. The RP2040 port uses both cores for rendering, and my first attempt also made core 1 shovel the finished framebuffer out to the TFT.
+A full frame is around 96 kB of blocking SPI traffic, which turned out to be a fairly effective way of starving DOOM's renderer.
+The menus worked, but actual gameplay more or less stopped once a level started. The final version leaves core 1 entirely to the renderer and performs the blocking TFT transfer synchronously on core 0 only after a complete frame has been published. That was the difference between “technically displays DOOM” and “kinda playable DOOM”.
+
+For the final version I also switched from the shareware WAD to Ultimate DOOM. Which I of course legally, lawfully and rightfully acquired for 3.99 Euros (because I am in fact an orderly citizen and not just because this was faster than looking for a not-so-legal file online...)
+The original WAD is converted into the port's WHD format and stored separately in Clotty's 16 MiB flash, while the actual firmware remains a roughly half-megabyte UF2.
+So yes: everything fits comfortably inside the uterus.
+
+See [[https://github.com/bitshiftcrazy/rp2040-doom][my fork here]] (but don't expect much).
+
+But even though DOOM on an RP2040 board has been seen hundreds of times before, I dare say that Clotty DOOMterus (and I keep inventing nice titles in my head, like "DOOMterus - rise of the crimson tide") is probably the first documented instance of DOOM being played on a uterus. If there's another one out there, the creator is morally obligated to find me so we can play DOOM on our DOOMteri together and turn this into DOOMterus multiplayer.
+
+The world has been waiting for this moment.
+I will put this on my LinkedIn.
+
+With all the weird things I have ported or installed DOOM on over the years, you'd assume I would at some point get better at the game itself. But as you can see in the video, I still suck. Yes, even at the lowest difficulty setting. And I will absolutely continue blaming it on the hardware.
+
+** The fruit of the Womb: Clotty's software
+
+#+BEGIN_EXPORT html
+<figure>
+<video controls loop muted preload="metadata" style="width:700px; max-width:100%;">
+  <source src="../../assets/clotty_wobble.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
+
+<figcaption>
+<span class="figure-number">Figure 5: </span>
+Clotty in her natural state: wobbling.
+</figcaption>
+</figure>
+#+END_EXPORT
+
+Right now, Clotty's code is still in development and at fetal stage. For a first published software release, I currently aim for a simple menu and basic gameplay.
+
+From the menu, I'll be able to enter the date and time and, ideally, the lengths and dates of my last three cycles. As I said before, Clotty is not supposed to be an actual medical device. So all I'll do is simply keep track of previous cycle lengths and use those to calculate the next likely dates for a period. Additionally, I'll be able to enter the actual starting date of my period so that this enters the dataset as well.
+
+Clotty's gameplay will hopefully be more exciting: the overall goal is to keep her alive and happy throughout the cycle, while her mood and needs change according to the cycle phase. Each phase will come with specific small quests that interact with the environment via sensors. And there will be some Clotty user interactions. I also feel she should spread some cycle-phase-based wisdom and responsible reproductive-health guidance, for example "everyone hates you" during luteal.
+
+As the Clotty project grows, I'll update both this blog and the GitHub repo, so stay tuned.
+
+
+
