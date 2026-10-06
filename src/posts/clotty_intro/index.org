@@ -3,7 +3,7 @@
 #+title: My Uterus runs DOOM: Introducing Clotty v1.1
 #+date: "<2026-09-27 Sun 20:00>"
 #+keywords: raspberry pi, rp2040, sensors, doom, period
-#+description: My uterus runs DOOM. Figuratively, approximately every four weeks. So I built Clotty, a uterus-shaped RP2040 hybrid of sensor board and gaming device that's supposed to help me keep track of (and gamify) this recurrent, unpleasant experience. And of course it runs DOOM literally now as well. Because ever since I was a little girl, I dreamt of being the first woman to play DOOM on a uterus.
+#+description: My uterus runs DOOM. Figuratively, approximately every four weeks. So I built Clotty, a uterus-shaped RP2040 hybrid of sensor board and gaming device that's supposed to help me keep track of (and gamify) this recurrent, unpleasant experience (i.e. my period, if that wasn't clear). And of course it runs DOOM literally now as well. Because ever since I was a little girl, I dreamt of being the first woman to play DOOM on a uterus.
 
 * My Uterus runs DOOM: Introducing Clotty v1.1
 
