@@ -1,331 +1,1287 @@
+/* miss.molerat — site-wide enchanted terminal stylesheet */
+
 html {
-  font-family: Hack, Courier New, Courier, monospace;
+  font-family: Hack, "DejaVu Sans Mono", "Liberation Mono", "Courier New", monospace;
+  background: #07101a;
 }
 
-html,body {
-    width: 100%;
-    height: 100%;
-    margin: 0px;
-    padding: 0px;
-    overflow-x: hidden;
+html,
+body {
+  width: 100%;
+  min-height: 100%;
+  margin: 0;
+  padding: 0;
 }
 
 :root {
-  /* Light mode */
-  --light-switch-text: "dark mode";
-  --light-text: #273136;
-  --light-bg: #e3e5e6;
-
-  /* navbar colors */
-  --light-navbar-bg: #8e989c;
-  --light-navbar-text-color: #f0f2f5;
-
-  /* heading colors */
-  --light-h1: #2f4761;
-  --light-h2: #334961;
-  --light-h3: #384c61;
-  --light-h4: #3e4f61;
-
-  /* tldr colors */
-  --light-tldr-bg: #c1c6c9;
-  --light-tldr-text-color: #384247;
-
-  /* keywords color */
-  --light-keyword-color: #a0a8ad;
-
-  /* syntax highlighting */
-  --light-comment-color: #80888c;
-
   /* Dark mode */
   --dark-switch-text: "light mode";
-  --dark-text: #95b1be;
-  --dark-bg: #14191a;
 
-  /* navbar colors */
-  --dark-navbar-bg: #555;
-  --dark-navbar-text-color: #a5c2c1;
+  --dark-desktop: #07101a;
+  --dark-bg: #0b1725;
+  --dark-surface: #102234;
 
-  /* heading colors */
-  --dark-h1: #42ada6;
-  --dark-h2: #07b8ae;
-  --dark-h3: #69ced4;
-  --dark-h4: #48aeb6;
+  --dark-text: #96bddd;
+  --dark-text-bright: #bed8ec;
+  --dark-muted: #6c90b1;
 
-  /* tldr colors */
-  --dark-tldr-bg: #1d2426;
-  --dark-tldr-text-color: #95d1be;
+  --dark-blue: #6da8cf;
+  --dark-cyan: #2d92c1;
+  --dark-teal: #5ca9ad;
+  --dark-teal-deep: #4e9f98;
+  --dark-lavender: #b5a7df;
+  --dark-pink: #ffc2fd;
 
-  /* keywords color */
-  --dark-keyword-color: #2d353a;
+  --dark-line: #5a87ab;
+  --dark-line-soft: #2d4a62;
 
-  /* syntax highlighting */
-  --dark-comment-color: #3f4a52;
+  --dark-menubar: #2f343f;
+  --dark-menubar-text: #bed8ec;
 
-  /* Default mode */
+  /* Light mode: enchanted dawn */
+
+  --light-switch-text: "dark mode";
+
+  --light-desktop: #9393db;
+  --light-bg: #f6f0f4;
+  --light-surface: #eadfea;
+
+  --light-text: #4b4960;
+  --light-text-bright: #312f46;
+  --light-muted: #716d84;
+
+  /* Accents */
+  --light-blue: #5f76a3;
+  --light-cyan: #4c879d;
+  --light-teal: #5d8f87;
+  --light-teal-deep: #46776e;
+  --light-lavender: #806fa3;
+  --light-pink: #b66f92;
+
+  /* Borders */
+  --light-line: #9b8fa8;
+  --light-line-soft: #c9bdcd;
+
+  /* Menu bar */
+  --light-menubar: #cfc3d2;
+  --light-menubar-text: #3d394d;
+
+  /* Active theme */
   --switch-text: var(--dark-switch-text);
-  --text-color: var(--dark-text);
-  --bg-color: var(--dark-bg);
-  --theme-color: var(--dark-theme);
 
-  /* navbar colors */
-  --navbar-bg: var(--dark-navbar-bg);
-  --navbar-text-color: var(--dark-navbar-text-color);
+  --desktop-bg: var(--dark-desktop);
+  --terminal-bg: var(--dark-bg);
+  --surface: var(--dark-surface);
 
-  /* heading colors */
-  --h1-color: var(--dark-h1);
-  --h2-color: var(--dark-h2);
-  --h3-color: var(--dark-h3);
-  --h4-color: var(--dark-h4);
+  --text: var(--dark-text);
+  --text-bright: var(--dark-text-bright);
+  --muted: var(--dark-muted);
 
-  /* tldr colors */
-  --tldr-bg: var(--dark-tldr-bg);
-  --tldr-text-color: var(--dark-tldr-text-color);
+  --blue: var(--dark-blue);
+  --cyan: var(--dark-cyan);
+  --teal: var(--dark-teal);
+  --teal-deep: var(--dark-teal-deep);
+  --lavender: var(--dark-lavender);
+  --pink: var(--dark-pink);
 
-  /* keywords color */
-  --keyword-color: var(--dark-keyword-color);
+  --line: var(--dark-line);
+  --line-soft: var(--dark-line-soft);
 
-  /* syntax highlighting */
-  --comment-color: var(--dark-comment-color);
+  --menubar: var(--dark-menubar);
+  --menubar-text: var(--dark-menubar-text);
+
+  --link: var(--dark-cyan);
+  --tree: var(--dark-teal);
 }
 
-#page {
-  margin: auto;
-  background: var(--bg-color);
-  color: var(--text-color);
-  min-height: 100%;
-  transition: color 0.2s, background-color 0.2s;
-}
 
-/* Switched mode */
-.theme-switch:checked ~ #page {
-  --switch-text: var(--light-switch-text);
-  --text-color: var(--light-text);
-  --bg-color: var(--light-bg);
-  --theme-color: var(--light-theme);
+/* ---------------------------------------------------------------------- */
+/* Theme switch                                                          */
+/* ---------------------------------------------------------------------- */
 
-  /* navbar colors */
-  --navbar-bg: var(--light-navbar-bg);
-  --navbar-text-color: var(--light-navbar-text-color);
-
-  /* heading colors */
-  --h1-color: var(--light-h1);
-  --h2-color: var(--light-h2);
-  --h3-color: var(--light-h3);
-  --h4-color: var(--light-h4);
-
-  /* tldr colors */
-  --tldr-bg: var(--light-tldr-bg);
-  --tldr-text-color: var(--light-tldr-text-color);
-
-  /* keywords color */
-  --keyword-color: var(--light-keyword-color);
-
-  /* syntax highlighting */
-  --comment-color: var(--light-comment-color);
-}
-
-/* Theme switcher */
-.theme-switch { /* Hides the checkbox */
-  clip: rect(1px, 1px, 1px, 1px);
-  height: 1px;
-  overflow: hidden;
+.theme-switch {
   position: absolute !important;
   width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(1px, 1px, 1px, 1px);
+}
+
+.theme-switch:checked ~ #page {
+  --switch-text: var(--light-switch-text);
+
+  --desktop-bg: var(--light-desktop);
+  --terminal-bg: var(--light-bg);
+  --surface: var(--light-surface);
+
+  --text: var(--light-text);
+  --text-bright: var(--light-text-bright);
+  --muted: var(--light-muted);
+
+  --blue: var(--light-blue);
+  --cyan: var(--light-cyan);
+  --teal: var(--light-teal);
+  --teal-deep: var(--light-teal-deep);
+  --lavender: var(--light-lavender);
+  --pink: var(--light-pink);
+
+  --line: var(--light-line);
+  --line-soft: var(--light-line-soft);
+
+  --menubar: var(--light-menubar);
+  --menubar-text: var(--light-menubar-text);
+
+  --link: var(--light-cyan);
+  --tree: var(--light-teal);
 }
 
 .switch-label {
   cursor: pointer;
+  white-space: nowrap;
 }
 
 .switch-label::before {
-  align-self: center;
-  transition: text-shadow 0.2s;
+  content: "◐ ";
+  color: var(--lavender);
 }
 
 .switch-label::after {
-  align-self: center;
   content: var(--switch-text);
-  opacity: 0;
+  color: var(--menubar-text);
 }
 
-.theme-switch:focus ~ #page .switch-label::before,
-.switch-label::before {
-  text-shadow: 0 0 15px var(--switch-shadow-color);
-}
 
-.theme-switch:focus ~ #page .switch-label::after,
-.switch-label::after {
-  opacity: 1;
-}
+/* ---------------------------------------------------------------------- */
+/* Page + terminal window                                                 */
+/* ---------------------------------------------------------------------- */
 
-/* Styling */
-html,
 body {
+  position: relative;
   font-size: 14px;
-  height: 100%;
-  margin: 0;
+  line-height: 1.3;
 }
 
-a {
-  color: var(--theme-color);
+#page {
+  position: relative;
+  box-sizing: border-box;
+  min-height: 100vh;
+  padding: clamp(1.5rem, 5vh, 4rem) 1.5rem;
+
+  color: var(--text);
+  background-color: var(--desktop-bg);
+  background-image:
+    url("../assets/website_sprites/starfield_left_wide.png"),
+    url("../assets/website_sprites/starfield_right_wide.png");
+  background-repeat: repeat-y, repeat-y;
+  background-size: 210px 700px, 210px 820px;
+  background-position:
+    calc((100vw - 1000px) / 2 - 230px) 34px,
+    calc((100vw + 1000px) / 2 + 20px) 92px;
+
+  transition: color 0.2s, background-color 0.2s;
+}
+
+/* Terminal wrapper */
+#page > div {
+  position: relative;
+  z-index: 1;
+
+  box-sizing: border-box;
+  width: min(100%, 1000px);
+  margin: 0 auto;
+  overflow: visible;
+
+  background: var(--terminal-bg);
+  border: 1px solid var(--line);
+}
+
+
+/* ---------------------------------------------------------------------- */
+/* Terminal menu bar                                                      */
+/* ---------------------------------------------------------------------- */
+
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 1.35rem;
+
+  box-sizing: border-box;
+  width: 100%;
+  padding: 0.28rem 0.75rem;
+
+  background: var(--menubar);
+  border-bottom: 1px solid var(--line);
+
+  text-align: left;
 }
 
 .navbar a {
-  color: var(--navbar-text-color);
-  font-size: 16px;
-  padding: 2px 12px 2px 12px;
-  text-align: center;
+  padding: 0;
+
+  color: var(--menubar-text);
+  font-size: 14px;
   text-decoration: none;
+  white-space: nowrap;
 }
 
-.navbar {
-  background: var(--navbar-bg);
-  overflow: hidden;
-  position: sticky;
-  text-align: center;
-  top: 0;
-  width: 100%;
+.navbar a:last-child {
+  margin-left: auto;
+  padding-left: 1rem;
+  border-left: 1px solid var(--line-soft);
 }
+
+.navbar a:hover,
+.navbar a:focus-visible {
+  color: var(--pink);
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+
+
+/* ---------------------------------------------------------------------- */
+/* Terminal content                                                       */
+/* ---------------------------------------------------------------------- */
 
 #content {
-  margin: auto;
-  max-width: 80ch;
-  padding: 2ch;
+  position: relative;
+  box-sizing: border-box;
+  width: 100%;
+  padding: 2rem 3rem 3rem;
+
+  color: var(--text);
+  background: var(--terminal-bg);
 }
 
+/* Shell prompt */
+#content::before {
+  content: "^_^  kati@miss.molerat:~$";
+  display: block;
+  margin-bottom: 1.8rem;
+
+  color: var(--blue);
+  font-weight: bold;
+}
+
+#content::after {
+  content: "echo";
+  position: absolute;
+  top: 2rem;
+  left: calc(3rem + 25ch);
+
+  padding-right: 0.45ch;
+
+  color: var(--blue);
+  border-right: 0.7ch solid var(--text-bright);
+
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 1.3;
+
+  animation: terminal-cursor 1.05s steps(1, end) infinite;
+  pointer-events: none;
+}
+
+@keyframes terminal-cursor {
+  0%,
+  48% {
+    border-right-color: var(--text-bright);
+  }
+
+  49%,
+  100% {
+    border-right-color: transparent;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #content::after,
+  .kati-face-container::before {
+    animation: none;
+  }
+}
+
+/* Archive page */
+#content:has(> .archive)::after {
+  content: "tree archive/";
+}
+
+/* About page */
+#content:has(> .about)::after {
+  content: "man kati";
+}
+
+/* Post pages */
+#page:has(.navbar a[href^="../../"]) #content::after {
+  content: "cat";
+}
+
+p {
+  max-width: 74ch;
+}
+
+strong {
+  color: var(--text-bright);
+}
+
+em {
+  color: var(--lavender);
+}
+
+a {
+  color: var(--link);
+  text-decoration-color: var(--line);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.15em;
+}
+
+a:hover,
+a:focus-visible {
+  color: var(--pink);
+  text-decoration-color: var(--pink);
+}
+
+::selection {
+  color: var(--terminal-bg);
+  background: var(--cyan);
+}
+
+
+/* ---------------------------------------------------------------------- */
+/* Headings                                                               */
+/* ---------------------------------------------------------------------- */
+
 h1,
-h2 {
-  margin-top: 2%;
+h2,
+h3,
+h4 {
+  line-height: 1.15;
 }
 
 h1 {
-  color: var(--h1-color);
+  margin: 0 0 0.7em;
+  color: var(--cyan);
   font-size: 22px;
 }
 
+h1::before {
+  content: "> ";
+  color: var(--pink);
+}
+
 h2 {
-  color: var(--h2-color);
+  margin: 2em 0 0.7em;
+  color: var(--teal);
   font-size: 18px;
 }
 
-h3,
-h4 {
+h3 {
+  margin: 1.7em 0 0.6em;
+  color: var(--lavender);
   font-size: 16px;
 }
 
-h3 {
-  margin-top: 1%;
-  color: var(--h3-color);
+h4 {
+  color: var(--teal-deep);
+  font-size: 16px;
 }
 
-h4 {
-  color: var(--h4-color);
+
+/* ---------------------------------------------------------------------- */
+/* Tree lists                                                             */
+/* ---------------------------------------------------------------------- */
+
+#content ul {
+  list-style: none;
+  margin: 1em 0;
+  padding-left: 2.8ch;
 }
+
+#content ul > li {
+  position: relative;
+  margin: 0.18em 0;
+}
+
+/* Branches */
+#content ul > li::before {
+  content: "├──";
+  position: absolute;
+  top: 0;
+  left: -2.8ch;
+  color: var(--tree);
+}
+
+#content ul > li:last-child::before {
+  content: "└──";
+}
+
+/* Connectors */
+#content ul > li:not(:last-child)::after {
+  content: "";
+  position: absolute;
+
+  left: -2.3ch;
+  top: 0.9em;
+  bottom: -0.45em;
+
+  border-left: 1px solid var(--tree);
+  pointer-events: none;
+}
+
+
+/* ---------------------------------------------------------------------- */
+/* Archive                                                                */
+/* ---------------------------------------------------------------------- */
+
+/* Archive tree */
+.archive {
+  position: relative;
+  margin: 0;
+  padding: 0 0 0 3ch;
+}
+
+.archive::before {
+  content: ".";
+  display: block;
+  margin: 0 0 0.35rem -3ch;
+
+  color: var(--blue);
+}
+
+.archive > li {
+  position: relative;
+  display: block;
+  margin: 0 0 0.65rem;
+  padding: 0;
+}
+
+.archive > li::before {
+  content: "├──";
+  position: absolute;
+  top: 0;
+  left: -3ch;
+
+  color: var(--tree);
+}
+
+.archive > li:last-child::before {
+  content: "└──";
+}
+
+.archive > li:not(:last-child)::after {
+  content: "";
+  position: absolute;
+
+  left: -2.5ch;
+  top: 0.9em;
+  bottom: -0.85rem;
+
+  border-left: 1px solid var(--tree);
+  pointer-events: none;
+}
+
+.archive-item {
+  display: block;
+}
+
+.archive-date {
+  color: var(--pink);
+  white-space: nowrap;
+}
+
+.description {
+  max-width: 78ch;
+  margin-top: 0.1rem;
+
+  color: var(--text);
+  line-height: 1.3;
+}
+
+.keywords {
+  max-width: 90ch;
+  margin-top: 0.08rem;
+
+  color: var(--muted);
+  font-size: 10px;
+  font-style: normal;
+}
+
+.keywords::before {
+  content: "# ";
+  color: var(--teal);
+}
+
+
+/* ---------------------------------------------------------------------- */
+/* TL;DR                                                                  */
+/* ---------------------------------------------------------------------- */
 
 .tldr {
-  background: var(--tldr-bg);
-  color: var(--tldr-text-color);
+  box-sizing: border-box;
+  max-width: 76ch;
+  position: relative;
+  margin: 1.5rem 0 1.8rem;
+  padding: 1rem 3.5rem 1rem 1.25rem;
+
+  color: var(--text);
+  background: var(--surface);
+
+  border-left: 2px solid var(--pink);
 }
 
-.tldr,
+
+/* ---------------------------------------------------------------------- */
+/* Code blocks                                                            */
+/* ---------------------------------------------------------------------- */
+
 pre {
+  box-sizing: border-box;
+  max-width: 78ch;
+  margin: 1.3rem 0;
+  padding: 1rem 1.25rem;
+
+  overflow-x: auto;
+
+  color: var(--text-bright);
+  background: var(--surface);
+
+  border-top: 1px solid var(--line-soft);
+  border-bottom: 1px solid var(--line-soft);
+  border-left: 2px solid var(--blue);
+
+  font-family: inherit;
   font-size: 13px;
-  margin: auto;
-  max-width: 700px;
-  padding: 3%;
+  line-height: 1.35;
+  white-space: pre;
 }
 
-pre {
-  background: var(--tldr-bg);
-  overflow: auto;
-  word-wrap: normal;
+pre code {
+  font: inherit;
+  color: inherit;
+}
+
+
+/* Org syntax highlighting */
+.org-keyword,
+.org-warning,
+.org-function-name,
+.org-css-selector {
+  color: var(--cyan);
+}
+
+.org-string,
+.org-constant,
+.org-variable-name {
+  color: var(--text);
+}
+
+.org-builtin {
+  color: var(--teal);
+}
+
+.org-comment-delimiter,
+.org-comment,
+.org-doc {
+  color: var(--muted);
+}
+
+
+/* ---------------------------------------------------------------------- */
+/* Figures, images and video                                              */
+/* ---------------------------------------------------------------------- */
+
+figure {
+  margin: 2rem 0;
+}
+
+img,
+video {
+  box-sizing: border-box;
+  max-width: 100%;
+  height: auto;
+}
+
+/* Media sizing */
+figure > img,
+figure > video {
+  display: block;
+  margin-inline: auto;
+}
+
+video {
+  display: block;
+}
+
+figcaption {
+  margin-top: 0.45rem;
+
+  color: var(--muted);
+  font-size: 12px;
+  text-align: center;
 }
 
 .figure-number {
   display: none;
 }
 
-.archive {
-  margin-top: 2%;
+
+/* ---------------------------------------------------------------------- */
+/* About / man page                                                       */
+/* ---------------------------------------------------------------------- */
+
+.about {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  width: 100%;
+  margin: 0 0 1.5rem;
+
+  color: var(--text);
 }
 
-.keywords {
-  color: var(--keyword-color);
-  font-size: x-small;
-  font-style: italic;
+.about:last-of-type {
+  margin: 2rem 0 0;
 }
 
-.description {
-  color: var(--text-color);
+.about-column:nth-child(1) {
+  text-align: left;
 }
 
-.archive-date {
-    color: var(--h1-color);
-    margin: 0;
-}
-
-#postamble {
-  color: var(--keyword-color);
+.about-column:nth-child(2) {
   text-align: center;
-  font-size: small;
-  padding: 3%;
 }
 
-hr {
-  border: 0;
-  border-top: 1px solid  var(--keyword-color);
-  display: block;
-  height: 1px;
-  margin: 1em 0;
-}
-
-/* code syntax highlighting */
-.org-keyword,
-.org-warning,
-.org-function-name,
-.org-css-selector {
-  color: var(--h1-color);
-}
-
-.org-string,
-.org-constant,
-.org-variable-name {
-  color: var(--text-color);
-}
-
-.org-builtin {
-  color: var(--h2-color);
-}
-
-.org-comment-delimiter,
-.org-comment,
-.org-doc {
-  color: var(--comment-color);
+.about-column:nth-child(3) {
+  text-align: right;
 }
 
 .about-indented {
-    margin-left: 7%;
+  max-width: 74ch;
+  margin-left: 4ch;
 }
 
 .about-indented-deep {
-    margin-left: 10%;
+  max-width: 70ch;
+  margin-left: 7ch;
+}
+
+/* Man-page section labels */
+.about + p > strong,
+.about-indented + p > strong,
+.about-indented-deep + p > strong {
+  color: var(--text-bright);
 }
 
 
-.about-column {
-  float: left;
-  width: 33.3%;
+/* ---------------------------------------------------------------------- */
+/* Separators + footer                                                    */
+/* ---------------------------------------------------------------------- */
+
+hr {
+  display: block;
+  height: 1px;
+  margin: 2em 0;
+
+  border: 0;
+  border-top: 1px dashed var(--line-soft);
 }
 
-/* Clear floats after the columns */
-.about:after {
+#postamble {
+  margin-top: 2.5rem;
+  padding-top: 1.3rem;
+
+  color: var(--muted);
+  border-top: 1px dashed var(--line-soft);
+
+  font-size: small;
+  text-align: center;
+}
+
+#postamble p {
+  max-width: none;
+  margin-bottom: 0;
+}
+
+
+/* ---------------------------------------------------------------------- */
+/* Responsive                                                             */
+/* ---------------------------------------------------------------------- */
+
+@media (max-width: 720px) {
+  body {
+    font-size: 13px;
+  }
+
+  #page {
+    padding: 0;
+  }
+
+  #page > div {
+    width: 100%;
+    min-height: 100vh;
+
+    border: 0;
+  }
+
+  .navbar {
+    gap: 0.9rem;
+    overflow-x: auto;
+    padding: 0.35rem 1ch;
+  }
+
+  .navbar a {
+    font-size: 13px;
+  }
+
+  .navbar a:last-child {
+    padding-left: 0.8rem;
+  }
+
+  #content {
+    padding: 1.5rem 2ch 2.5rem;
+  }
+
+  #content::after {
+    top: 1.5rem;
+    left: calc(2ch + 25ch);
+    font-size: 13px;
+  }
+
+  #content::before {
+    margin-bottom: 1.4rem;
+  }
+
+  h1 {
+    font-size: 19px;
+  }
+
+  h2 {
+    font-size: 17px;
+  }
+
+  .about {
+    grid-template-columns: 1fr;
+    gap: 0.15rem;
+  }
+
+  .about-column,
+  .about-column:nth-child(1),
+  .about-column:nth-child(2),
+  .about-column:nth-child(3) {
+    text-align: left;
+  }
+
+  .about-indented {
+    margin-left: 2ch;
+  }
+
+  .about-indented-deep {
+    margin-left: 3ch;
+  }
+
+  /* Paired images */
+  figure div[style*="display: flex"] img {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  .archive {
+    padding-left: 2.8ch;
+  }
+
+  .archive::before {
+    margin-left: -2.8ch;
+  }
+
+  .archive > li::before {
+    left: -2.8ch;
+  }
+
+  .archive > li:not(:last-child)::after {
+    left: -2.3ch;
+  }
+
+  .archive-date {
+    white-space: normal;
+  }
+}
+
+/* ---------------------------------------------------------------------- */
+/* Site-wide pixel-art environment                                        */
+/* ---------------------------------------------------------------------- */
+
+/* Hanging vines */
+#page::before,
+#page::after {
   content: "";
-  display: table;
-  clear: both;
+  position: absolute;
+  z-index: 0;
+  top: 0;
+  image-rendering: pixelated;
+  pointer-events: none;
 }
 
-img {
-  max-width: 100%;
+#page::before {
+  right: max(1rem, calc((100vw - 1000px) / 2 - 3.5rem));
+  width: 28px;
+  height: 192px;
+  background: url("../assets/website_sprites/vine_long.png") top center / 28px 192px no-repeat;
+}
+
+#page::after {
+  right: max(0rem, calc((100vw - 1000px) / 2 - 7.5rem));
+  width: 38px;
+  height: 384px;
+  background: url("../assets/website_sprites/vine_very_long.png") top center / 38px 384px no-repeat;
+}
+
+/* Moon */
+#page > div::before {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  top: 18px;
+  left: -150px;
+  width: 48px;
+  height: 48px;
+  background: url("../assets/website_sprites/moon.png") center / 48px 48px no-repeat;
+  image-rendering: pixelated;
+  pointer-events: none;
+}
+
+/* Post vines */
+#page:has(.navbar a[href^="../../"])::before,
+#page:has(.navbar a[href^="../../"])::after {
+  display: none;
+}
+
+/* Post ThinkPad */
+body:has(.navbar a[href^="../../"]) #page > div::after {
+  content: "";
+  position: absolute;
+  z-index: 4;
+  left: -18px;
+  bottom: -10px;
+  width: 64px;
+  height: 64px;
+  background: url("../assets/website_sprites/thinkpad.png") center / 100% 100% no-repeat;
+  image-rendering: pixelated;
+  pointer-events: none;
 }
 
 
+/* ---------------------------------------------------------------------- */
+/* Home-page decorations                                                   */
+/* ---------------------------------------------------------------------- */
+
+/* Mith */
+body:has(.navbar a[href="index.html"]):has(#content > h1) #page > div::after {
+  content: "";
+  position: absolute;
+  z-index: 2;
+  left: -34px;
+  bottom: -14px;
+  width: 64px;
+  height: 96px;
+  background: url("../assets/website_sprites/cat_mith.png") center / 64px 96px no-repeat;
+  image-rendering: pixelated;
+  pointer-events: none;
+}
+
+/* Luthien */
+body:has(.navbar a[href="index.html"]):has(#content > h1) .navbar::before {
+  content: "";
+  position: absolute;
+  z-index: 2;
+  right: -46px;
+  bottom: -4px;
+  width: 96px;
+  height: 64px;
+  background: url("../assets/website_sprites/cat_luthien.png") center / 96px 64px no-repeat;
+  image-rendering: pixelated;
+  pointer-events: none;
+}
+
+/* Mushrooms */
+body:has(.navbar a[href="index.html"]):has(#content > h1) .navbar::after {
+  content: "";
+  position: absolute;
+  z-index: 1;
+  left: 42px;
+  bottom: -4px;
+  width: 64px;
+  height: 48px;
+  background: url("../assets/website_sprites/mushrooms.png") center / 64px 48px no-repeat;
+  image-rendering: pixelated;
+  pointer-events: none;
+}
+
+
+/* ---------------------------------------------------------------------- */
+/* Shell vines: home + archive + about                                    */
+/* ---------------------------------------------------------------------- */
+
+/* Corner vine */
+body:has(.navbar a[href="index.html"]):has(#content > h1)::before,
+body:has(#content > .archive)::before,
+body:has(#content > .about)::before {
+  content: "";
+  position: absolute;
+  z-index: 2;
+  top: calc(clamp(1.5rem, 5vh, 4rem) - 36px);
+  left: calc((100vw - 1000px) / 2 - 32px);
+  width: 72px;
+  height: 96px;
+  background: url("../assets/website_sprites/vine_corner.png") center / 72px 96px no-repeat;
+  image-rendering: pixelated;
+  pointer-events: none;
+}
+
+/* Delicate vine */
+body:has(.navbar a[href="index.html"]):has(#content > h1)::after,
+body:has(#content > .about)::after {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  top: 4px;
+  right: calc((100vw - 1000px) / 2 - 178px);
+  width: 44px;
+  height: 84px;
+  background: url("../assets/website_sprites/small_delicate_vine.png") top center / 44px 84px no-repeat;
+  image-rendering: pixelated;
+  pointer-events: none;
+}
+
+
+/* ---------------------------------------------------------------------- */
+/* Archive-specific sprites                                                */
+/* ---------------------------------------------------------------------- */
+
+/* Archive rotations */
+body:has(#content > .archive) {
+  --archive-moth-1-rotation: -10deg;
+  --archive-moth-2-rotation: -40deg;
+  --archive-d20-rotation: -5deg;
+  --archive-pcb-rotation: 15deg;
+}
+
+/* Archive delicate vine */
+body:has(#content > .archive)::after {
+  content: "";
+  position: absolute;
+  z-index: 3;
+  top: 4px;
+  right: calc((100vw - 1000px) / 2 - 178px);
+  width: 44px;
+  height: 84px;
+  background: url("../assets/website_sprites/small_delicate_vine.png") top center / 44px 84px no-repeat;
+  image-rendering: pixelated;
+  pointer-events: none;
+}
+
+/* Floating archive sprites */
+body:has(#content > .archive) .navbar a:nth-of-type(1)::before,
+body:has(#content > .archive) .navbar a:nth-of-type(1)::after,
+body:has(#content > .archive) .navbar a:nth-of-type(2)::before,
+body:has(#content > .archive) .navbar a:nth-of-type(2)::after {
+  content: "";
+  position: absolute;
+  z-index: 4;
+  image-rendering: pixelated;
+  transform-origin: center;
+  pointer-events: none;
+}
+
+body:has(#content > .archive) .navbar a:nth-of-type(1)::before {
+  left: -110px;
+  top: calc(200px - clamp(1.5rem, 5vh, 4rem));
+  width: 28px;
+  height: 21px;
+  background: url("../assets/website_sprites/moth.png") center / 100% 100% no-repeat;
+  transform: rotate(var(--archive-moth-1-rotation));
+}
+
+body:has(#content > .archive) .navbar a:nth-of-type(1)::after {
+  left: calc(100% + 160px);
+  top: calc(260px - clamp(1.5rem, 5vh, 4rem));
+  width: 40px;
+  height: 30px;
+  background: url("../assets/website_sprites/moth.png") center / 100% 100% no-repeat;
+  transform: rotate(var(--archive-moth-2-rotation));
+}
+
+body:has(#content > .archive) .navbar a:nth-of-type(2)::before {
+  left: calc(100% + 86px);
+  top: calc(600px - clamp(1.5rem, 5vh, 4rem));
+  width: 64px;
+  height: 64px;
+  background: url("../assets/website_sprites/d20.png") center / 100% 100% no-repeat;
+  transform: rotate(var(--archive-d20-rotation));
+}
+
+body:has(#content > .archive) .navbar a:nth-of-type(2)::after {
+  left: -176px;
+  top: calc(760px - clamp(1.5rem, 5vh, 4rem));
+  width: 48px;
+  height: 36px;
+  background: url("../assets/website_sprites/pcb.png") center / 100% 100% no-repeat;
+  transform: rotate(var(--archive-pcb-rotation));
+}
+
+/* Cairn + mushrooms */
+body:has(#content > .archive) #page > div::after {
+  content: "";
+  position: absolute;
+  z-index: 4;
+  left: -72px;
+  bottom: -10px;
+  width: 150px;
+  height: 110px;
+  background-image:
+    url("../assets/website_sprites/cairn_medium.png"),
+    url("../assets/website_sprites/mushrooms.png");
+  background-repeat: no-repeat, no-repeat;
+  background-size: 60px 100px, 64px 48px;
+  background-position:
+    left 14px bottom -2px,
+    left 70px bottom 6px;
+  image-rendering: pixelated;
+  pointer-events: none;
+}
+
+/* Soldering station */
+body:has(#content > .archive) .navbar::before {
+  content: "";
+  position: absolute;
+  z-index: 4;
+  right: -58px;
+  bottom: -8px;
+  width: 100px;
+  height: 80px;
+  background: url("../assets/website_sprites/soldering_station.png") center / 100% 100% no-repeat;
+  image-rendering: pixelated;
+  pointer-events: none;
+}
+
+
+/* ---------------------------------------------------------------------- */
+/* Pixel-Kati mini terminal                                               */
+
+/* ---------------------------------------------------------------------- */
+
+.kati-portrait-widget {
+  position: sticky;
+  z-index: 6;
+  top: 8.2rem;
+  right: -68px;
+  width: 0;
+  height: 0;
+  margin-left: auto;
+  pointer-events: none;
+}
+
+.kati-face-radio {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+.kati-mini-terminal {
+  position: absolute;
+  top: 0;
+  right: -84px;
+  box-sizing: border-box;
+  width: 154px;
+  background: var(--terminal-bg);
+  border: 1px solid var(--line);
+  pointer-events: auto;
+}
+
+.kati-mini-terminal-bar {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 0.24rem 0.55rem;
+  color: var(--menubar-text);
+  background: var(--menubar);
+  border-bottom: 1px solid var(--line);
+  font-size: 12px;
+  line-height: 1.2;
+  text-align: left;
+  user-select: none;
+}
+
+.kati-face-container {
+  position: relative;
+  display: grid;
+  place-items: center;
+  box-sizing: border-box;
+  min-height: 198px;
+  padding: 30px 20px 22px;
+  background: var(--terminal-bg);
+}
+
+.kati-face-container::before {
+  content: "~$ feh click_me.png";
+  position: absolute;
+  top: 8px;
+  left: 9px;
+  padding-right: 0.5ch;
+  color: var(--blue);
+  border-right: 0.65ch solid var(--text-bright);
+  font-size: 11px;
+  line-height: 1.2;
+  white-space: nowrap;
+  animation: terminal-cursor 1.05s steps(1, end) infinite;
+  pointer-events: none;
+}
+
+.kati-face {
+  display: none;
+  width: 102px;
+  height: 153px;
+  cursor: pointer;
+}
+
+.kati-face img {
+  display: block;
+  width: 102px;
+  height: 153px;
+  max-width: none;
+  image-rendering: pixelated;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+#kati-face-1:checked ~ .kati-mini-terminal .kati-face-1,
+#kati-face-2:checked ~ .kati-mini-terminal .kati-face-2,
+#kati-face-3:checked ~ .kati-mini-terminal .kati-face-3,
+#kati-face-4:checked ~ .kati-mini-terminal .kati-face-4,
+#kati-face-5:checked ~ .kati-mini-terminal .kati-face-5,
+#kati-face-6:checked ~ .kati-mini-terminal .kati-face-6,
+#kati-face-7:checked ~ .kati-mini-terminal .kati-face-7,
+#kati-face-8:checked ~ .kati-mini-terminal .kati-face-8,
+#kati-face-9:checked ~ .kati-mini-terminal .kati-face-9 {
+  display: block;
+}
+
+.kati-face:hover img,
+.kati-face:focus-visible img {
+  outline: 1px dotted var(--pink);
+  outline-offset: 3px;
+}
+
+
+/* ---------------------------------------------------------------------- */
+/* TL;DR Club Mate bottle                                                  */
+/* ---------------------------------------------------------------------- */
+
+.tldr::after {
+  content: "";
+  position: absolute;
+  z-index: 2;
+  right: -16px;
+  bottom: -10px;
+  width: 48px;
+  height: 64px;
+  background: url("../assets/website_sprites/club_mate.png") center / 100% 100% no-repeat;
+  image-rendering: pixelated;
+  pointer-events: none;
+}
+
+
+/* ---------------------------------------------------------------------- */
+/* Decoration responsiveness                                               */
+/* ---------------------------------------------------------------------- */
+
+@media (max-width: 1120px) {
+  /* Outer decorations */
+  #page::before,
+  #page::after,
+  #page > div::before,
+  body:has(.navbar a[href^="../../"]) #page > div::after,
+  body:has(.navbar a[href="index.html"]):has(#content > h1) #page > div::after,
+  body:has(.navbar a[href="index.html"]):has(#content > h1) .navbar::before,
+  body:has(.navbar a[href="index.html"]):has(#content > h1) .navbar::after,
+  body:has(.navbar a[href="index.html"]):has(#content > h1)::before,
+  body:has(.navbar a[href="index.html"]):has(#content > h1)::after,
+  body:has(#content > .archive)::before,
+  body:has(#content > .archive)::after,
+  body:has(#content > .about)::before,
+  body:has(#content > .about)::after,
+  body:has(#content > .archive) .navbar a:nth-of-type(1)::before,
+  body:has(#content > .archive) .navbar a:nth-of-type(1)::after,
+  body:has(#content > .archive) .navbar a:nth-of-type(2)::before,
+  body:has(#content > .archive) .navbar a:nth-of-type(2)::after,
+  body:has(#content > .archive) #page > div::after,
+  body:has(#content > .archive) .navbar::before {
+    display: none;
+  }
+
+  #page {
+    background-image: none;
+  }
+
+  /* Pixel Kati */
+  .kati-portrait-widget {
+    position: relative;
+    top: auto;
+    right: auto;
+    width: 154px;
+    height: auto;
+    margin: 0 auto 1.6rem;
+  }
+
+  .kati-mini-terminal {
+    position: static;
+    width: 154px;
+  }
+}
+
+@media (max-width: 720px) {
+  .tldr {
+    padding-right: 3rem;
+  }
+
+  .tldr::after {
+    right: -8px;
+    bottom: -8px;
+    width: 36px;
+    height: 48px;
+  }
+}
+
+@media (max-width: 520px) {
+  .kati-portrait-widget,
+  .kati-mini-terminal {
+    width: 120px;
+  }
+
+  .kati-face-container {
+    min-height: 150px;
+    padding: 28px 18px 20px;
+  }
+
+  .kati-face-container::before {
+    top: 7px;
+    left: 7px;
+    font-size: 9px;
+  }
+
+  .kati-face,
+  .kati-face img {
+    width: 70px;
+    height: 105px;
+  }
+}
+
+.inspiration-credit {
+  margin-top: 2rem;
+  color: var(--muted);
+  font-size: 11px;
+}

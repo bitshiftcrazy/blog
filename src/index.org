@@ -1,17 +1,17 @@
 #+title: Miss Molerat
 
 
-* Hi and welcome to my blog :)
+* Hi and welcome to my little corner of the internet :)
 
 
   I would tell you what kind of posts you can find here, but let's face it:
   I take pleasure in playing with and modifying my blogging setup
-  (Emacs + org-mode ♥), but not so much in actually writing blog posts.
+  (Emacs + org-mode ♥), in making and breaking things, the weird and the whimsy...but not so much in actually writing blog posts.
 
   So instead I'll tell you what I *plan* to write about here:
 
   - personal stuff: Linux on "unusual" devices, homemade mini laptops,
-    blinky LED wearable stuff, terminal apps no one needs, custom PCBs...
+    weird and whimsical PCBs...
 
   - Emacs stuff
 
@@ -20,11 +20,12 @@
   - random stuff I find on the internet and get excited about: basically the same list as "personal stuff" but
     made by others
 
-  - cooking stuff: recipes, especially Club Mate recipes. Of course with Emacs and org-mode.
+  - cooking stuff: maybe some Club Mate recipes. Of course with Emacs and org-mode. I have this oddly
+    specific dream of collecting recipes hidden in source code (yep, that's a thing)
     
   - 3D printing stuff: it'll probably be something like "things you *really* shouldn't try"
 
-  - Dungeons and Dragons stuff: of course with Emacs and org-mode
+  - Dungeons and Dragons stuff: of course with Emacs and org-mode and more PCBs than reasonable
 
     
 
@@ -46,10 +47,15 @@
  
   *My Instagram page:* [[https://www.instagram.com/miss.molerat/][@miss.molerat]]
 
-  Lots of random posts about coding, linux, Emacs with aesthetically pleasing Thinkpad pics.
-  More personal (less interesting) stuff on my stories.
+  Lots of random posts about hardware projects, coding, linux, Emacs with aesthetically pleasing Thinkpad pics. Think of it as a quick dumping ground for things I may or may not turn into a blog post.
+  More personal (less interesting) stuff.
 
-  
+  *Mail*: [[mailto:bitshiftcrazy@posteo.de][bitshiftcrazy@posteo.de]]
 
+  If you found something interesting, have thoughts about a project, or just want to say hi,
+  feel free to write.
+
+  I may reply slowly, I may reply weirdly, but I'm usually happy to chat.
+  (business inquiries will be ignored)
 
   
