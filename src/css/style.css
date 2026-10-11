@@ -302,17 +302,17 @@ body {
 }
 
 /* Archive page */
-#content:has(> .archive)::after {
+body.page-archive #content::after {
   content: "tree archive/";
 }
 
 /* About page */
-#content:has(> .about)::after {
+body.page-about #content::after {
   content: "man kati";
 }
 
 /* Post pages */
-#page:has(.navbar a[href^="../../"]) #content::after {
+body.page-post #content::after {
   content: "cat";
 }
 
@@ -848,14 +848,14 @@ hr {
   pointer-events: none;
 }
 
-/* Post vines */
-#page:has(.navbar a[href^="../../"])::before,
-#page:has(.navbar a[href^="../../"])::after {
+/* Post decorations */
+body.page-post #page::before,
+body.page-post #page::after {
   display: none;
 }
 
 /* Post ThinkPad */
-body:has(.navbar a[href^="../../"]) #page > div::after {
+body.page-post #page > div::after {
   content: "";
   position: absolute;
   z-index: 4;
@@ -874,7 +874,7 @@ body:has(.navbar a[href^="../../"]) #page > div::after {
 /* ---------------------------------------------------------------------- */
 
 /* Mith */
-body:has(.navbar a[href="index.html"]):has(#content > h1) #page > div::after {
+body.page-home #page > div::after {
   content: "";
   position: absolute;
   z-index: 2;
@@ -888,7 +888,7 @@ body:has(.navbar a[href="index.html"]):has(#content > h1) #page > div::after {
 }
 
 /* Luthien */
-body:has(.navbar a[href="index.html"]):has(#content > h1) .navbar::before {
+body.page-home .navbar::before {
   content: "";
   position: absolute;
   z-index: 2;
@@ -902,7 +902,7 @@ body:has(.navbar a[href="index.html"]):has(#content > h1) .navbar::before {
 }
 
 /* Mushrooms */
-body:has(.navbar a[href="index.html"]):has(#content > h1) .navbar::after {
+body.page-home .navbar::after {
   content: "";
   position: absolute;
   z-index: 1;
@@ -921,9 +921,9 @@ body:has(.navbar a[href="index.html"]):has(#content > h1) .navbar::after {
 /* ---------------------------------------------------------------------- */
 
 /* Corner vine */
-body:has(.navbar a[href="index.html"]):has(#content > h1)::before,
-body:has(#content > .archive)::before,
-body:has(#content > .about)::before {
+body.page-home::before,
+body.page-archive::before,
+body.page-about::before {
   content: "";
   position: absolute;
   z-index: 2;
@@ -937,8 +937,8 @@ body:has(#content > .about)::before {
 }
 
 /* Delicate vine */
-body:has(.navbar a[href="index.html"]):has(#content > h1)::after,
-body:has(#content > .about)::after {
+body.page-home::after,
+body.page-about::after {
   content: "";
   position: absolute;
   z-index: 0;
@@ -957,7 +957,7 @@ body:has(#content > .about)::after {
 /* ---------------------------------------------------------------------- */
 
 /* Archive rotations */
-body:has(#content > .archive) {
+body.page-archive {
   --archive-moth-1-rotation: -10deg;
   --archive-moth-2-rotation: -40deg;
   --archive-d20-rotation: -5deg;
@@ -965,7 +965,7 @@ body:has(#content > .archive) {
 }
 
 /* Archive delicate vine */
-body:has(#content > .archive)::after {
+body.page-archive::after {
   content: "";
   position: absolute;
   z-index: 3;
@@ -979,10 +979,10 @@ body:has(#content > .archive)::after {
 }
 
 /* Floating archive sprites */
-body:has(#content > .archive) .navbar a:nth-of-type(1)::before,
-body:has(#content > .archive) .navbar a:nth-of-type(1)::after,
-body:has(#content > .archive) .navbar a:nth-of-type(2)::before,
-body:has(#content > .archive) .navbar a:nth-of-type(2)::after {
+body.page-archive .navbar a:nth-of-type(1)::before,
+body.page-archive .navbar a:nth-of-type(1)::after,
+body.page-archive .navbar a:nth-of-type(2)::before,
+body.page-archive .navbar a:nth-of-type(2)::after {
   content: "";
   position: absolute;
   z-index: 4;
@@ -991,7 +991,7 @@ body:has(#content > .archive) .navbar a:nth-of-type(2)::after {
   pointer-events: none;
 }
 
-body:has(#content > .archive) .navbar a:nth-of-type(1)::before {
+body.page-archive .navbar a:nth-of-type(1)::before {
   left: -110px;
   top: calc(200px - clamp(1.5rem, 5vh, 4rem));
   width: 28px;
@@ -1000,7 +1000,7 @@ body:has(#content > .archive) .navbar a:nth-of-type(1)::before {
   transform: rotate(var(--archive-moth-1-rotation));
 }
 
-body:has(#content > .archive) .navbar a:nth-of-type(1)::after {
+body.page-archive .navbar a:nth-of-type(1)::after {
   left: calc(100% + 160px);
   top: calc(260px - clamp(1.5rem, 5vh, 4rem));
   width: 40px;
@@ -1009,7 +1009,7 @@ body:has(#content > .archive) .navbar a:nth-of-type(1)::after {
   transform: rotate(var(--archive-moth-2-rotation));
 }
 
-body:has(#content > .archive) .navbar a:nth-of-type(2)::before {
+body.page-archive .navbar a:nth-of-type(2)::before {
   left: calc(100% + 86px);
   top: calc(600px - clamp(1.5rem, 5vh, 4rem));
   width: 64px;
@@ -1018,7 +1018,7 @@ body:has(#content > .archive) .navbar a:nth-of-type(2)::before {
   transform: rotate(var(--archive-d20-rotation));
 }
 
-body:has(#content > .archive) .navbar a:nth-of-type(2)::after {
+body.page-archive .navbar a:nth-of-type(2)::after {
   left: -176px;
   top: calc(760px - clamp(1.5rem, 5vh, 4rem));
   width: 48px;
@@ -1028,7 +1028,7 @@ body:has(#content > .archive) .navbar a:nth-of-type(2)::after {
 }
 
 /* Cairn + mushrooms */
-body:has(#content > .archive) #page > div::after {
+body.page-archive #page > div::after {
   content: "";
   position: absolute;
   z-index: 4;
@@ -1049,7 +1049,7 @@ body:has(#content > .archive) #page > div::after {
 }
 
 /* Soldering station */
-body:has(#content > .archive) .navbar::before {
+body.page-archive .navbar::before {
   content: "";
   position: absolute;
   z-index: 4;
@@ -1204,22 +1204,22 @@ body:has(#content > .archive) .navbar::before {
   #page::before,
   #page::after,
   #page > div::before,
-  body:has(.navbar a[href^="../../"]) #page > div::after,
-  body:has(.navbar a[href="index.html"]):has(#content > h1) #page > div::after,
-  body:has(.navbar a[href="index.html"]):has(#content > h1) .navbar::before,
-  body:has(.navbar a[href="index.html"]):has(#content > h1) .navbar::after,
-  body:has(.navbar a[href="index.html"]):has(#content > h1)::before,
-  body:has(.navbar a[href="index.html"]):has(#content > h1)::after,
-  body:has(#content > .archive)::before,
-  body:has(#content > .archive)::after,
-  body:has(#content > .about)::before,
-  body:has(#content > .about)::after,
-  body:has(#content > .archive) .navbar a:nth-of-type(1)::before,
-  body:has(#content > .archive) .navbar a:nth-of-type(1)::after,
-  body:has(#content > .archive) .navbar a:nth-of-type(2)::before,
-  body:has(#content > .archive) .navbar a:nth-of-type(2)::after,
-  body:has(#content > .archive) #page > div::after,
-  body:has(#content > .archive) .navbar::before {
+  body.page-post #page > div::after,
+  body.page-home #page > div::after,
+  body.page-home .navbar::before,
+  body.page-home .navbar::after,
+  body.page-home::before,
+  body.page-home::after,
+  body.page-archive::before,
+  body.page-archive::after,
+  body.page-about::before,
+  body.page-about::after,
+  body.page-archive .navbar a:nth-of-type(1)::before,
+  body.page-archive .navbar a:nth-of-type(1)::after,
+  body.page-archive .navbar a:nth-of-type(2)::before,
+  body.page-archive .navbar a:nth-of-type(2)::after,
+  body.page-archive #page > div::after,
+  body.page-archive .navbar::before {
     display: none;
   }
 

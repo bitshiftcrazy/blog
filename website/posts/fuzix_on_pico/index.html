@@ -1,12 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="stylesheet" type="text/css" href="../../css/style.css" >
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="stylesheet" type="text/css" href="../../css/style.css">
 <title>FUZIX on the Raspberry Pi Pico: Installing from Arch Linux</title>
 </head>
-<body><input type="checkbox" class="theme-switch" id="theme-switch"/>
-<div id="page"><div><nav class="navbar"> <a href="../../index.html"> home </a> <a href="../../archive.html"> stuff </a> <a href="../../about.html"> about </a><a href="#"> <label for="theme-switch" class="switch-label"></label></a></nav><div id="content">
-<h1>FUZIX on the Raspberry Pi Pico: Installing from Arch Linux</h1><div class="tldr">[TL;DR]  The Raspberry Pi Foundation recently released their first microntroller, the Pico.
+<body class="page-post"><input type="checkbox" class="theme-switch" id="theme-switch"/>
+<div id="page"><div><nav class="navbar"><a href="../../index.html"> home </a><a href="../../archive.html"> stuff </a><a href="../../about.html"> about </a><a href="#"> <label for="theme-switch" class="switch-label"></label></a></nav><div id="content"><h1>FUZIX on the Raspberry Pi Pico: Installing from Arch Linux</h1><div class="tldr">[TL;DR]  The Raspberry Pi Foundation recently released their first microntroller, the Pico.
 And while the Pico can't run Linux unfortunately, it can give you the pleasure of playing with
 an old-school UNIX-like system: FUZIX. This post quickly summarizes how to get FUZIX onto the Pico from
 Arch Linux.
@@ -17,7 +16,6 @@ Arch Linux.
 
 <figcaption><span class="figure-number">Figure 1: </span>FUZIX on the Pico together with some of the most important system tools</figcaption>
 </figure>
-
 <h2>Why?</h2><p>If you're unsure why you would want to waste your precious time with installing an old-school UNIX-clone on
 a dual-core Cortex M0+ and 264KB RAM beast, let me convince you with my flawless reasoning:
 </p>
@@ -30,7 +28,6 @@ a dual-core Cortex M0+ and 264KB RAM beast, let me convince you with my flawless
 
 <p><strong>3. And as someone suffering from Obsessive Compulsive UNIX-itis: every device needs UNIX because it needs UNIX.</strong>
 </p>
-
 <h2>How?</h2><p>Shortly after the Pico's release, David Given ported FUZIX to it, you'll find details <a href="http://cowlark.com/2021-02-16-fuzix-pi-pico/">here</a>.
 And Alasdair Allan wrote an excellent guide on getting FUZIX onto the Pico <a href="https://www.raspberrypi.org/blog/how-to-get-started-with-fuzix-on-raspberry-pi-pico/">here</a>.
 </p>
@@ -43,7 +40,6 @@ And Alasdair Allan wrote an excellent guide on getting FUZIX onto the Pico <a hr
 
 <p>You know, to save you the 15min you'd need to look for and read through the respective Arch Wiki entries yourself...
 </p>
-
 <h3>1. Set up the C/C++ SDK</h3><p>Assuming you build FUZIX from source, you'll need a working Pico toolchain.
 </p>
 
@@ -63,7 +59,7 @@ Embedded Toolchain for arm.
 <p><em>(Pretty sure you already have base-devel, but just in case ;))</em>
 </p>
 
-<p>You can test whether or not everything is setup properly eg. by building the
+<p>You can test whether or not everything is setup properly by building the
 Blink example (see <a href="https://datasheets.raspberrypi.org/pico/getting-started-with-pico.pdf">Pico Datasheet</a> for detailed build instructions).
 </p>
 
@@ -97,7 +93,6 @@ sudo cp blink.uf2 /mnt/pico
 sudo sync
 sudo umount /mnt/pico
 </code></pre>
-
 <h3>2. Get FUZIX onto the Pico</h3><p>From now on you can happily follow the steps from <a href="https://www.raspberrypi.org/blog/how-to-get-started-with-fuzix-on-raspberry-pi-pico/">Alasdair Allan's blog post</a>, until
 you reach the <em>"connecting via UART"</em> part:
 </p>

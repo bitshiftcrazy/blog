@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="stylesheet" type="text/css" href="../../css/style.css" >
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="stylesheet" type="text/css" href="../../css/style.css">
 <title>Bitshiftcrazy</title>
 </head>
-<body><input type="checkbox" class="theme-switch" id="theme-switch"/>
-<div id="page"><div><nav class="navbar"> <a href="../../index.html"> home </a> <a href="../../archive.html"> stuff </a> <a href="../../about.html"> about </a><a href="#"> <label for="theme-switch" class="switch-label"></label></a></nav><div id="content"><h1>Hello World! :)</h1><div class="tldr">[TL;DR] So this is my very first attempt to write a blog. Ever. Find out why
+<body class="page-post"><input type="checkbox" class="theme-switch" id="theme-switch"/>
+<div id="page"><div><nav class="navbar"><a href="../../index.html"> home </a><a href="../../archive.html"> stuff </a><a href="../../about.html"> about </a><a href="#"> <label for="theme-switch" class="switch-label"></label></a></nav><div id="content"><h1>Hello World! :)</h1><div class="tldr">[TL;DR] So this is my very first attempt to write a blog. Ever. Find out why
 and what and how in this post. Scroll right to the bottom if you came for 
 code ;) 
 </div>
@@ -106,10 +106,10 @@ or like me in a seperate file).
 <text>First include all the org stuff you need:
 </text>
 
-<pre><code class="emacs-lisp">(<span class="org-keyword">require</span> '<span class="org-constant">org</span>)
-(<span class="org-keyword">require</span> '<span class="org-constant">ox-publish</span>)
-(<span class="org-keyword">require</span> '<span class="org-constant">ox-html</span>)
-(<span class="org-keyword">require</span> '<span class="org-constant">org-element</span>)
+<pre><code class="emacs-lisp">(require 'org)
+(require 'ox-publish)
+(require 'ox-html)
+(require 'org-element)
 </code></pre>
 
 <text>Then change org-publish-alist according to your needs.
@@ -117,39 +117,39 @@ For example support for a sitemap, exclude all the unnecessary
 stuff org exports into an html file by default and so on. 
 </text>
 
-<pre><code class="emacs-lisp">(<span class="org-keyword">setq</span> org-publish-project-alist
-      `((<span class="org-string">"project-name"</span>
-         <span class="org-builtin">:base-directory</span> <span class="org-string">"~/org-project/"</span>
-         <span class="org-builtin">:recursive</span> t
-         <span class="org-builtin">:publishing-directory</span> <span class="org-string">"~/org-project/website"</span>
-         <span class="org-builtin">:publishing-function</span> org-html-publish-to-html
+<pre><code class="emacs-lisp">(setq org-publish-project-alist
+      `(("project-name"
+         :base-directory "~/org-project/"
+         :recursive t
+         :publishing-directory "~/org-project/website"
+     :publishing-function org-html-publish-to-html
 
-         <span class="org-builtin">:with-toc</span> nil
-         <span class="org-builtin">:title</span> nil
-         <span class="org-builtin">:with-headline-numbers</span> nil
-         <span class="org-builtin">:with-date</span> nil
-         <span class="org-builtin">:with-title</span> nil
-         <span class="org-builtin">:time-stamp-file</span> nil
-         <span class="org-builtin">:section-numbers</span> nil
-         <span class="org-builtin">:table-of-contents</span> nil
+     :with-toc nil
+     :title nil
+     :with-headline-numbers nil
+     :with-date nil
+     :with-title nil
+     :time-stamp-file nil
+     :section-numbers nil
+     :table-of-contents nil
 
-         <span class="org-builtin">:html-doctype</span> <span class="org-string">"html5"</span>
-         <span class="org-builtin">:html-head-include-scripts</span> nil
-         <span class="org-builtin">:html-head-include-default-style</span> nil
-         <span class="org-builtin">:html-html5-fancy</span> t
-         <span class="org-builtin">:html-validation-link</span> nil
-         <span class="org-builtin">:html-head</span> <span class="org-string">"&lt;link rel=\"stylesheet\" type=\"text/css\" href=\"style.css\"&gt;"</span>
-         <span class="org-builtin">:html-preamble</span> ,topnav
-         <span class="org-builtin">:style</span> <span class="org-string">"&lt;link rel=\"stylesheet\" type=\"text/css\" href\"style.css\"&gt;"</span>
+     :html-doctype "html5"
+     :html-head-include-scripts nil
+     :html-head-include-default-style nil
+     :html-html5-fancy t
+     :html-validation-link nil
+     :html-head "&lt;link rel=\"stylesheet\" type=\"text/css\" href=\"style.css\"&gt;"
+     :html-preamble ,topnav
+     :style "&lt;link rel=\"stylesheet\" type=\"text/css\" href\"style.css\"&gt;"
 
-         <span class="org-comment-delimiter">;; </span><span class="org-comment">Sitemap settings</span>
-         <span class="org-builtin">:auto-sitemap</span> t
-         <span class="org-builtin">:sitemap-filename</span> <span class="org-string">"archive.org"</span>
-         <span class="org-builtin">:sitemap-title</span> <span class="org-string">"stuff"</span>
-         <span class="org-builtin">:sitemap-style</span> list
-         <span class="org-builtin">:sitemap-sort-files</span> anti-chronologically
-         <span class="org-builtin">:sitemap-format-entry</span> org-blog-sitemap-format-entry
-         <span class="org-builtin">:sitemap-function</span> org-blog-sitemap-function
+     ;; Sitemap settings
+     :auto-sitemap t
+     :sitemap-filename "archive.org"
+     :sitemap-title "stuff"
+     :sitemap-style list
+     :sitemap-sort-files anti-chronologically
+     :sitemap-format-entry org-blog-sitemap-format-entry
+     :sitemap-function org-blog-sitemap-function
  )))
 </code></pre>
 
@@ -157,15 +157,15 @@ stuff org exports into an html file by default and so on.
 it's "top" like "very good", you know ;)):
 </text>
 
-<pre><code class="emacs-lisp">(<span class="org-keyword">defvar</span> <span class="org-variable-name">topnav</span>
+<pre><code class="emacs-lisp">(defvar topnav
   (concat
-   <span class="org-string">"&lt;nav&gt;"</span>
-     <span class="org-string">"&lt;a href=\"index.html\"&gt; home &lt;/a&gt;"</span>
-     <span class="org-string">"&lt;a href=\"archive.html\"&gt; stuff &lt;/a&gt;"</span>
-     <span class="org-string">"&lt;a href=\"links.html\"&gt; links &lt;/a&gt;"</span>
-     <span class="org-string">"&lt;a href=\"about.html\"&gt; about &lt;/a&gt;"</span>
-     <span class="org-string">"&lt;a href=\"contact.html\"&gt; contact &lt;/a&gt;"</span>
-     <span class="org-string">"&lt;/nav&gt;"</span>))
+   "&lt;nav&gt;"
+     "&lt;a href=\"index.html\"&gt; home &lt;/a&gt;"
+     "&lt;a href=\"archive.html\"&gt; stuff &lt;/a&gt;"
+     "&lt;a href=\"links.html\"&gt; links &lt;/a&gt;"
+     "&lt;a href=\"about.html\"&gt; about &lt;/a&gt;"
+     "&lt;a href=\"contact.html\"&gt; contact &lt;/a&gt;"
+     "&lt;/nav&gt;"))
 </code></pre>
 
 <text>So that's it for now. Here are some links about blogging with org-mode

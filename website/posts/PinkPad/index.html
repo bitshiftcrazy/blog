@@ -1,16 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="stylesheet" type="text/css" href="../../css/style.css" >
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="stylesheet" type="text/css" href="../../css/style.css">
 <title>The PinkPad v1 2020 Lockdown Edition</title>
 </head>
-<body><input type="checkbox" class="theme-switch" id="theme-switch"/>
-<div id="page"><div><nav class="navbar"> <a href="../../index.html"> home </a> <a href="../../archive.html"> stuff </a> <a href="../../about.html"> about </a><a href="#"> <label for="theme-switch" class="switch-label"></label></a></nav><div id="content">
-<h1>The PinkPad v1 2020 Lockdown Edition</h1><div class="tldr">[TL;DR] I've always been jealous about those hot little mini-laptops.
+<body class="page-post"><input type="checkbox" class="theme-switch" id="theme-switch"/>
+<div id="page"><div><nav class="navbar"><a href="../../index.html"> home </a><a href="../../archive.html"> stuff </a><a href="../../about.html"> about </a><a href="#"> <label for="theme-switch" class="switch-label"></label></a></nav><div id="content"><h1>The PinkPad v1 2020 Lockdown Edition</h1><div class="tldr">[TL;DR] I've always been jealous about those hot little mini-laptops.
 So I built my own one with a Raspberry Pi and a toy laptop. Here's why and how
 I did that. (It uses Arch btw.)
 </div>
-
 <h2>A very special Raspberry Pi case</h2><figure>
 <img src="../../assets/PinkPad_wide.jpg" alt="The PinkPad: a very special Raspberry Pi case" title="a very special raspberry pi case" width="650px">
 
@@ -65,10 +63,6 @@ be enough time
 <p><strong>So I changed my plans and turned the Schlaubärchen Laptop into the most hardcore,
 Black-Metal-iest, badass Raspberry Pi case ever.</strong>
 </p>
-
-
-
-
 <h2>How</h2><p>Finally the interesting part, <em>how</em>:
 </p>
 
@@ -99,7 +93,6 @@ around by someone as clumsy as me without falling apart</li>
 <p>(Or you just want amuse yourself with reading about the insane effort someone put
 into butchering a toy laptop)
 </p>
-
 <h3>Parts</h3><ul><li>the <a href="https://www.vtech.de/vtechbaby/lern-und-musik-laptop-pink">VTech Lern und Musik Laptop</a> obviously: as I said earlier,
 if you buy a new one, it's about 28€. On eBay it shouldn't cost more
 than <strong>15€</strong></li>
@@ -129,8 +122,7 @@ your hardware components (you can get one from <strong>9€</strong>)</li>
 
 <li>various cables and adapters</li>
 </ul>
-
-<ul><li>For the power supply:<p>To power the PinkPad with a battery (<em>really</em> recommended since the 3D design
+<h4>For the power supply:</h4><p>To power the PinkPad with a battery (<em>really</em> recommended since the 3D design
 kinda requires that), we need to take some things into account for the battery
 life expectation:
 </p>
@@ -189,9 +181,6 @@ parts - not even a microSD or USB hub - and buy everything new (aka worst case):
 <p>You should be able to get lots of the parts cheaper tho, as I mentioned, eBay is a great
 place to check.
 </p>
-</li></ul>
-
-
 <h3>Tools</h3><ul><li>a soldering iron</li>
 
 <li>a good, sturdy knife</li>
@@ -214,7 +203,6 @@ smoothen 3D prints), don't judge)</li>
 <p>So, as with many other "cheap weekend projects", the PinkPad is only cheap
 if you already have most of the stuff. (It's still awesome tho)
 </p>
-
 <h3>3D printed parts</h3><figure>
 <img src="../../assets/vtech_lern_und_musik_laptop.jpg" alt="the VTech Lern- und Musiklaptop" title="VTech Lern- und Musiklaptop" width="400px">
 
@@ -232,8 +220,7 @@ comes into play) and replaced them with 3D printed parts.
 <p>I'm not exactly good at 3D design, but the parts are so simple that it
 won't be noticed (okay, it <em>is</em> noticeable but good enough for now).
 </p>
-
-<ul><li>STLs<p>The three STL files are <a href="https://github.com/bitshiftcrazy/pinkpad-3D">here</a>
+<h4>STLs</h4><p>The three STL files are <a href="https://github.com/bitshiftcrazy/pinkpad-3D">here</a>
 </p>
 
 <p>And to give you an idea of what they're supposed to do/where they're supposed to go,
@@ -267,9 +254,7 @@ on it.
 <figcaption><span class="figure-number">Figure 1: </span> </figcaption>
 </figure></li>
 </ol>
-</li>
-
-<li>Print Settings<p>It's not exactly a challenging print, there's really not much that could go wrong.
+<h4>Print Settings</h4><p>It's not exactly a challenging print, there's really not much that could go wrong.
 The printing speed can be high, there's no need for support.
 </p>
 
@@ -281,12 +266,9 @@ I printed it with white PLA.
 <p>Afterwards the edges of the prints need some smoothing with sandpaper (or a foot file...seriously, that's
 so much more convenient).
 </p>
-</li></ul>
-
 <h3>Software</h3><p>After finding/collecting/buying/borrowing/stealing/whatever (I don't judge...) all the parts,
 it's time to take care of the software.
 </p>
-
 <h3>Install Arch Linux ARM</h3><p>Since the Raspberry Pi has an arm processor you need an arm image from
 <a href="https://archlinuxarm.org/">Arch Linux ARM</a>. I won't write a detailed guide on installing Arch Linux
 here (the <a href="https://archlinuxarm.org/platforms/armv6/raspberry-pi">instructions on the Arch Linux ARM website</a> are quite good), just a quick summary.
@@ -339,16 +321,15 @@ pacman-key --populate archlinuxarm
 <p>Yeah well, I said I wouldn't write a detailed guide but...there's actually not
 much more detail needed, that's basically it <kbd>¯\_(ツ)_/¯</kbd>
 </p>
-
-<ul><li>Connect to WiFi<p>And if you're planning to connect to WiFi (I guess you do):
+<h4>Connect to WiFi</h4><p>And if you're planning to connect to WiFi (I guess you do):
 </p>
 
 <ol><li>Create/ <em>etc/systemd/network/wlan0.network/</em> with:
 <pre><code class="bash">[Match]
-<span class="org-variable-name">Name</span>=wlan0
+Name=wlan0
 
 [Network]
-<span class="org-variable-name">DHCP</span>=yes
+DHCP=yes
 </code></pre></li>
 
 <li>Generate a basic configuration file with <em>wpa</em>
@@ -361,9 +342,7 @@ systemctl start wpa_supplicant@wlan0
 systemctl restart systemd-networkd.service
 </code></pre></li>
 </ol>
-</li>
-
-<li>Get the LCD touchscreen to work<p>Add these lines to <em>/boot/config.txt</em>:
+<h4>Get the LCD touchscreen to work</h4><p>Add these lines to <em>/boot/config.txt</em>:
 </p>
 
 <pre><code class="nil">max_usb_current=1
@@ -376,9 +355,7 @@ hdmi_drive=1
 <p>This should be enough, but depending on your LCD touchscreen model it could be
 that you have to add some lines in <em>99-fbturbo.conf</em>, some also need drivers installed.
 </p>
-</li>
-
-<li>Add some nice and/or essential programs<p>I don't know if you noticed but I'm slightly too excited about Emacs, so
+<h4>Add some nice and/or essential programs</h4><p>I don't know if you noticed but I'm slightly too excited about Emacs, so
 guess what I installed first ;)
 </p>
 
@@ -395,8 +372,6 @@ guess what I installed first ;)
 But I guess if you really want a PinkPad
 you know what software you want to have on it.
 </p>
-</li></ul>
-
 <h3>Manicure for the keyboard</h3><figure>
 <img src="../../assets/pinkpad_manicure_evolution.jpg" alt="before and after pic of the keyboard" title="From crumbling rose to bright pink" width="500px">
 
@@ -448,7 +423,6 @@ coat but this will change</em>
 a thin white foil, the rest of the keyboard (the frame part) is painted with white
 acrylic varnish.
 </p>
-
 <h3>Soldering the switch</h3><p>The Power Boost by Adafruit unfortunately doesn't come with a switch,
 but it's easy to add one.
 </p>
@@ -468,7 +442,6 @@ only 2 pins, connect them to <strong>EN</strong> and <strong>GND</strong>)
 <p>Unfortunately I don't have pics of this incredibly exciting process, but
 there are detailed instructions <a href="https://learn.adafruit.com/adafruit-powerboost-1000c-load-share-usb-charge-boost/assembly">on the Adafruit website</a>.
 </p>
-
 <h3>Assembly</h3><p>That's the easiest and yet most annoying part: putting the
 parts together.
 </p>
