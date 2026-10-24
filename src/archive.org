@@ -14,3 +14,26 @@
 @@html:<li>@@ @@html:<span class="archive-item"><span class="archive-date">@@ [21.12.2019, 20:00 CET] @@html:</span>@@ [[file:posts/emacs_themes/index.org][Emacs Themes]]@@html:<div class="description">@@ It's important to feel at home in your beloved editor, so this post is about creating custom themes in Emacs. @@html:</div>@@ @@html:<div class="keywords">@@ emacs, beginner-friendly, themes @@html:</div>@@ @@html:</span>@@ @@html:</li>@@
 @@html:<li>@@ @@html:<span class="archive-item"><span class="archive-date">@@ [27.11.2019, 20:00 CET] @@html:</span>@@ [[file:posts/first_post/index.org][Bitshiftcrazy]]@@html:<div class="description">@@ So this is my very first attempt to write a blog. Ever. Find out why and what and how in this post. @@html:</div>@@ @@html:<div class="keywords">@@ blog, org-mode, programming, instagram @@html:</div>@@ @@html:</span>@@ @@html:</li>@@
 #+END_DIV
+
+#+begin_export html
+<div class="cairn-widget">
+  <input type="radio" name="cairn" id="cairn-1" checked>
+  <input type="radio" name="cairn" id="cairn-2">
+  <input type="radio" name="cairn" id="cairn-3">
+  <input type="radio" name="cairn" id="cairn-4">
+  <div class="cairn-stage">
+    <label class="cairn-frame cairn-frame-1" for="cairn-2" data-tooltip="Place a stone!">
+      <img src="assets/website_sprites/cairn_rocks.png" alt="Some scattered stones!">
+    </label>
+    <label class="cairn-frame cairn-frame-2" for="cairn-3" data-tooltip="One more?">
+      <img src="assets/website_sprites/cairn_small.png" alt="A small cairn.">
+    </label>
+    <label class="cairn-frame cairn-frame-3" for="cairn-4" data-tooltip="Keep going!">
+      <img src="assets/website_sprites/cairn_medium.png" alt="A medium cairn.">
+    </label>
+    <label class="cairn-frame cairn-frame-4" for="cairn-1" data-tooltip="Surely one more won't hurt!">
+      <img src="assets/website_sprites/cairn_tall.png" alt="A tall cairn.">
+    </label>
+  </div>
+</div>
+#+end_export

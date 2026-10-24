@@ -1,0 +1,17 @@
+#+TITLE: Offering received — The Lost + Found
+#+OPTIONS: toc:nil num:nil
+
+#+begin_export html
+<main class="journal" aria-labelledby="journal-title">
+  <header class="journal-heading">
+    <p class="journal-kicker">THE LOST + FOUND / RECEIVED</p>
+    <h1 id="journal-title">A little something left behind.</h1>
+    <p>Your offering has found its way to the journal. Thank you!</p>
+    <p>I read and select entries by hand and publish them every so often.</p>
+  </header>
+
+  <section class="journal-pages" aria-label="Return to the journal">
+    <p><a href="journal.html"> <- Back to The Lost + Found</a></p>
+  </section>
+</main>
+#+end_export

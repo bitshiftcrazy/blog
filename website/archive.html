@@ -5,7 +5,7 @@
 <title>stuff</title>
 </head>
 <body class="page-archive"><input type="checkbox" class="theme-switch" id="theme-switch"/>
-<div id="page"><div><nav class="navbar"><a href="index.html"> home </a><a href="archive.html"> stuff </a><a href="about.html"> about </a><a href="#"> <label for="theme-switch" class="switch-label"></label></a></nav><div id="content"><div class="archive"><li> <span class="archive-item"><span class="archive-date"> [07.10.2026, 20:00 CEST] </span> <a href="posts/spell_tome/index.html">Printed Circuit Sorcery: The RP2040 Spell Tome</a><div class="description"> I built an RP2040-based handheld devboard that looks as if a Game Boy Classic and a spell tome had a baby. It's made from two sandwiched PCBs and was meant as a repurposable Christmas gift for my DnD group. And yes, it runs DOOM as well. Just because, but also to prove said repurposability. </div> <div class="keywords"> raspberry pi, rp2040, seeed xiao rp2040, dnd, tabletop </div> </span> </li>
+<div id="page"><div><nav class="navbar"><a href="index.html"> home </a><a href="archive.html"> stuff </a><a href="about.html"> about </a><a href="#"> <label for="theme-switch" class="switch-label"></label></a></nav><div class="archive-sprite archive-moth archive-moth-left"><input type="checkbox" id="archive-moth-left" aria-label="Toggle left moth glow"><label for="archive-moth-left"></label></div><div class="archive-sprite archive-moth archive-moth-right"><input type="checkbox" id="archive-moth-right" aria-label="Toggle right moth glow"><label for="archive-moth-right"></label></div><div class="archive-sprite archive-d20"><input type="checkbox" id="archive-d20" aria-label="Roll the d20"><label for="archive-d20"></label></div><div class="archive-sprite archive-pcb"><input type="checkbox" id="archive-pcb" aria-label="Toggle PCB LEDs"><label for="archive-pcb"></label></div><div id="content"><div class="archive"><li> <span class="archive-item"><span class="archive-date"> [07.10.2026, 20:00 CEST] </span> <a href="posts/spell_tome/index.html">Printed Circuit Sorcery: The RP2040 Spell Tome</a><div class="description"> I built an RP2040-based handheld devboard that looks as if a Game Boy Classic and a spell tome had a baby. It's made from two sandwiched PCBs and was meant as a repurposable Christmas gift for my DnD group. And yes, it runs DOOM as well. Just because, but also to prove said repurposability. </div> <div class="keywords"> raspberry pi, rp2040, seeed xiao rp2040, dnd, tabletop </div> </span> </li>
 <li> <span class="archive-item"><span class="archive-date"> [27.09.2026, 20:00 CEST] </span> <a href="posts/clotty_intro/index.html">My Uterus runs DOOM: Introducing Clotty v1.1</a><div class="description"> My uterus runs DOOM. Figuratively, approximately every four weeks. So I built Clotty, a uterus-shaped RP2040 hybrid of sensor board and gaming device that's supposed to help me keep track of (and gamify) this recurrent, unpleasant experience (i.e. my period, if that wasn't clear). And of course it runs DOOM literally now as well. Because ever since I was a little girl, I dreamt of being the first woman to play DOOM on a uterus. </div> <div class="keywords"> raspberry pi, rp2040, sensors, doom, period </div> </span> </li>
 <li> <span class="archive-item"><span class="archive-date"> [25.05.2026, 20:00 CEST] </span> <a href="posts/PinkPadPaw/index.html">The PinkPad's Paw Mouse Explained</a><div class="description"> Rumour has been spreading online that the PinkPad's paw mouse isn't working. Since I started that rumour, let me debunk it (and suck at Doom in the process). </div> <div class="keywords"> raspberry pi, linux, arch linux, coding, cyberdeck, hid, doom </div> </span> </li>
 <li> <span class="archive-item"><span class="archive-date"> [01.03.2026, 11:00 CET] </span> <a href="posts/d20_pcb/index.html">Building a Slightly Sentient d20 PCB</a><div class="description"> I built a mildly sentient d20 PCB, for dice rolls and attitude </div> <div class="keywords"> pcb, dnd, microcontroller, charlieplexing, attiny84 </div> </span> </li>
@@ -16,6 +16,27 @@
 <li> <span class="archive-item"><span class="archive-date"> [18.11.2020, 20:00 CET] </span> <a href="posts/PinkPad/index.html">The PinkPad v1 2020 Lockdown Edition</a><div class="description"> I was always jealous about those hot little mini-laptops. So I built my own one with a Raspberry Pi and a toy laptop. </div> <div class="keywords"> raspberry pi, linux, arch linux, coding </div> </span> </li>
 <li> <span class="archive-item"><span class="archive-date"> [21.12.2019, 20:00 CET] </span> <a href="posts/emacs_themes/index.html">Emacs Themes</a><div class="description"> It's important to feel at home in your beloved editor, so this post is about creating custom themes in Emacs. </div> <div class="keywords"> emacs, beginner-friendly, themes </div> </span> </li>
 <li> <span class="archive-item"><span class="archive-date"> [27.11.2019, 20:00 CET] </span> <a href="posts/first_post/index.html">Bitshiftcrazy</a><div class="description"> So this is my very first attempt to write a blog. Ever. Find out why and what and how in this post. </div> <div class="keywords"> blog, org-mode, programming, instagram </div> </span> </li>
+</div>
+
+<div class="cairn-widget">
+  <input type="radio" name="cairn" id="cairn-1" checked>
+  <input type="radio" name="cairn" id="cairn-2">
+  <input type="radio" name="cairn" id="cairn-3">
+  <input type="radio" name="cairn" id="cairn-4">
+  <div class="cairn-stage">
+    <label class="cairn-frame cairn-frame-1" for="cairn-2" data-tooltip="Place a stone!">
+      <img src="assets/website_sprites/cairn_rocks.png" alt="Some scattered stones!">
+    </label>
+    <label class="cairn-frame cairn-frame-2" for="cairn-3" data-tooltip="One more?">
+      <img src="assets/website_sprites/cairn_small.png" alt="A small cairn.">
+    </label>
+    <label class="cairn-frame cairn-frame-3" for="cairn-4" data-tooltip="Keep going!">
+      <img src="assets/website_sprites/cairn_medium.png" alt="A medium cairn.">
+    </label>
+    <label class="cairn-frame cairn-frame-4" for="cairn-1" data-tooltip="Surely one more won't hurt!">
+      <img src="assets/website_sprites/cairn_tall.png" alt="A tall cairn.">
+    </label>
+  </div>
 </div>
 <div id="postamble">Made with Emacs :)
 <p><a href="disclaimer.html"> Disclaimer </a>

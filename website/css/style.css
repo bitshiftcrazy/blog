@@ -1,5 +1,170 @@
 /* miss.molerat — site-wide enchanted terminal stylesheet */
 
+/* ---------------------------------------------------------------------- */
+/* A Place at the Table — entirely HTML + CSS                             */
+/* ---------------------------------------------------------------------- */
+
+body.page-generic:has(.adventure) #page {
+  padding: clamp(1rem, 3vw, 2.5rem) 1rem 3rem;
+  background-image: none;
+}
+body.page-generic:has(.adventure) #page::before,
+body.page-generic:has(.adventure) #page::after,
+body.page-generic:has(.adventure) #page > div::before { display: none; }
+body.page-generic:has(.adventure) #page > div { max-width: 700px; }
+body.page-generic:has(.adventure) #content {
+  padding: 1.8rem clamp(1.3rem, 4vw, 2.5rem) 2.5rem;
+}
+body.page-generic:has(.adventure) #content::after {
+  content: "./seventh_guest";
+  top: 1.8rem;
+  left: calc(clamp(1.3rem, 4vw, 2.5rem) + 25ch);
+}
+.adventure { max-width: 100%; min-height: 100vh; }
+.adventure-heading { margin-bottom: 1.7rem; }
+.adventure-heading h1 { margin-bottom: 0.5rem; }
+.adventure-heading > p { color: var(--muted); line-height: 1.5; }
+
+/* Stable invisible hash targets: links always scroll to the SAME story origin. */
+.adventure-anchors { position: relative; height: 0; }
+.adventure-anchor {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 1px;
+  height: 1px;
+  scroll-margin-top: 1rem;
+}
+.adventure > .adventure-scene { display: none; }
+.adventure > .adventure-scene[data-scene="start"] { display: block; }
+.adventure:has(.adventure-anchor:target) > .adventure-scene[data-scene="start"] { display: none; }
+.adventure:has(#adventure-start:target) > .adventure-scene[data-scene="start"] { display: block; }
+.adventure:has(#adventure-decline:target) > .adventure-scene[data-scene="decline"] { display: block; }
+.adventure:has(#adventure-forest:target) > .adventure-scene[data-scene="forest"] { display: block; }
+.adventure:has(#adventure-ask-seventh:target) > .adventure-scene[data-scene="ask-seventh"] { display: block; }
+.adventure:has(#adventure-have-stew:target) > .adventure-scene[data-scene="have-stew"] { display: block; }
+.adventure:has(#adventure-hausgeist:target) > .adventure-scene[data-scene="hausgeist"] { display: block; }
+.adventure:has(#adventure-offer-help:target) > .adventure-scene[data-scene="offer-help"] { display: block; }
+.adventure:has(#adventure-ask-reward:target) > .adventure-scene[data-scene="ask-reward"] { display: block; }
+.adventure:has(#adventure-kitchen-approach:target) > .adventure-scene[data-scene="kitchen-approach"] { display: block; }
+.adventure:has(#adventure-kitchen:target) > .adventure-scene[data-scene="kitchen"] { display: block; }
+.adventure:has(#adventure-invest-1:target) > .adventure-scene[data-scene="invest-1"] { display: block; }
+.adventure:has(#adventure-invest-low:target) > .adventure-scene[data-scene="invest-low"] { display: block; }
+.adventure:has(#adventure-invest-high:target) > .adventure-scene[data-scene="invest-high"] { display: block; }
+.adventure:has(#adventure-invest-20:target) > .adventure-scene[data-scene="invest-20"] { display: block; }
+.adventure:has(#adventure-after-invest:target) > .adventure-scene[data-scene="after-invest"] { display: block; }
+.adventure:has(#adventure-ask-timing:target) > .adventure-scene[data-scene="ask-timing"] { display: block; }
+.adventure:has(#adventure-go-pantry:target) > .adventure-scene[data-scene="go-pantry"] { display: block; }
+.adventure:has(#adventure-pantry:target) > .adventure-scene[data-scene="pantry"] { display: block; }
+.adventure:has(#adventure-traps-left:target) > .adventure-scene[data-scene="traps-left"] { display: block; }
+.adventure:has(#adventure-mouse-appears:target) > .adventure-scene[data-scene="mouse-appears"] { display: block; }
+.adventure:has(#adventure-union:target) > .adventure-scene[data-scene="union"] { display: block; }
+.adventure:has(#adventure-mouse-agree:target) > .adventure-scene[data-scene="mouse-agree"] { display: block; }
+.adventure:has(#adventure-mouse-ask:target) > .adventure-scene[data-scene="mouse-ask"] { display: block; }
+.adventure:has(#adventure-job-ad:target) > .adventure-scene[data-scene="job-ad"] { display: block; }
+.adventure:has(#adventure-innkeeper-reveal:target) > .adventure-scene[data-scene="innkeeper-reveal"] { display: block; }
+.adventure:has(#adventure-pers-1:target) > .adventure-scene[data-scene="pers-1"] { display: block; }
+.adventure:has(#adventure-pers-low:target) > .adventure-scene[data-scene="pers-low"] { display: block; }
+.adventure:has(#adventure-pers-high:target) > .adventure-scene[data-scene="pers-high"] { display: block; }
+.adventure:has(#adventure-pers-20:target) > .adventure-scene[data-scene="pers-20"] { display: block; }
+.adventure:has(#adventure-epilogue:target) > .adventure-scene[data-scene="epilogue"] { display: block; }
+
+.adventure-scene p { max-width: 75ch; margin: 0 0 0.85rem; line-height: 1.65; }
+/* Choices are ordinary hypertext, not buttons or boxed menus. */
+.adventure-choices {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.5rem;
+  margin: 1.5rem 0 0;
+}
+.adventure-choice, .adventure-next, .adventure-trap-label {
+  display: inline-block;
+  width: auto;
+  max-width: 100%;
+  padding: 0.1rem 0;
+  color: var(--teal);
+  background: transparent;
+  border: 0;
+  text-decoration: none;
+  font: inherit;
+  line-height: 1.5;
+  cursor: pointer;
+  text-align: left;
+}
+.adventure-choice:hover, .adventure-next:hover, .adventure-trap-label:hover {
+  color: var(--pink);
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+.adventure-choice:focus-visible, .adventure-next:focus-visible,
+.adventure-trap-input:focus-visible + .adventure-trap-label {
+  outline: 2px dotted var(--pink);
+  outline-offset: 3px;
+}
+.adventure-flyer {
+  box-sizing: border-box;
+  max-width: 38ch;
+  margin: 1.5rem 0;
+  padding: 1.2rem 1.4rem;
+  background: var(--surface);
+  border: 1px dashed var(--lavender);
+  transform: rotate(-0.6deg);
+}
+.adventure-flyer h3 { margin: 0 0 1rem; color: var(--text-bright); }
+.adventure-flyer p { margin-bottom: 0.65rem; }
+/* Override the site's tree-list treatment for the tiny handwritten notice. */
+#content .adventure-ordinary-list { margin: 0.6rem 0 1rem; padding-left: 1.6rem; list-style: disc; }
+#content .adventure-ordinary-list li { margin: 0.3rem 0; }
+/* The global tree rules use :last-child and :not(:last-child).
+   Match their specificity so the flyer shows ordinary bullets, not branches. */
+#content .adventure-flyer ul.adventure-ordinary-list > li::before,
+#content .adventure-flyer ul.adventure-ordinary-list > li::after {
+  content: none;
+  display: none;
+  border: 0;
+}
+.adventure-condition-clear { display: none; }
+.adventure:has(#adventure-traps-cleared:checked) .adventure-condition-clear { display: block; }
+.adventure:has(#adventure-traps-cleared:checked) .adventure-condition-uncleared { display: none; }
+.adventure-trap-option { margin-top: 1.5rem; }
+.adventure-trap-input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: 0;
+  opacity: 0;
+}
+.adventure-trap-result { display: none; margin-top: 1.4rem; }
+.adventure-trap-input:checked ~ .adventure-trap-result { display: block; }
+.adventure-trap-input:checked ~ .adventure-trap-alternative { display: none; }
+.adventure-trap-input:checked + .adventure-trap-label {
+  color: var(--lavender);
+}
+.adventure-trap-alternative { margin-top: 0; }
+.adventure-trap-alternative .adventure-choices { margin-top: 0.65rem; }
+.adventure-restart { margin-top: 2rem; padding-top: 1rem; border-top: 1px dashed var(--line-soft); }
+.adventure-restart button {
+  font: inherit;
+  font-size: 12px;
+  color: var(--teal);
+  background: transparent;
+  border: 0;
+  padding: 0.1rem 0;
+  cursor: pointer;
+}
+.adventure-restart button:hover { color: var(--pink); text-decoration: underline; }
+.adventure-restart button:focus-visible { outline: 2px dotted var(--pink); outline-offset: 3px; }
+@media (max-width: 720px) {
+  body.page-generic:has(.adventure) #page { padding: 0; }
+  body.page-generic:has(.adventure) #content { padding: 1.5rem 1.2rem 2.5rem; }
+  body.page-generic:has(.adventure) #content::after { top: 1.5rem; left: calc(1.2rem + 25ch); }
+}
+@media (max-width: 420px) {
+  body.page-generic:has(.adventure) #content::after { content: "./seventh_guest"; }
+}
+
+
 html {
   font-family: Hack, "DejaVu Sans Mono", "Liberation Mono", "Courier New", monospace;
   background: #07101a;
@@ -978,56 +1143,166 @@ body.page-archive::after {
   pointer-events: none;
 }
 
-/* Floating archive sprites */
-body.page-archive .navbar a:nth-of-type(1)::before,
-body.page-archive .navbar a:nth-of-type(1)::after,
-body.page-archive .navbar a:nth-of-type(2)::before,
-body.page-archive .navbar a:nth-of-type(2)::after {
+/* ---------------------------------------------------------------------- */
+/* Interactive archive sprites                                            */
+/* ---------------------------------------------------------------------- */
+
+.archive-sprite {
+  position: absolute;
+  z-index: 5;
+}
+
+.archive-sprite > input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  opacity: 0;
+}
+
+.archive-sprite > label {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+}
+
+.archive-sprite > label::before {
   content: "";
   position: absolute;
-  z-index: 4;
+  inset: 0;
+  background-position: center;
+  background-repeat: no-repeat;
   image-rendering: pixelated;
-  transform-origin: center;
+  transform: rotate(var(--sprite-rotation, 0deg));
   pointer-events: none;
 }
 
-body.page-archive .navbar a:nth-of-type(1)::before {
+.archive-sprite > label::after {
+  position: absolute;
+  z-index: 10;
+  bottom: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 5px 8px;
+  color: var(--text-bright);
+  background: var(--terminal-bg);
+  border: 1px solid var(--line);
+  font-family: inherit;
+  font-size: 11px;
+  white-space: nowrap;
+  visibility: hidden;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.archive-sprite > label:hover::after,
+.archive-sprite > input:focus-visible + label::after {
+  visibility: visible;
+  opacity: 1;
+}
+
+.archive-sprite > input:focus-visible + label::before {
+  outline: 1px dotted var(--pink);
+  outline-offset: 3px;
+}
+
+.archive-moth-left {
   left: -110px;
-  top: calc(200px - clamp(1.5rem, 5vh, 4rem));
+  top: calc(200px - clamp(1.5rem, 5vh, 4rem) - 10.5px);
   width: 28px;
-  height: 21px;
-  background: url("../assets/website_sprites/moth.png") center / 100% 100% no-repeat;
-  transform: rotate(var(--archive-moth-1-rotation));
+  height: 42px;
+  --sprite-rotation: var(--archive-moth-1-rotation);
 }
 
-body.page-archive .navbar a:nth-of-type(1)::after {
+.archive-moth-right {
   left: calc(100% + 160px);
-  top: calc(260px - clamp(1.5rem, 5vh, 4rem));
+  top: calc(260px - clamp(1.5rem, 5vh, 4rem) - 15px);
   width: 40px;
-  height: 30px;
-  background: url("../assets/website_sprites/moth.png") center / 100% 100% no-repeat;
-  transform: rotate(var(--archive-moth-2-rotation));
+  height: 60px;
+  --sprite-rotation: var(--archive-moth-2-rotation);
 }
 
-body.page-archive .navbar a:nth-of-type(2)::before {
+.archive-moth-left > label::before {
+  background-image: url("../assets/website_sprites/moth.png");
+  background-size: 28px 21px;
+}
+
+.archive-moth-right > label::before {
+  background-image: url("../assets/website_sprites/moth.png");
+  background-size: 40px 30px;
+}
+
+.archive-moth-left > input:checked + label::before {
+  background-image: url("../assets/website_sprites/moth_glowy.png");
+  background-size: 28px 21px;
+}
+
+.archive-moth-right > input:checked + label::before {
+  background-image: url("../assets/website_sprites/moth_glowy.png");
+  background-size: 40px 30px;
+}
+
+.archive-moth > label::after {
+  content: "Wake the moth?";
+}
+
+.archive-moth > input:checked + label::after {
+  content: "Let it rest?";
+}
+
+.archive-d20 {
   left: calc(100% + 86px);
   top: calc(600px - clamp(1.5rem, 5vh, 4rem));
   width: 64px;
   height: 64px;
-  background: url("../assets/website_sprites/d20.png") center / 100% 100% no-repeat;
-  transform: rotate(var(--archive-d20-rotation));
+  --sprite-rotation: var(--archive-d20-rotation);
 }
 
-body.page-archive .navbar a:nth-of-type(2)::after {
+.archive-d20 > label::before {
+  background-image: url("../assets/website_sprites/d20.png");
+  background-size: 64px 64px;
+}
+
+.archive-d20 > input:checked + label::before {
+  background-image: url("../assets/website_sprites/d21.png");
+}
+
+.archive-d20 > label::after {
+  content: "Roll the dice?";
+}
+
+.archive-d20 > input:checked + label::after {
+  content: "Ouch. Again?";
+}
+
+.archive-pcb {
   left: -176px;
   top: calc(760px - clamp(1.5rem, 5vh, 4rem));
   width: 48px;
   height: 36px;
-  background: url("../assets/website_sprites/pcb.png") center / 100% 100% no-repeat;
-  transform: rotate(var(--archive-pcb-rotation));
+  --sprite-rotation: var(--archive-pcb-rotation);
 }
 
-/* Cairn + mushrooms */
+.archive-pcb > label::before {
+  background-image: url("../assets/website_sprites/pcb1.png");
+  background-size: 48px 36px;
+}
+
+.archive-pcb > input:checked + label::before {
+  background-image: url("../assets/website_sprites/pcb2.png");
+}
+
+.archive-pcb > label::after {
+  content: "Blink!";
+}
+
+.archive-pcb > input:checked + label::after {
+  content: "Lights out?";
+}
+
+/* Archive mushrooms */
 body.page-archive #page > div::after {
   content: "";
   position: absolute;
@@ -1036,16 +1311,98 @@ body.page-archive #page > div::after {
   bottom: -10px;
   width: 150px;
   height: 110px;
-  background-image:
-    url("../assets/website_sprites/cairn_medium.png"),
-    url("../assets/website_sprites/mushrooms.png");
-  background-repeat: no-repeat, no-repeat;
-  background-size: 60px 100px, 64px 48px;
-  background-position:
-    left 14px bottom -2px,
-    left 70px bottom 6px;
+  background: url("../assets/website_sprites/mushrooms.png")
+              left 70px bottom 6px / 64px 48px no-repeat;
   image-rendering: pixelated;
   pointer-events: none;
+}
+
+/* ---------------------------------------------------------------------- */
+/* Clickable cairn                                                        */
+/* ---------------------------------------------------------------------- */
+
+.cairn-widget {
+  position: absolute;
+  z-index: 5;
+  left: -58px;
+  bottom: -10px;
+  width: 60px;
+  height: 158px;
+}
+
+.cairn-widget > input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.cairn-stage {
+  position: relative;
+  width: 60px;
+  height: 100%;
+}
+
+.cairn-frame {
+  display: none;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 60px;
+  cursor: pointer;
+}
+
+.cairn-frame img {
+  display: block;
+  width: 60px;
+  height: auto;
+  max-width: none;
+  image-rendering: pixelated;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+#cairn-1:checked ~ .cairn-stage .cairn-frame-1,
+#cairn-2:checked ~ .cairn-stage .cairn-frame-2,
+#cairn-3:checked ~ .cairn-stage .cairn-frame-3,
+#cairn-4:checked ~ .cairn-stage .cairn-frame-4 {
+  display: block;
+}
+
+.cairn-frame:hover img {
+  filter: brightness(1.2);
+}
+
+/* ---------------------------------------------------------------------- */
+/* Cairn tooltips                                                         */
+/* ---------------------------------------------------------------------- */
+
+.cairn-frame::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  z-index: 10;
+  bottom: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%);
+
+  padding: 5px 8px;
+  color: var(--text-bright);
+  background: var(--terminal-bg);
+  border: 1px solid var(--line);
+
+  font-family: inherit;
+  font-size: 11px;
+  white-space: nowrap;
+
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.cairn-frame:hover::after {
+  opacity: 1;
+  visibility: visible;
 }
 
 /* Soldering station */
@@ -1214,10 +1571,7 @@ body.page-archive .navbar::before {
   body.page-archive::after,
   body.page-about::before,
   body.page-about::after,
-  body.page-archive .navbar a:nth-of-type(1)::before,
-  body.page-archive .navbar a:nth-of-type(1)::after,
-  body.page-archive .navbar a:nth-of-type(2)::before,
-  body.page-archive .navbar a:nth-of-type(2)::after,
+  body.page-archive .archive-sprite,
   body.page-archive #page > div::after,
   body.page-archive .navbar::before {
     display: none;
@@ -1225,6 +1579,10 @@ body.page-archive .navbar::before {
 
   #page {
     background-image: none;
+  }
+
+  .cairn-widget {
+    display: none;
   }
 
   /* Pixel Kati */
@@ -1285,3 +1643,437 @@ body.page-archive .navbar::before {
   color: var(--muted);
   font-size: 11px;
 }
+
+/* ---------------------------------------------------------------------- */
+/* Secret mushroom portal                                                 */
+/* ---------------------------------------------------------------------- */
+
+body.page-about .mushroom-portal {
+  position: relative;
+  z-index: 2;
+  display: block;
+  width: 128px;
+  height: 128px;
+  margin: clamp(6rem, 15vh, 10rem) auto 3rem;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+body.page-about .mushroom-portal img {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-width: none;
+  image-rendering: pixelated;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+body.page-about .mushroom-portal::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  z-index: 10;
+  bottom: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%);
+  box-sizing: border-box;
+  width: max-content;
+  max-width: calc(100vw - 2rem);
+  padding: 5px 8px;
+  color: var(--text-bright);
+  background: var(--terminal-bg);
+  border: 1px solid var(--line);
+  font-family: inherit;
+  font-size: 11px;
+  line-height: 1.4;
+  text-align: center;
+  white-space: normal;
+  visibility: hidden;
+  opacity: 0;
+  pointer-events: none;
+}
+
+body.page-about .mushroom-portal:hover::after,
+body.page-about .mushroom-portal:focus-visible::after {
+  visibility: visible;
+  opacity: 1;
+}
+
+body.page-about .mushroom-portal:hover img {
+  filter: brightness(1.12);
+}
+
+body.page-about .mushroom-portal:focus-visible {
+  outline: 1px dotted var(--pink);
+  outline-offset: 3px;
+}
+
+/* ---------------------------------------------------------------------- */
+/* The Lost + Found                                                       */
+/* ---------------------------------------------------------------------- */
+
+body.page-journal #page {
+  padding: clamp(1rem, 3vw, 2.5rem) 1rem 3rem;
+  background-image: none;
+}
+
+body.page-journal #page::before,
+body.page-journal #page::after,
+body.page-journal #page > div::before {
+  display: none;
+}
+
+body.page-journal #page > div {
+  max-width: 650px;
+}
+
+body.page-journal #content {
+  padding: 1.8rem clamp(1.3rem, 4vw, 2.5rem) 2.5rem;
+}
+
+body.page-journal #content::before {
+  margin-bottom: 1.5rem;
+}
+
+body.page-journal #content::after {
+  content: "ls lost+found/";
+  top: 1.8rem;
+  left: calc(clamp(1.3rem, 4vw, 2.5rem) + 25ch);
+}
+
+.journal {
+  max-width: 100%;
+}
+
+.journal-heading {
+  padding: 0 0 1.4rem;
+  border-bottom: 1px dashed var(--line-soft);
+}
+
+.journal-kicker {
+  margin: 0 0 0.55rem;
+  color: var(--lavender);
+  font-size: 11px;
+  letter-spacing: 0.065em;
+}
+
+.journal h1 {
+  margin-bottom: 1.1rem;
+}
+
+.journal-heading > p:not(.journal-kicker) {
+  margin: 0.45rem 0;
+  line-height: 1.6;
+}
+
+.journal-pages,
+.journal-leave {
+  margin-top: 2rem;
+}
+
+.journal-section-heading {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.journal h2 {
+  margin: 0 0 0.9rem;
+  color: var(--teal);
+  font-size: 17px;
+}
+
+.journal-count,
+.journal-page-id {
+  color: var(--muted);
+  font-size: 11px;
+}
+
+.journal-empty {
+  padding: 1.25rem 1.4rem;
+  background: var(--surface);
+  border-left: 2px solid var(--lavender);
+}
+
+.journal-empty p {
+  margin: 0.7rem 0 0;
+  color: var(--text-bright);
+  line-height: 1.55;
+}
+
+.journal-leave {
+  padding-top: 1.5rem;
+  border-top: 1px dashed var(--line-soft);
+}
+
+.journal-hint {
+  margin: 0 0 1.25rem;
+  color: var(--text);
+  line-height: 1.5;
+}
+
+.journal-form {
+  display: grid;
+  gap: 1.3rem;
+}
+
+.journal-offerings {
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.journal-offerings legend,
+.journal-field > span:first-child {
+  display: block;
+  margin-bottom: 0.6rem;
+  padding: 0;
+  color: var(--lavender);
+  font-size: 12px;
+}
+
+/* Three inventories, four offerings per category. */
+.journal-category + .journal-category {
+  margin-top: 1.25rem;
+}
+
+.journal-category-label {
+  margin: 0 0 0.6rem;
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: normal;
+  line-height: 1.2;
+}
+
+.journal-offering-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.6rem;
+}
+
+.journal-offering {
+  position: relative;
+  display: block;
+  min-width: 0;
+  cursor: pointer;
+}
+
+.journal-offering input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  opacity: 0;
+}
+
+.journal-offering-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  min-height: 98px;
+  box-sizing: border-box;
+  padding: 0.65rem 0.25rem;
+  background: var(--surface);
+  border: 1px solid var(--line-soft);
+  color: var(--text);
+  font-size: 11px;
+  line-height: 1.25;
+  text-align: center;
+}
+
+.journal-offering-icon {
+  display: block;
+  width: 48px;
+  height: 48px;
+  max-width: 100%;
+  object-fit: contain;
+  image-rendering: pixelated;
+  flex-shrink: 0;
+}
+
+.journal-offering-name {
+  overflow-wrap: anywhere;
+}
+
+.journal-offering:hover .journal-offering-body,
+.journal-offering input:checked + .journal-offering-body {
+  border-color: var(--teal);
+  color: var(--text-bright);
+}
+
+.journal-offering input:checked + .journal-offering-body {
+  background: var(--terminal-bg);
+  box-shadow: inset 0 0 0 1px var(--teal);
+}
+
+.journal-offering input:focus-visible + .journal-offering-body {
+  outline: 2px dotted var(--pink);
+  outline-offset: 3px;
+}
+
+/* Like the archive sprite tooltips: hover and keyboard focus, no scripts. */
+.journal-offering-tooltip {
+  position: absolute;
+  z-index: 15;
+  bottom: calc(100% + 7px);
+  box-sizing: border-box;
+  width: max-content;
+  max-width: min(16rem, calc(100vw - 3rem));
+  padding: 6px 8px;
+  color: var(--text-bright);
+  background: var(--terminal-bg);
+  border: 1px solid var(--line);
+  font-size: 11px;
+  line-height: 1.4;
+  text-align: left;
+  white-space: normal;
+  overflow-wrap: anywhere;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+/* Keep long tooltips inside the narrow embedded journal panel. */
+.journal-offering:nth-child(4n + 1) .journal-offering-tooltip,
+.journal-offering:nth-child(4n + 2) .journal-offering-tooltip {
+  left: 0;
+}
+
+.journal-offering:nth-child(4n + 3) .journal-offering-tooltip,
+.journal-offering:nth-child(4n + 4) .journal-offering-tooltip {
+  right: 0;
+}
+
+.journal-offering:hover .journal-offering-tooltip,
+.journal-offering:focus-within .journal-offering-tooltip {
+  opacity: 1;
+  visibility: visible;
+}
+
+.journal-field {
+  display: block;
+}
+
+.journal-optional {
+  color: var(--muted);
+}
+
+.journal-field input,
+.journal-field textarea {
+  display: block;
+  box-sizing: border-box;
+  width: 100%;
+  min-width: 0;
+  margin: 0;
+  padding: 0.7rem 0.8rem;
+  color: var(--text-bright);
+  background: var(--terminal-bg);
+  border: 1px solid var(--line-soft);
+  border-radius: 0;
+  font: inherit;
+  font-size: 13px;
+}
+
+.journal-field textarea {
+  min-height: 115px;
+  resize: vertical;
+  line-height: 1.5;
+}
+
+.journal-field input::placeholder,
+.journal-field textarea::placeholder {
+  color: var(--muted);
+  opacity: 0.85;
+}
+
+.journal-field input:focus,
+.journal-field textarea:focus {
+  border-color: var(--teal);
+  outline: 1px solid var(--teal);
+  outline-offset: 1px;
+}
+
+.journal-submit {
+  justify-self: start;
+  padding: 0.65rem 1rem;
+  color: var(--text-bright);
+  background: var(--surface);
+  border: 1px solid var(--teal);
+  border-radius: 0;
+  font: inherit;
+  font-size: 12px;
+}
+
+.journal-submit:disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+}
+
+.journal-fine-print {
+  margin: -0.65rem 0 0;
+  color: var(--muted);
+  font-size: 11px;
+  line-height: 1.5;
+}
+
+@media (max-width: 720px) {
+  body.page-journal #page {
+    padding: 0;
+  }
+
+  body.page-journal #content {
+    padding: 1.5rem 1.2rem 2.5rem;
+  }
+
+  body.page-journal #content::after {
+    top: 1.5rem;
+    left: calc(1.2rem + 25ch);
+  }
+}
+
+@media (max-width: 420px) {
+  body.page-journal #content::after {
+    content: "ls";
+  }
+
+  .journal-offering-grid {
+    gap: 0.35rem;
+  }
+
+  .journal-offering-body {
+    min-height: 98px;
+    padding-inline: 0.15rem;
+    font-size: 10px;
+  }
+
+  .journal-offering-icon {
+    width: 40px;
+    height: 40px;
+  }
+}
+
+/* Tooltips stay within a narrow WorkAdventure panel/mobile viewport. */
+@media (max-width: 520px) {
+  .journal-offering-grid {
+    position: relative;
+  }
+
+  .journal-offering {
+    position: static;
+  }
+
+  .journal-offering-grid .journal-offering .journal-offering-tooltip {
+    right: 0;
+    left: 0;
+    bottom: calc(100% + 0.35rem);
+    width: auto;
+    max-width: none;
+  }
+}
+

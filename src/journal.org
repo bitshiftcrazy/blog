@@ -1,0 +1,164 @@
+#+TITLE: The Lost + Found
+
+#+OPTIONS: toc:nil num:nil
+
+#+begin_export html
+<main class="journal" aria-labelledby="journal-title">
+  <header class="journal-heading">
+    <p class="journal-kicker">RECOVERED FRAGMENTS / VOLUME 01</p>
+    <h1 id="journal-title">The Lost + Found</h1>
+    <p>Oh! Someone found this place.</p>
+    <p>I suppose curiosity has brought you quite a long way. I guess it always does.</p>
+    <p>Since you're here, feel free to look around, read what others have left behind, or add a little something for those who come after.</p>
+  </header>
+
+  <section class="journal-pages" aria-labelledby="journal-pages-heading">
+    <div class="journal-section-heading">
+      <h2 id="journal-pages-heading">Pages left behind</h2>
+      <span class="journal-count">0 entries</span>
+    </div>
+    <div class="journal-empty">
+      <span class="journal-page-id">PAGE 001 / BLANK</span>
+      <p>Nothing here yet. There is plenty of room.</p>
+    </div>
+  </section>
+
+  <section class="journal-leave" aria-labelledby="journal-leave-heading">
+    <h2 id="journal-leave-heading">Leave something behind</h2>
+    <p class="journal-hint">Choose a little keepsake to tuck between the pages.</p>
+
+    <form class="journal-form" name="journal" method="post" action="/journal-thanks.html" data-netlify="true" netlify-honeypot="bot-field">
+      <p class="journal-honeypot" style="display: none;">
+        <label>Leave this field empty: <input type="text" name="bot-field" autocomplete="off" tabindex="-1"></label>
+      </p>
+      <fieldset class="journal-offerings">
+        <legend>A small offering</legend>
+        <div class="journal-category" role="group" aria-label="nature/">
+          <h3 class="journal-category-label">nature/</h3>
+          <div class="journal-offering-grid">
+            <label class="journal-offering">
+              <input type="radio" name="offering" value="mushroom" aria-describedby="journal-tip-mushroom" checked>
+              <span class="journal-offering-body">
+                <img class="journal-offering-icon" src="assets/website_sprites/inventory_mushroom.png" alt="" width="32" height="32" aria-hidden="true">
+                <span class="journal-offering-name">Mushroom</span>
+              </span>
+              <span class="journal-offering-tooltip" id="journal-tip-mushroom" role="tooltip">Not edible. Someone tried anyways.</span>
+            </label>
+            <label class="journal-offering">
+              <input type="radio" name="offering" value="leaf" aria-describedby="journal-tip-leaf">
+              <span class="journal-offering-body">
+                <img class="journal-offering-icon" src="assets/website_sprites/inventory_leaf.png" alt="" width="32" height="32" aria-hidden="true">
+                <span class="journal-offering-name">Leaf</span>
+              </span>
+              <span class="journal-offering-tooltip" id="journal-tip-leaf" role="tooltip">What a nice and crispy leaf.</span>
+            </label>
+            <label class="journal-offering">
+              <input type="radio" name="offering" value="pebble" aria-describedby="journal-tip-pebble">
+              <span class="journal-offering-body">
+                <img class="journal-offering-icon" src="assets/website_sprites/inventory_pebble.png" alt="" width="32" height="32" aria-hidden="true">
+                <span class="journal-offering-name">Pebble</span>
+              </span>
+              <span class="journal-offering-tooltip" id="journal-tip-pebble" role="tooltip">A smooth, shiny pebble. It has some ants on it.</span>
+            </label>
+            <label class="journal-offering">
+              <input type="radio" name="offering" value="feather" aria-describedby="journal-tip-feather">
+              <span class="journal-offering-body">
+                <img class="journal-offering-icon" src="assets/website_sprites/inventory_feather.png" alt="" width="32" height="32" aria-hidden="true">
+                <span class="journal-offering-name">Feather</span>
+              </span>
+              <span class="journal-offering-tooltip" id="journal-tip-feather" role="tooltip">Probably not from something ominous.</span>
+            </label>
+          </div>
+        </div>
+        <div class="journal-category" role="group" aria-label="components/">
+          <h3 class="journal-category-label">components/</h3>
+          <div class="journal-offering-grid">
+            <label class="journal-offering">
+              <input type="radio" name="offering" value="led" aria-describedby="journal-tip-led">
+              <span class="journal-offering-body">
+                <img class="journal-offering-icon" src="assets/website_sprites/inventory_led.png" alt="" width="32" height="32" aria-hidden="true">
+                <span class="journal-offering-name">LED</span>
+              </span>
+              <span class="journal-offering-tooltip" id="journal-tip-led" role="tooltip">May it be a light to you in dark places, when all other lights go out.</span>
+            </label>
+            <label class="journal-offering">
+              <input type="radio" name="offering" value="capacitor" aria-describedby="journal-tip-capacitor">
+              <span class="journal-offering-body">
+                <img class="journal-offering-icon" src="assets/website_sprites/inventory_capacitor.png" alt="" width="32" height="32" aria-hidden="true">
+                <span class="journal-offering-name">Capacitor</span>
+              </span>
+              <span class="journal-offering-tooltip" id="journal-tip-capacitor" role="tooltip">Probably still holding charge. Or anticipation.</span>
+            </label>
+            <label class="journal-offering">
+              <input type="radio" name="offering" value="mosfet" aria-describedby="journal-tip-mosfet">
+              <span class="journal-offering-body">
+                <img class="journal-offering-icon" src="assets/website_sprites/inventory_mosfet.png" alt="" width="32" height="32" aria-hidden="true">
+                <span class="journal-offering-name">MOSFET</span>
+              </span>
+              <span class="journal-offering-tooltip" id="journal-tip-mosfet" role="tooltip">For switching moods and currents.</span>
+            </label>
+            <label class="journal-offering">
+              <input type="radio" name="offering" value="resistor" aria-describedby="journal-tip-resistor">
+              <span class="journal-offering-body">
+                <img class="journal-offering-icon" src="assets/website_sprites/inventory_resistor.png" alt="" width="32" height="32" aria-hidden="true">
+                <span class="journal-offering-name">Resistor</span>
+              </span>
+              <span class="journal-offering-tooltip" id="journal-tip-resistor" role="tooltip">220 Ohms of pointless resistance.</span>
+            </label>
+          </div>
+        </div>
+        <div class="journal-category" role="group" aria-label="artifacts/">
+          <h3 class="journal-category-label">artifacts/</h3>
+          <div class="journal-offering-grid">
+            <label class="journal-offering">
+              <input type="radio" name="offering" value="d20" aria-describedby="journal-tip-d20">
+              <span class="journal-offering-body">
+                <img class="journal-offering-icon" src="assets/website_sprites/inventory_d20.png" alt="" width="32" height="32" aria-hidden="true">
+                <span class="journal-offering-name">D20</span>
+              </span>
+              <span class="journal-offering-tooltip" id="journal-tip-d20" role="tooltip">May your rolls be kind.</span>
+            </label>
+            <label class="journal-offering">
+              <input type="radio" name="offering" value="d4" aria-describedby="journal-tip-d4">
+              <span class="journal-offering-body">
+                <img class="journal-offering-icon" src="assets/website_sprites/inventory_d4.png" alt="" width="32" height="32" aria-hidden="true">
+                <span class="journal-offering-name">D4</span>
+              </span>
+              <span class="journal-offering-tooltip" id="journal-tip-d4" role="tooltip">An adventurer&#x27;s caltrop.</span>
+            </label>
+            <label class="journal-offering">
+              <input type="radio" name="offering" value="cartridge" aria-describedby="journal-tip-cartridge">
+              <span class="journal-offering-body">
+                <img class="journal-offering-icon" src="assets/website_sprites/inventory_cartridge.png" alt="" width="32" height="32" aria-hidden="true">
+                <span class="journal-offering-name">Dusty Gameboy Cartridge</span>
+              </span>
+              <span class="journal-offering-tooltip" id="journal-tip-cartridge" role="tooltip">It&#x27;s dangerous to go alone! Take this.</span>
+            </label>
+            <label class="journal-offering">
+              <input type="radio" name="offering" value="beacon" aria-describedby="journal-tip-beacon">
+              <span class="journal-offering-body">
+                <img class="journal-offering-icon" src="assets/website_sprites/inventory_beacon.png" alt="" width="32" height="32" aria-hidden="true">
+                <span class="journal-offering-name">A non-suspicious, ordinary rock</span>
+              </span>
+              <span class="journal-offering-tooltip" id="journal-tip-beacon" role="tooltip">A NEW HAND TOUCHES THE BEACON.</span>
+            </label>
+          </div>
+        </div>
+      </fieldset>
+
+      <label class="journal-field" for="journal-name">
+        <span>Your name <span class="journal-optional">(optional)</span></span>
+        <input id="journal-name" name="name" type="text" maxlength="30" placeholder="A passing wanderer" autocomplete="nickname">
+      </label>
+
+      <label class="journal-field" for="journal-message">
+        <span>A note for whoever comes next</span>
+        <textarea id="journal-message" name="message" rows="5" maxlength="300" placeholder="I found this place by accident..." required></textarea>
+      </label>
+
+      <button class="journal-submit" type="submit" disabled>Leave your offering →</button>
+      <p class="journal-fine-print">The journal isn't accepting submissions yet. Once open, notes will be reviewed before appearing here.</p>
+    </form>
+  </section>
+</main>
+#+end_export
