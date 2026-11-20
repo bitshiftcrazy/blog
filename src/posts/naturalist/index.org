@@ -1,0 +1,702 @@
+
+#+setupfile: ~/.emacs.d/org-templates/level1-slim.org
+#+title: The Naturalist: A Cyberdeck for the curious Wanderer
+#+date: "<2026-11-15 Sun 20:00>"
+#+keywords: raspberry pi, cyberdeck, rp2040, mushrooms
+#+description: In an attempt to merge even more of my special interests, I built yet another little cyberdeck: the Naturalist. Its current task is to accompany me on my walks and help me with the identification of my beloved mushrooms, as well as function as a virtual mushroom basket. No mushroom is harmed in the process, each species is represented by a historical illustration from the Biodiversity Heritage Library. Back home, these collected illustrations are displayed on my TV as aesthetically pleasing collages (see pics, it kinda makes more sense then, hopefully).
+
+* The Naturalist: A Cyberdeck for the curious Wanderer
+
+#+attr_html: :class tldr 
+#+BEGIN_DIV
+In an attempt to merge even more of my special interests, I built yet another little cyberdeck: the Naturalist. Its current task is to accompany me on my walks and help me with the identification of my beloved mushrooms, as well as function as a virtual mushroom basket. No mushroom is harmed in the process, each species is represented by a historical illustration from the Biodiversity Heritage Library. Back home, these collected illustrations are displayed on my TV as aesthetically pleasing collages (see pics, it kinda makes more sense then, hopefully).
+#+END_DIV  
+
+#+BEGIN_EXPORT html
+<figure style="margin: 2em auto; text-align: center;">
+<img src="../../assets/naturalist2.jpg"
+     alt="The Naturalist cyberdeck in an autumn forest, displaying a historical fly agaric illustration beside real fly agarics"
+     title="The Naturalist in its natural habitat"
+     style="display: block; width: 100%; max-width: 1000px; height: auto; margin: 0 auto;">
+
+<figcaption><span class="figure-number">Figure 1: </span> The Naturalist in its natural habitat</figcaption>
+</figure>
+#+END_EXPORT
+
+Note that this article explores mainly my motivation and decisions, if you're looking for technical documentation or bits and pieces to build your own:
+[[https://github.com/bitshiftcrazy/naturalist][View on GitHub]]
+
+*Not sponsored or an ad or anything:*
+I took all of the historical illustrations for this project from [[https://www.biodiversitylibrary.org/][Biodiversity Heritage Library]].
+BHL provides free access to an amazing collection of biodiversity literature that preserves scientific and artistic heritage for everyone.
+So if you enjoy stuff like this, too, and have a few bucks to spare, please consider making a donation [[https://about.biodiversitylibrary.org/get-involved/donate/][here]].
+
+** Of machines, mushrooms and marvel
+
+As usual, the rambl-y preliminary part first, and this time I have no intention to keep it short (I never do, but usually I intend to). You can, however, @@html:<a href="#concept"> skip this </a>@@
+
+Let's face it, I have a soft spot for the odd and the weird. The sort of things that make you look twice, the perversely overengineered ones as well as the stupidly simple genius ones (you know what I'm talking about, it's a genre). I love building them myself, and it makes all my circuits light up to awe upon what other people come up with. And I think a lot of the most exciting things live between two worlds and I, too, try to happily merge things where possible (more for practical reasons, but hey, let me have my little philosophical escapade here).
+
+So, prepare for a little LJMP: for this particular project I merged two of my lifelong obsessions, machines and mushrooms.
+
+I really love mushrooms. It brings me joy to look at them, to boop them. I usually don't lick them. And not just mushrooms, the entire realm of fungi is stimulatingly systematic, there's always a new rabbit hole to dive into headfirst, always one more thing to discover.
+
+And then there's machines (obviously). Automatons, apparatuses, computers, contraptions, instruments. I'm not particularly picky about them: I collect a lot of things, from ThinkPads to retro gaming consoles to antique measuring tools.
+
+
+#+BEGIN_EXPORT html
+<figure style="max-width: 74ch; margin: 2rem 0;">
+<div style="display: flex; max-width: 400px; margin: 0 auto;
+            gap: 8px; align-items: flex-start;">
+    <a href="../../assets/naturalist_machines_and_mushrooms1.jpeg"
+       target="_blank" rel="noopener noreferrer"
+       style="flex: 1; min-width: 0;">
+      <img src="../../assets/naturalist_machines_and_mushrooms1.jpeg"
+           alt="The Naturalist surrounded by antique measuring instruments"
+           loading="lazy"
+           style="display: block; width: 100%; height: auto;">
+    </a>
+    <a href="../../assets/naturalist_weird_woman_with_mushrooms.jpeg"
+       target="_blank" rel="noopener noreferrer"
+       style="flex: 1; min-width: 0;">
+      <img src="../../assets/naturalist_weird_woman_with_mushrooms.jpeg"
+           alt="Using the Naturalist beside mushrooms in an autumn forest"
+           loading="lazy"
+           style="display: block; width: 100%; height: auto;">
+    </a>
+  </div>
+  <figcaption> Machines and mushrooms and weird woman with mushroom machine.</figcaption>
+</figure>
+#+END_EXPORT
+
+So, psychologically speaking, it was probably inevitable that at some point I'd combine these interests into a tiny computer stuffed into an antique pencil case.
+Enter the Naturalist, my personal Pilzapparat (= mushroom apparatus). It accompanies me on my walks, helps me evaluate mushrooms, lets me virtually collect them without removing anything from the forest, and turns their historical illustrations into little pieces of art.
+
+And there's this hard-to-describe warm feeling that someone 150 years ago meticulously painted a mushroom illustration, possibly as in awe as I am when I look at one, and today, in 2026, some random weird woman (hi) gets to enjoy their work.
+
+I think that's what I cherish most about oddly specific creations. They're little windows into what someone else finds fascinating, a little lens I can look through to see how another being perceives the world around them (that sentence sounded cute in my head, but kinda creepy written down). And I don't even have to share their particular passion to enjoy their enthusiasm. Sometimes I learn something new, sometimes I stumble into an entirely unexpected rabbit hole, and sometimes I even make a friend along the way.
+
+Well, I suppose that's what I attempt to do here: opening one of these windows from the other side. Maybe some will enjoy the view, maybe it'll push them down a rabbit hole of their own. And if someone else happens to tune into this specific wavelength of weirdness and sees a bit of their own weirdness reflected back, that'd be nice, too.
+
+In this spirit, welcome to my workshop, there be mushrooms (and yeah, also the actual project, hidden under a paragraph of pseudo-philosophical escapades).
+
+
+#+BEGIN_EXPORT html
+<a id="concept"></a>
+#+END_EXPORT
+** Move slow and look at things: the Naturalist's concept
+
+The Naturalist is deliberately built around slowness. And while this sounds like a horrible marketing slogan trying to sell you yoga accessories you don't need, it actually sums up my goal quite well.
+
+I enjoy taking my time with things, exploring details, taking a second look. So for a device that is supposed to accompany me on my lengthy walks, taking things slow is a core requirement.
+
+I feel this particular cyberdeck of mine really lives up to this requirement. And this starts with the process of building it:
+
+Back in March when I acquired a new old ammeter, I had the random idea of building a device that resembles the measuring instruments I collect. And, well, I could just have acquired any wooden case, or even built one myself. But for both aesthetic reasons and the satisfaction of finding the right one™, it's much more fun to search for the right one™. So, from March onward, I had my little antennas stretched out to find a case that just hit the spot. And in August, I finally did (as well as some nice donor loot for it).
+
+Designing the keyboard PCB was equally slow: I wanted the whole thing to resemble antique measuring tools, or something a 19th-century naturalist would carry around as a field instrument. So I spent a lot of time turning botanical and zoological illustrations into ENIG artwork.
+
+#+BEGIN_EXPORT html
+<figure>
+<div style="display: flex; gap: 1em; justify-content: center; align-items: center; flex-wrap: wrap; max-width: 650px; margin: 0 auto;">
+<a href="../../assets/naturalist_ammeter_inspo.jpg" target="_blank" rel="noopener noreferrer"
+   style="flex: 1 1 260px; max-width: 305px; text-align: center;">
+<img src="../../assets/naturalist_ammeter_inspo.jpg"
+     alt="An opened antique French ammeter with its controls visible"
+     title="The antique ammeter that inspired the Naturalist"
+     loading="lazy"
+     style="display: block; width: auto; max-width: 100%; max-height: 460px; height: auto; margin: 0 auto;">
+</a>
+<a href="../../assets/naturalist_inspo_ammeter.jpg" target="_blank" rel="noopener noreferrer"
+   style="flex: 1 1 260px; max-width: 305px; text-align: center;">
+<img src="../../assets/naturalist_inspo_ammeter.jpg"
+     alt="Instagram story dated March 10, 2026 about repurposing an antique instrument case"
+     title="March 10, 2026: the first idea"
+     loading="lazy"
+     style="display: block; width: auto; max-width: 100%; max-height: 460px; height: auto; margin: 0 auto;">
+</a>
+<a href="../../assets/naturalist_loot.jpg" target="_blank" rel="noopener noreferrer"
+   style="flex: 1 1 260px; max-width: 305px; text-align: center;">
+<img src="../../assets/naturalist_loot.jpg"
+     alt="Instagram story dated August 1, 2026 showing flea market finds and the wooden pencil case"
+     title="August 1, 2026: flea market finds"
+     loading="lazy"
+     style="display: block; width: auto; max-width: 100%; max-height: 460px; height: auto; margin: 0 auto;">
+</a>
+<a href="../../assets/naturalist_keeb_process.jpg" target="_blank" rel="noopener noreferrer"
+   style="flex: 1 1 260px; max-width: 305px; text-align: center;">
+<img src="../../assets/naturalist_keeb_process.jpg"
+     alt="Instagram story dated September 13, 2026 showing the keyboard PCB design and wooden case"
+     title="September 13, 2026: keyboard concept"
+     loading="lazy"
+     style="display: block; width: auto; max-width: 100%; max-height: 460px; height: auto; margin: 0 auto;">
+</a>
+</div>
+<figcaption><span class="figure-number">Figure 2: </span> The ammeter that inspired the Naturalist, and the timeline from random idea to actual project.</figcaption>
+</figure>
+#+END_EXPORT
+
+
+Okay, mutilating that wooden case with a Dremel did not take that much time. However, fitting it back together so it didn't look too mutilated anymore did.
+
+The only "deadline pressure" I faced here was caused by the weather. I had to temporarily interrupt my [[https://missmolerat.com/posts/clotty_intro/][Clotty]] work to get some test mushroom walks in before the temperatures became mushroom-hostile.
+
+But most importantly, the slowness isn't limited to the process of building that contraption: the only way to use it is slowly.
+
+And yeah, the eInk I'm using, with its refresh time of ~30s (depending on the temperature), certainly helps enforce this. But the whole user interface is an invitation to explore and observe, too. There's no automated mushroom identification, image classification or AI that identifies mushrooms for you. After all, the machine is built to bring me joy, and not to take away what brings me joy.
+
+I want to marvel at mushrooms. I want to inspect them and poke them and do weird stretching to see what's under the cap. So all I do is enter shortcuts from a defined trait vocabulary for the mushroom characteristics I've observed. And the Naturalist then presents me with scored search results from my mushroom database and their corresponding historical illustrations. I choose which mushroom is likely the one in front of me, put it in my virtual basket and carry my finds home to display them as art collages on my TV.
+
+#+BEGIN_EXPORT html
+<figure>
+<div style="display: flex; gap: 1em; justify-content: center; align-items: center; flex-wrap: wrap; max-width: 1100px; margin: 0 auto;">
+<a href="../../assets/naturalist_tv1.jpg" target="_blank" rel="noopener noreferrer"
+   style="flex: 1 1 280px; max-width: 355px; text-align: center;">
+<img src="../../assets/naturalist_tv1.jpg"
+     alt="The Naturalist displaying a virtual mushroom basket beneath a Frame TV showing the corresponding historical mushroom illustrations"
+     title="The virtual mushroom basket and its artwork at home"
+     loading="lazy"
+     style="display: block; width: auto; max-width: 100%; max-height: 460px; height: auto; margin: 0 auto;">
+</a>
+<a href="../../assets/naturalist_funde.jpg" target="_blank" rel="noopener noreferrer"
+   style="flex: 2 1 460px; max-width: 690px; text-align: center;">
+<img src="../../assets/naturalist_funde.jpg"
+     alt="A collage of six historical mushroom illustrations collected on a walk near Rottenburg am Neckar on November 14, 2026"
+     title="The exported mushroom collection from a walk"
+     loading="lazy"
+     style="display: block; width: 100%; max-height: 460px; height: auto; object-fit: contain; margin: 0 auto;">
+</a>
+</div>
+<figcaption><span class="figure-number">Figure 3: </span> From the Naturalist's virtual basket to a collage of historical illustrations on my cursed TV.</figcaption>
+</figure>
+#+END_EXPORT
+
+The illustrations are not random either: they're hand-selected historical illustrations from the [[https://www.biodiversitylibrary.org/][Biodiversity Heritage Library]] (and oh! Did I find some wonderful rabbit holes to go down in the process, see @@html:<a href="#data"> the data section </a>@@). Meaning, 150 years ago, someone else walked through a forest or over a meadow, inspected a mushroom, maybe booped it, and then turned it into the wonderful illustration that now lives on a device they couldn't even imagine back then (yes, yes, I know that's not necessarily how it was done, but let me have this fantasy, okay?). A little mycelium-network-link through time.
+
+By now, I've had the chance to take the Naturalist on a few walks and can happily confirm that it does indeed slow me down. Since I don't have to take out my phone for a pic but have to really focus on the specimen in front of me to identify its traits, everything else narrows down. Until there's nothing else, just mushroom.
+
+Which, to someone like me who has the mobility of an armchair, feels a lot more relaxing than yoga anyways.
+
+** From pencil case to Pilzapparat
+
+For technical details, keyboard BOM and so on, please see [[https://github.com/bitshiftcrazy/naturalist/tree/main/hardware][GitHub]], this section here is more of a build gallery.
+
+To summarise the main parts quickly, the hardware of this deck is unsurprisingly simple: a Raspberry Pi Zero 2 W, a Pimoroni Inky Impression Spectra 6, a custom RP2040-based keyboard PCB, an Adafruit PowerBoost 1000C, some sprinkles like LEDs, toggle switches etc.
+
+While the resulting device is kinda cute (in the right light), the process, in tradition of how I usually build (butcher) things like this, was not.
+
+#+BEGIN_EXPORT html
+<figure>
+<div style="display: flex; gap: 1em; justify-content: center; align-items: center; flex-wrap: wrap; max-width: 800px; margin: 0 auto;">
+<a href="../../assets/naturalist_keeb_design.jpg" target="_blank" rel="noopener noreferrer"
+   style="flex: 1 1 260px; max-width: 360px; text-align: center;">
+<img src="../../assets/naturalist_keeb_design.jpg"
+     alt="The unmodified pencil case held in front of a KiCad rendering of the custom keyboard PCB"
+     title="Planning the keyboard and case"
+     loading="lazy"
+     style="display: block; width: auto; max-width: 100%; max-height: 460px; height: auto; margin: 0 auto;">
+</a>
+<a href="../../assets/naturalist_closed1.jpg" target="_blank" rel="noopener noreferrer"
+   style="flex: 1 1 260px; max-width: 360px; text-align: center;">
+<img src="../../assets/naturalist_closed1.jpg"
+     alt="The finished wooden Naturalist case closed, with leather details and toggle switches"
+     title="The finished closed Naturalist"
+     loading="lazy"
+     style="display: block; width: auto; max-width: 100%; max-height: 460px; height: auto; margin: 0 auto;">
+</a>
+</div>
+<figcaption><span class="figure-number">Figure 4: </span> The original pencil case and keyboard design, and the finished Apparat in its closed form.</figcaption>
+</figure>
+#+END_EXPORT
+
+I used a Dremel to gently nudge the pencil case into shape and make space for the interior. I also removed some beautiful velvet lining (but kept the velvet! I'll surely find a good retirement plan for it).
+And fear not, the pencil case is not "/antique/ antique". It's old, but mass produced and made from soft wood, so I did not destroy some sort of museum rarity.
+
+#+BEGIN_EXPORT html
+<figure>
+<div style="display: flex; gap: 1em; justify-content: center; align-items: flex-start; flex-wrap: wrap;">
+
+<a href="../../assets/naturalist_case_wip5.jpg" target="_blank"
+   style="flex: 1 1 230px; max-width: 360px; text-align: center;">
+<img src="../../assets/naturalist_case_wip5.jpg"
+     alt="The antique pencil case with its original velvet lining partly removed"
+     title="Removing the original velvet lining"
+     loading="lazy"
+     style="display: block; width: auto; max-width: 100%; max-height: 420px; height: auto; margin: 0 auto;">
+</a>
+
+<a href="../../assets/naturalist_case_wip3.jpg" target="_blank"
+   style="flex: 1 1 230px; max-width: 360px; text-align: center;">
+<img src="../../assets/naturalist_case_wip3.jpg"
+     alt="The opened wooden pencil case on a garden table alongside a Dremel and cutting accessories"
+     title="Making room for the electronics"
+     loading="lazy"
+     style="display: block; width: auto; max-width: 100%; max-height: 420px; height: auto; margin: 0 auto;">
+</a>
+
+</div>
+<figcaption><span class="figure-number">Figure 5: </span> Gently persuading an antique pencil case to fit modern electronics with a power tool.</figcaption>
+</figure>
+#+END_EXPORT
+
+#+BEGIN_EXPORT html
+<figure>
+<div style="display: flex; gap: 1em; justify-content: center; align-items: flex-start; flex-wrap: wrap;">
+
+<a href="../../assets/naturalist_wip5.jpg" target="_blank"
+   style="flex: 0 1 240px; max-width: 280px; text-align: center;">
+<img src="../../assets/naturalist_wip5.jpg"
+     alt="Naturalist during assembly with the eInk display and custom keyboard fitted in the opened wooden case"
+     title="First fitting of the display and keyboard"
+     loading="lazy"
+     style="display: block; width: auto; max-width: 100%; max-height: 380px; height: auto; margin: 0 auto;">
+</a>
+
+<a href="../../assets/naturalist_wip3.jpg" target="_blank"
+   style="flex: 0 1 240px; max-width: 280px; text-align: center;">
+<img src="../../assets/naturalist_wip3.jpg"
+     alt="Partly assembled Naturalist showing the battery and power electronics beside the mounted keyboard"
+     title="Working out the electronics placement"
+     loading="lazy"
+     style="display: block; width: auto; max-width: 100%; max-height: 380px; height: auto; margin: 0 auto;">
+</a>
+
+<a href="../../assets/naturalist_wip2.jpg" target="_blank"
+   style="flex: 0 1 240px; max-width: 280px; text-align: center;">
+<img src="../../assets/naturalist_wip2.jpg"
+     alt="The opened Naturalist with its display, battery and power circuitry arranged during assembly"
+     title="Power supply and display fitting"
+     loading="lazy"
+     style="display: block; width: auto; max-width: 100%; max-height: 380px; height: auto; margin: 0 auto;">
+</a>
+
+</div>
+<figcaption><span class="figure-number">Figure 6: </span> Fitting the display, keyboard and power stuff into the wooden case.</figcaption>
+</figure>
+#+END_EXPORT
+
+The keyboard has 42 push buttons and visible diodes so it looks a bit more like an instrument. Generally, quite a few electronics remain visible on the Naturalist to make it feel less "polished mini computer" and more "could pass as an instrument".
+Don't ask me why I went for the weird keyboard layout, tho, I thought it'd kinda look cool and split-keyboard-y, but... I guess two more keys would not have changed the look significantly.
+
+It also has a small silkscreen area for handwritten notes with wet-erasable markers. I wasn't sure whether this would work well or if it'd leave stains, so far I've only used silkscreen with permanent marker. But it turns out to work precisely as I intended.
+And as mentioned before, the front ENIG artwork is based on illustrations from the Biodiversity Heritage Library as well. Big shoutout to KiCad's "simplify polygons" feature here. I suck at artwork and usually create the ones for my PCBs in inkscape (with which I suck even more), and that's totally feasible for small shapes. But for botanical paintings at my skill level, well, not so much. The only reason I did not hire a professional artist for my obsucre hobby project was that I could not find one...
+
+#+BEGIN_EXPORT html
+<figure>
+<div style="display: flex; gap: 1em; justify-content: center; align-items: center; flex-wrap: wrap;">
+
+<a href="../../assets/naturalist_keeb_front.jpg"
+   target="_blank"
+   style="flex: 2 1 370px; max-width: 620px; text-align: center;">
+<img src="../../assets/naturalist_keeb_front.jpg"
+     alt="Front of the Naturalist keyboard PCB with 42 push buttons and botanical ENIG artwork"
+     title="The Naturalist keyboard PCB"
+     loading="lazy"
+     style="display: block; width: 100%; height: auto; max-height: 430px; object-fit: contain;">
+</a>
+
+<a href="../../assets/naturalist_silkscreen_note.jpg"
+   target="_blank"
+   style="flex: 1 1 180px; max-width: 300px; text-align: center;">
+<img src="../../assets/naturalist_silkscreen_note.jpg"
+     alt="Handwritten mushroom notes on the keyboard's wet-erasable silkscreen area"
+     title="Testing the writable silkscreen"
+     loading="lazy"
+     style="display: block; width: auto; max-width: 100%; max-height: 430px; height: auto; margin: 0 auto;">
+</a>
+
+</div>
+
+<figcaption><span class="figure-number">Figure 7: </span> The custom keyboard PCB with its botanical artwork and writable silkscreen area </figcaption>
+</figure>
+#+END_EXPORT
+
+The back (also in tradition of how I usually do these things) has one of my favourite quotes, which seemed very fitting for this project. And, well, an owl.
+
+#+BEGIN_EXPORT html
+<figure style="text-align: center;">
+<a href="../../assets/naturalist_keeb_back.jpg" target="_blank">
+<img src="../../assets/naturalist_keeb_back.jpg"
+     alt="Back of the Naturalist keyboard PCB with a large owl illustration and a quote from Tove Jansson's Fair Play"
+     title="The owl and Tove Jansson quote on the back of the keyboard"
+     loading="lazy"
+     style="display: block; width: 100%; max-width: 720px; height: auto; margin: 0 auto;">
+</a>
+
+<figcaption><span class="figure-number">Figure 8: </span> A Tove Jansson quote and, well, an owl.</figcaption>
+</figure>
+#+END_EXPORT
+
+The cover plate is currently 3D-printed and has a little corkboard area to pin particularly pretty things, for example leaves or acorns or such. And a warm-white LED noodle for fanciness reasons. Later, I'll replace this 3D-printed stand-in with a PCB, too, one that has an integrated charger for the LiPo and USB ports. It was the one thing that would have kicked my last bulk PCB order from "I can somehow justify this price to myself" to "ouch" and as we all know, splitting an order in two reduces the overall price.
+
+#+BEGIN_EXPORT html
+<figure>
+<div style="display: flex; gap: 1em; justify-content: center; align-items: center; flex-wrap: wrap; max-width: 820px; margin: 0 auto;">
+<a href="../../assets/naturalist_interior_frame.jpg" target="_blank" rel="noopener noreferrer"
+   style="flex: 1 1 260px; max-width: 350px; text-align: center;">
+<img src="../../assets/naturalist_interior_frame.jpg"
+     alt="The wooden case with interior mounting frame and detached eInk display cover, corkboard and toggle switches"
+     title="Fitting the interior and cover plate"
+     loading="lazy"
+     style="display: block; width: auto; max-width: 100%; max-height: 460px; height: auto; margin: 0 auto;">
+</a>
+<a href="../../assets/naturalist_closed_details.jpg" target="_blank" rel="noopener noreferrer"
+   style="flex: 1 1 260px; max-width: 420px; text-align: center;">
+<img src="../../assets/naturalist_closed_details.jpg"
+     alt="Detail of the closed Naturalist showing leather hardware, toggle switches and strap connections"
+     title="The finished switches and leather details"
+     loading="lazy"
+     style="display: block; width: auto; max-width: 100%; max-height: 460px; height: auto; margin: 0 auto;">
+</a>
+</div>
+<figcaption><span class="figure-number">Figure 9: </span> The interior mounting frame and display cover during assembly, beside the finished leather and toggle-switch details.</figcaption>
+</figure>
+#+END_EXPORT
+
+Lastly, I added some leather details and toggle switches to increase the resemblance to my measuring instruments. And some brass picture-frame hangers and a leather strap to carry it as a purse.
+
+#+BEGIN_EXPORT html
+<figure>
+<div style="display: flex; gap: 1em; justify-content: center; align-items: center; flex-wrap: wrap; max-width: 850px; margin: 0 auto;">
+<div style="flex: 1 1 250px; max-width: 360px; text-align: center;">
+<video controls muted playsinline preload="metadata"
+       aria-label="Short video of the closed Naturalist being turned around on a workbench"
+       style="display: block; width: 100%; max-height: 480px; height: auto; margin: 0 auto;">
+  <source src="../../assets/naturalist_closed_bench.mp4" type="video/mp4">
+  Your browser does not support embedded video.
+  <a href="../../assets/naturalist_closed_bench.mp4">Watch the video</a>.
+</video>
+</div>
+<a href="../../assets/naturalist17.jpg" target="_blank" rel="noopener noreferrer"
+   style="flex: 1 1 260px; max-width: 430px; text-align: center;">
+<img src="../../assets/naturalist17.jpg"
+     alt="The Naturalist opened and held in a sunlit autumn forest with its shutdown screen showing"
+     title="The Naturalist out in the autumn light"
+     loading="lazy"
+     style="display: block; width: auto; max-width: 100%; max-height: 480px; height: auto; margin: 0 auto;">
+</a>
+</div>
+<figcaption><span class="figure-number">Figure 10: </span> The finished Naturalist, closed on the workbench and opened in the forest.</figcaption>
+</figure>
+#+END_EXPORT
+
+Field tests show it's sturdy enough to carry on walks and use outdoors, though I probably wouldn't throw it around, given that the eInk is fragile.
+
+** Bits, buttons and boletes
+
+For software details...yes, [[https://github.com/bitshiftcrazy/naturalist/tree/main/software][GitHub]] again.
+
+The Naturalist runs on a Raspberry Pi Zero 2 W, which is a ridiculous amount of computing power for what it does, but that decision was based on "works well with that display I have here".
+
+The software itself is written in C, with Cairo and Pango doing the rendering and Jansson for JSON, for an equally well-founded reason: since I earn the money for my expensive hobbies by writing C, it's kinda the only language I have proficiency in (haven't really touched anything else since uni). There is a small Python bridge for the Inky display, though. And keyboard input is handled through evdev.
+
+You could probably write the whole thing in Python or whatever suits you more, there's really no "hard technical reason" to use C.
+
+The interface itself is designed around the long refresh period of a colour eInk: you simply want as few refreshes as possible, so no scrolling or endless menu navigation. And that's very much in the spirit of the deck anyways!
+
+#+BEGIN_EXPORT html
+<figure>
+<div style="display: flex; gap: 1em; justify-content: center; align-items: center; flex-wrap: wrap; max-width: 820px; margin: 0 auto;">
+<a href="../../assets/naturalist_prototype.jpg" target="_blank" rel="noopener noreferrer"
+   style="flex: 1 1 260px; max-width: 380px; text-align: center;">
+<img src="../../assets/naturalist_prototype.jpg"
+     alt="Early display experiment showing historical mushroom illustrations on the Naturalist's six-colour eInk"
+     title="Early illustrated eInk display experiment"
+     loading="lazy"
+     style="display: block; width: auto; height: auto; max-width: 100%; max-height: 430px; margin: 0 auto;">
+</a>
+<a href="../../assets/naturalist_basket_test.jpg" target="_blank" rel="noopener noreferrer"
+   style="flex: 1 1 260px; max-width: 380px; text-align: center;">
+<img src="../../assets/naturalist_basket_test.jpg"
+     alt="Early layout experiment displaying many tiny labelled mushroom illustrations on the eInk screen"
+     title="Early small-icon layout test"
+     loading="lazy"
+     style="display: block; width: auto; height: auto; max-width: 100%; max-height: 430px; margin: 0 auto;">
+</a>
+</div>
+<figcaption><span class="figure-number">Figure 11: </span> Early experiments with the historical illustrations and how much information fits on the eInk screen.</figcaption>
+</figure>
+#+END_EXPORT
+
+Instead of a classic desktop application, I decided on a handful of static screens for various tasks. For example, a cheat sheet, a basket screen, mushroom details, a search screen with basic instructions and so on. And the interactions are kept to a minimum, too: all navigation, searching, etc. work via keyboard shortcuts. This worked quite well on my first walks, though some navigation between screens could use some improvement, and other things are unnecessarily verbose. By the time I'm writing this there's also rudimentary, ugly, inconveniently implemented English language support.
+
+#+BEGIN_EXPORT html
+<figure>
+<div style="display: flex; gap: 1em; justify-content: center; align-items: center; flex-wrap: wrap; max-width: 1050px; margin: 0 auto;">
+<a href="../../assets/naturalist_search_screen.jpg" target="_blank" rel="noopener noreferrer"
+   style="flex: 1 1 340px; max-width: 500px; text-align: center;">
+<img src="../../assets/naturalist_search_screen.jpg"
+     alt="The Naturalist start screen in the forest, inviting the user to enter three to five mushroom traits"
+     title="Start and trait-entry screen"
+     loading="lazy"
+     style="display: block; width: auto; height: auto; max-width: 100%; max-height: 420px; margin: 0 auto;">
+</a>
+<a href="../../assets/naturalist14.jpg" target="_blank" rel="noopener noreferrer"
+   style="flex: 1 1 340px; max-width: 500px; text-align: center;">
+<img src="../../assets/naturalist14.jpg"
+     alt="The Naturalist cheatsheet on its eInk screen showing mushroom-characteristic keyboard shortcuts"
+     title="The keyboard shortcut cheatsheet"
+     loading="lazy"
+     style="display: block; width: auto; height: auto; max-width: 100%; max-height: 420px; margin: 0 auto;">
+</a>
+</div>
+<figcaption><span class="figure-number">Figure 12: </span> A few static screens: entry example and the keyboard shortcut cheatsheet.</figcaption>
+</figure>
+#+END_EXPORT
+
+There are still some decisions to be made about the score-based search: right now, the guide can end up with no matches at all, and I should check for contradictions in the mushroom traits (for example, if both "absent ring" and "mobile ring" are selected).
+
+#+BEGIN_EXPORT html
+<figure>
+<div style="display: flex; gap: 1em; justify-content: center; align-items: center; flex-wrap: wrap; max-width: 980px; margin: 0 auto;">
+<div style="flex: 1 1 280px; max-width: 350px; text-align: center;">
+<video controls muted playsinline preload="metadata"
+       aria-label="Demonstration of entering mushroom traits, waiting for the eInk refresh, and viewing illustrated search results"
+       style="display: block; width: 100%; height: auto; max-height: 460px; margin: 0 auto;">
+  <source src="../../assets/naturalist_search.mp4" type="video/mp4">
+  Your browser does not support embedded video.
+  <a href="../../assets/naturalist_search.mp4">Watch the search demonstration</a>.
+</video>
+</div>
+<a href="../../assets/naturalist22.jpg" target="_blank" rel="noopener noreferrer"
+   style="flex: 1 1 360px; max-width: 580px; text-align: center;">
+<img src="../../assets/naturalist22.jpg"
+     alt="The Naturalist in the forest, showing five ranked illustrated mushroom candidates on its eInk screen"
+     title="Ranked illustrated search results"
+     loading="lazy"
+     style="display: block; width: auto; height: auto; max-width: 100%; max-height: 460px; margin: 0 auto;">
+</a>
+</div>
+<figcaption><span class="figure-number">Figure 13: </span> Exploring mushrooms: a real interaction, including the eInk defying 3°C, I wasn't exaggerating when I said it's slow .</figcaption>
+</figure>
+#+END_EXPORT
+
+It also keeps track of walks and my virtual mushroom basket, and I can enter small notes, observations and a location (this is really mainly limited by the eInk since I don't refresh the display at every key stroke).
+
+#+BEGIN_EXPORT html
+<figure style="text-align: center;">
+<a href="../../assets/naturalist4.jpg" target="_blank" rel="noopener noreferrer">
+<img src="../../assets/naturalist4.jpg"
+     alt="The Naturalist showing a historical illustration of a shaggy ink cap beside a real shaggy ink cap in the forest"
+     title="Historical illustration and an observed mushroom side by side"
+     loading="lazy"
+     style="display: block; width: auto; height: auto; max-width: 100%; max-height: 480px; margin: 0 auto;">
+</a>
+<figcaption><span class="figure-number">Figure 14: </span> A mushroom detail view in the field, with the real specimen right beside it.</figcaption>
+</figure>
+#+END_EXPORT
+
+And of course, all of this works offline.
+
+It's quite a small application, and it feels a little strange to turn a general-purpose Linux computer into a mycelium-only machine. But I justify it to myself with the intention to expand the project to other natural domains later (though let's face it, to justify a whole OS I'd need to turn this into the encyclopedia of encyclopedias, but hey...).
+
+For the final mushroom art collages made from the baskets, I haven't found a particularly good, straightforward, non-annoying way to transfer them to my Frame TV yet, though. Because of what we call /proprietäre Kackscheiße/ in German. Seriously, due to PTSD from my previous job in WiFi firmware development, I passionately hate all smart home devices and smart TVs above all, so you may call me biased. But I rarely ever yelled at an app as much as I did with that goddamn Samsung TV thing.
+
+#+BEGIN_EXPORT html
+<a id="data"></a>
+#+END_EXPORT
+
+** Of fungi, facets, and falsely attributed Frenchmen
+
+/this is the most exciting part ;)/
+
+As promised above, the curation of both my mushroom data and the historical illustrations led me down quite a few exciting rabbit holes!
+
+For now, I have 25 of the most common mushroom species in my little database. And given that I curate the whole thing by myself (hälp), that was enough work for a start.
+
+As mentioned before, identification is not automated, but done by myself. So I had to collect characteristics I can actually observe and turn them into a (relatively) minimal vocabulary: cap shape, primary colour, habitat, gills, rings, stems, and so on and so forth.
+
+It was truly satisfying to discover all the things there are to discover, the little details you usually don't pay attention to, and to figure out what makes a mushroom identifiable among the others. And funnily enough, for some, it really comes down to surprisingly few things that make them stand out! Take the snakeskin markings on the stem of a parasol mushroom, the spines underneath the cap of a hedgehog mushroom, or bruising colour. Other things that seem like obvious and immediately visible are surprisingly un-conclusive, such as cap colour (unless it's blue, I guess).
+
+#+BEGIN_EXPORT html
+<figure>
+<div style="display: flex; gap: 1em; justify-content: center; align-items: center; flex-wrap: wrap; max-width: 900px; margin: 0 auto;">
+<a href="../../assets/naturalist_cap_patterns.jpg" target="_blank" rel="noopener noreferrer"
+   style="flex: 1 1 280px; max-width: 420px; text-align: center;">
+<img src="../../assets/naturalist_cap_patterns.jpg"
+     alt="Close-up of a cluster of mushrooms showing strongly patterned, scaly brown caps"
+     title="Visible cap texture and patterns"
+     loading="lazy"
+     style="display: block; width: auto; max-width: 100%; max-height: 440px; height: auto; margin: 0 auto;">
+</a>
+<a href="../../assets/naturalist_shaggy_cap.jpg" target="_blank" rel="noopener noreferrer"
+   style="flex: 1 1 280px; max-width: 420px; text-align: center;">
+<img src="../../assets/naturalist_shaggy_cap.jpg"
+     alt="Close-up of a mushroom with a conspicuously shaggy, scaly cap"
+     title="Shaggy cap surface detail"
+     loading="lazy"
+     style="display: block; width: auto; max-width: 100%; max-height: 440px; height: auto; margin: 0 auto;">
+</a>
+</div>
+<figcaption><span class="figure-number">Figure 15: </span> An invitation to look closer (and boop): mushroom cap textures and patterns</figcaption>
+</figure>
+#+END_EXPORT
+
+But the most fascinating finds came from my deep dive into the historical illustrations from the Biodiversity Heritage Library! Somehow, this turned into some rather unexpected detective work.
+
+#+BEGIN_EXPORT html
+<figure>
+<div style="display: flex; gap: 1em; justify-content: center; align-items: center; flex-wrap: wrap; max-width: 950px; margin: 0 auto;">
+<a href="../../assets/amanita_pantherina.jpg" target="_blank" rel="noopener noreferrer"
+   style="flex: 1 1 280px; max-width: 440px; text-align: center;">
+<img src="../../assets/amanita_pantherina.jpg"
+     alt="Historical French mushroom plate showing Amanita pantherina and Amanita rubescens"
+     title="A historical Amanita illustration"
+     loading="lazy"
+     style="display: block; width: auto; max-width: 100%; max-height: 490px; height: auto; margin: 0 auto;">
+</a>
+<a href="../../assets/xerocomellus_chrysenteron.jpg" target="_blank" rel="noopener noreferrer"
+   style="flex: 1 1 280px; max-width: 440px; text-align: center;">
+<img src="../../assets/xerocomellus_chrysenteron.jpg"
+     alt="Historical German illustration of red-cracking boletes, labelled Rotfuss-Röhrling"
+     title="A historical red-cracking bolete illustration"
+     loading="lazy"
+     style="display: block; width: auto; max-width: 100%; max-height: 490px; height: auto; margin: 0 auto;">
+</a>
+</div>
+<figcaption><span class="figure-number">Figure 16: </span> Two particularly pretty historical mushroom illustrations.</figcaption>
+</figure>
+#+END_EXPORT
+
+For example, I took some of the illustrations from [[https://www.biodiversitylibrary.org/bibliography/4063][Atlas des champignons comestibles et vénéneux]] (1891), by Léon Dufour. But while digging into the author's work, I stumbled upon [[https://www.biodiversitylibrary.org/bibliography/183275][Nouvelle flore des champignons]] (1891), which the Biodiversity Heritage Library attributes to Julien Costantin and Léon Dufour (1780–1865). Which is an even more remarkable achievement than the mushroom research, given that Dufour, accoriding to these dates, had been dead for 26 years when the book was published.
+
+Now, this certainly could have had an explanation, for example, his work may simply have been published after his death. But as it turned out, there were actually two French naturalists who don't just share their interest in mushrooms, but also their name Léon Dufour. And the book was written by the younger one, [[https://catalogue.bnf.fr/ark:/12148/cb107474856][Léon Marie Dufour (1861–1942)]]. There's even this note saying "Ne pas confondre avec : Dufour, Léon (1860?-19..)" in the record for [[https://catalogue.bnf.fr/ark:/12148/cb11974260p][Léon Dufour (1780–1865)]].
+
+Very funny, very confusing, and very hard to resist the German urge to write an email to the Biodiversity Heritage Library to ask them to correct this.
+And: it's not clear who actually created the illustrations, since I couldn't find a credit for the illustrator (or perhaps the younger Dufour did them himself, who knows, I certainly don't, and I was informed it'd be slightly too much to book a trip to France to look for a lost illustrator in some archives...).
+
+#+BEGIN_EXPORT html
+<figure>
+<div style="display: flex; gap: 1em; justify-content: center; align-items: center; flex-wrap: wrap; max-width: 1150px; margin: 0 auto;">
+<a href="../../assets/naturalist_screenshot_dufour1.png" target="_blank" rel="noopener noreferrer"
+   style="flex: 1 1 390px; max-width: 555px; text-align: center;">
+<img src="../../assets/naturalist_screenshot_dufour1.png"
+     alt="BHL catalogue screenshot: Atlas des champignons comestibles et vénéneux, 1891, attributed to Léon Dufour (1861–1942)"
+     title="BHL: Léon Dufour, 1861–1942"
+     loading="lazy"
+     style="display: block; width: 100%; max-height: 390px; height: auto; object-fit: contain; margin: 0 auto;">
+</a>
+<a href="../../assets/naturalist_screenshot_dufour2.png" target="_blank" rel="noopener noreferrer"
+   style="flex: 1 1 390px; max-width: 555px; text-align: center;">
+<img src="../../assets/naturalist_screenshot_dufour2.png"
+     alt="BHL catalogue screenshot: Nouvelle flore des champignons, 1891, attributed to the older Léon Dufour (1780–1865)"
+     title="BHL: Léon Dufour, 1780–1865"
+     loading="lazy"
+     style="display: block; width: 100%; max-height: 390px; height: auto; object-fit: contain; margin: 0 auto;">
+</a>
+</div>
+<figcaption><span class="figure-number">Figure 17: </span> BHL's two different Léon Dufour attributions for mushroom books published in 1891 (click to inspect the dates).</figcaption>
+</figure>
+#+END_EXPORT
+
+But even more pedantic to spot, and even harder to resist the urge to correct:
+
+During my rabbit-hole crawling, I also stumbled upon [[https://en.wikipedia.org/wiki/Anna_Maria_Hussey][Anna Maria Hussey]], a British mycologist and illustrator, whose marvellous paintings found a new home in this cyberdeck, too. She published her work under the name "Mrs. T. J. Hussey", using her husband's initials, as was unfortunately customary at the time. And while the Biodiversity Heritage Library correctly lists her (and her sister Frances Reed) as an author and illustrator of [[https://www.biodiversitylibrary.org/bibliography/3606][Illustrations of British Mycology]], the embedded image metadata of the illustrations still attributes them to her husband, Thomas John Hussey. Apparently, even 170 years later, female researchers can end up in the shadow of their husbands in one way or another.
+
+#+BEGIN_EXPORT html
+<figure>
+<div style="display: flex; gap: 1em; justify-content: center; align-items: center; flex-wrap: wrap; max-width: 1150px; margin: 0 auto;">
+<a href="../../assets/gymnopus_dryophilus.jpg" target="_blank" rel="noopener noreferrer"
+   style="flex: 1 1 390px; max-width: 555px; text-align: center;">
+<img src="../../assets/gymnopus_dryophilus.jpg"
+     alt="Historical mushroom illustration from Anna Maria Hussey's Illustrations of British Mycology, showing several mushrooms on one plate"
+     title="Historical illustration by Anna Maria Hussey"
+     loading="lazy"
+     style="display: block; width: 100%; max-height: 400px; height: auto; object-fit: contain; margin: 0 auto;">
+</a>
+<a href="../../assets/naturalist_hussey_exif.png" target="_blank" rel="noopener noreferrer"
+   style="flex: 1 1 390px; max-width: 555px; text-align: center;">
+<img src="../../assets/naturalist_hussey_exif.png"
+     alt="ExifTool output attributing an illustration from Illustrations of British Mycology to Hussey, Thomas John"
+     title="The incorrect creator metadata"
+     loading="lazy"
+     style="display: block; width: 100%; max-height: 400px; height: auto; object-fit: contain; margin: 0 auto;">
+</a>
+</div>
+<figcaption><span class="figure-number">Figure 18: </span> Anna Maria Hussey's mushroom artwork, and image metadata naming her husband as the creator.</figcaption>
+</figure>
+#+END_EXPORT
+
+And just like that, trying to find pretty pictures for my mushroom computer turned into an investigation of 19th-century naturalists. Totally worth it.
+
+Obviously all illustrations have to be Public Domain or Not in Copyright to go into the Naturalist (see GitHub for details [[https://github.com/bitshiftcrazy/naturalist/tree/main/software/data][here]]).
+
+But there's another important consideration with historical data for the Naturalist: to keep it as asshole-free as possible.
+
+The thing is, history is dirty, and I didn't want to end up accidentally contaminating my marvel with a Nazi mushroom illustration. So, for example, German authors/illustrators who were adults and professionally active in Nazi Germany between 1933 and 1945 are generally ruled out, unless there's significant evidence of opposition to the regime or persecution by it (for example, resistance members or Jewish artists). This doesn't mean I assume everyone who continued publishing during that period was a Nazi, but I simply don't want to investigate every ambiguous biography to clear someone for my little mushroom database. I'd rather err on the side of caution.
+Other time periods and nationalities get a background check to at least check for obvious assholery. Sure, after a century, there's no way to be 100% certain, but I at least want to do my due diligence.
+
+** From mushrooms and marvel to more to come (and me running out of alliterations)
+
+Since I interrupted all other project work to get the Naturalist field-ready and take it on a few walks, I'm happy to report that it survives both forests and my clumsiness. It even got wet, and the eInk and LiPo (despite being a little sensitive when it comes to temperature) stubbornly defied the cold November weather at 3°C. But most importantly, I genuinely enjoyed its company on my walks!
+
+#+BEGIN_EXPORT html
+<figure>
+<div style="display: flex; gap: 1em; justify-content: center; align-items: center; flex-wrap: wrap; max-width: 800px; margin: 0 auto;">
+<div style="flex: 1 1 250px; max-width: 360px; text-align: center;">
+<video controls muted playsinline preload="metadata"
+       aria-label="Short video of the Naturalist suspended from its carrying strap outdoors"
+       style="display: block; width: 100%; max-height: 480px; height: auto; margin: 0 auto;">
+  <source src="../../assets/naturalist_closed_outside.mp4" type="video/mp4">
+  Your browser does not support embedded video.
+  <a href="../../assets/naturalist_closed_outside.mp4">Watch the video</a>.
+</video>
+</div>
+<a href="../../assets/naturalist19.jpg" target="_blank" rel="noopener noreferrer"
+   style="flex: 1 1 260px; max-width: 360px; text-align: center;">
+<img src="../../assets/naturalist19.jpg"
+     alt="The opened Naturalist resting on a mossy log among autumn mushrooms in the forest"
+     title="The Naturalist at work in the forest"
+     loading="lazy"
+     style="display: block; width: auto; max-width: 100%; max-height: 480px; height: auto; margin: 0 auto;">
+</a>
+</div>
+<figcaption><span class="figure-number">Figure 19: </span> From instrument case to walking companion: carrying and using the Naturalist outdoors.</figcaption>
+</figure>
+#+END_EXPORT
+
+There's still a lot to do, of course. The mushroom database is far from being sufficiently filled, the interface could use some polish here and there, and the cover plate will get a replacement with my last PCB order of the year in December (yeah, I have an exact number of PCB imports per year because things get icky in Germany when you do imports as a private person too frequently, and it's already icky enough as it is). I have some plans to expand the Naturalist to other domains, but I suspect fungi will keep me occupied for quite a while, and I'll happily let them.
+
+This is maybe also a good point for a quick FYI on how I build my projects: this is really just my hobby, I work a full-time job and even have something resembling a social life (okay, it's actually just DnD, but that counts!). Things take months and sometimes even longer to finish, hardly ever weeks or days. So expect these updates and expansions to happen sometime this geological epoch, but not next weekend ;)
+
+For now, I'm really happy with my oddly specific little field companion. I wanted to combine some things that bring me joy, and that I accomplished. And if sharing this contraption makes someone else smile, inspires someone to unleash more oddly specific ideas into this world, or even just to have a closer look at the next mushroom they encounter, that'd be kinda nice, too.
+
+
+If you made it until down here, a little sneak preview:
+
+
+#+BEGIN_EXPORT html
+<figure style="text-align: center;">
+<a href="../../assets/naturalist_pcb_preview.jpg" target="_blank" rel="noopener noreferrer">
+<img src="../../assets/naturalist_pcb_preview.jpg"
+     alt="A collection of colourful, unusually shaped PCBs, including the Naturalist keyboard and several other projects"
+     title="A little sneak preview from the workbench"
+     loading="lazy"
+     style="display: block; width: 100%; max-width: 720px; height: auto; margin: 0 auto;">
+</a>
+<figcaption><span class="figure-number">Figure 20: </span> A little sneak preview of "soon to get a blog post"-oddities from my workshop.</figcaption>
+</figure>
+#+END_EXPORT
+
+
+
+#+BEGIN_EXPORT html
+<a class="mushroom-portal"
+   href="https://play.workadventu.re/_/global/bitshiftcrazy.github.io/molerat-burrow/outdoor_path.json#start"
+   target="_blank"
+   rel="noopener noreferrer"
+   data-tooltip="The map ends here. The path doesn't."
+   aria-label="Enter the hidden garden">
+  <img src="../../assets/website_sprites/mushroom_portal.png"
+       alt="A circle of tiny mushrooms">
+</a>
+#+END_EXPORT
+
+
+#+begin_export html
+<p class="inspiration-credit">
+/* Thou shalt not fear the strange looking link.
+   WorkAdventure is a browser-based explorable pixel-art world.
+   No installation needed, it's "multiplayer" tho. */
+</p>
+#+end_export
